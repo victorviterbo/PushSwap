@@ -6,13 +6,13 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/18 18:26:23 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/18 18:26:39 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSHSWAP
 # define PUSHSWAP
 
-int    *swap(int *stack)
+int    *swap(int *stack);
 
 #endif
