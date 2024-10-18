@@ -6,18 +6,19 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:19:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/18 18:25:03 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/18 18:32:10 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int    *swap(int *stack);
+void    swap(int **stack);
 
-int    *swap(int *stack)
+void    swap(int **stack)
 {
     int    tmp;
 
-    tmp = *(stack + 1);
+    tmp = **(stack + 1);
     *(stack + 1) = *(stack);
     *(stack) = tmp;
     return (stack);
 }
+
