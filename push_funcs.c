@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PushSwap.h                                         :+:      :+:    :+:   */
+/*   push_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/19 11:40:31 by vviterbo         ###   ########.fr       */
+/*   Created: 2024/10/19 11:45:15 by vviterbo          #+#    #+#             */
+/*   Updated: 2024/10/19 11:49:23 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP
-# define PUSHSWAP
+#include "PushSwap.h"
 
-#include <stddef.h>
+void	push(int **stack_a, int **stack_b);
 
-int	*swap(int **stack);
-#endif
+void	push(int **stack_a, int **stack_b)
+{
+	if ()
+}
