@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PushSwap.h                                         :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/21 14:24:44 by vviterbo         ###   ########.fr       */
+/*   Created: 2024/07/31 10:55:39 by vviterbo          #+#    #+#             */
+/*   Updated: 2024/10/09 14:43:46 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stddef.h>
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
 
-
-#include <libc.h>
-
-
-
-
-
-void    print_list(t_list **lst);
-void	sa(t_list **stack_a);
-void	sb(t_list **stack_b);
-void	ss(t_list **stack_a, t_list **stack_b);
-
-#endif
+	i = 0;
+	while (*(src + i) && i + 1 < dstsize)
+	{
+		*(dst + i) = *(src + i);
+		i++;
+	}
+	if (dstsize)
+		*(dst + i) = '\0';
+	while (*(src + i))
+		i++;
+	return (i);
+}

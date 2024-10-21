@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PushSwap.h                                         :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/21 14:24:44 by vviterbo         ###   ########.fr       */
+/*   Created: 2024/07/31 07:23:46 by vviterbo          #+#    #+#             */
+/*   Updated: 2024/10/01 18:15:29 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stddef.h>
+int	ft_isalpha(int c);
 
-
-
-#include <libc.h>
-
-
-
-
-
-void    print_list(t_list **lst);
-void	sa(t_list **stack_a);
-void	sb(t_list **stack_b);
-void	ss(t_list **stack_a, t_list **stack_b);
-
-#endif
+int	ft_isalpha(int c)
+{
+	return (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'));
+}

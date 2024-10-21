@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PushSwap.h                                         :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/21 14:24:44 by vviterbo         ###   ########.fr       */
+/*   Created: 2024/08/03 23:44:30 by vviterbo          #+#    #+#             */
+/*   Updated: 2024/10/09 18:45:13 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stddef.h>
+void	ft_putendl_fd(char *s, int fd);
 
+void	ft_putendl_fd(char *s, int fd)
+{
+	char	*sendl;
 
-
-#include <libc.h>
-
-
-
-
-
-void    print_list(t_list **lst);
-void	sa(t_list **stack_a);
-void	sb(t_list **stack_b);
-void	ss(t_list **stack_a, t_list **stack_b);
-
-#endif
+	sendl = ft_strjoin(s, "\n");
+	write(fd, sendl, ft_strlen(s) + 1);
+	free(sendl);
+	return ;
+}

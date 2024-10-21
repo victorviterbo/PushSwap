@@ -6,39 +6,39 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:19:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/19 11:45:43 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/21 13:54:15 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PushSwap.h"
 
-void	swap(int **stack);
+void	sa(t_list **stack_a);
+void	sb(t_list **stack_b);
+void	ss(t_list **stack_a, t_list **stack_b);
 
-void	swap(int **stack)
+void	sa(t_list **stack_a)
 {
-	int	tmp;
+	void	*tmp;
 
-	tmp = *(*stack + 1);
-	*(*stack + 1) = *(*stack);
-	*(*stack) = tmp;
+	tmp = (((*stack_a)->next)->content);
+	(((*stack_a)->next)->content) = ((*stack_a)->content);
+	((*stack_a)->content) = tmp;
 	return ;
 }
 
-void	sa(int **stack_a, int **stack_b)
+void	sb(t_list **stack_b)
 {
-	swap(stack_a);
+	void	*tmp;
+
+	tmp = (((*stack_b)->next)->content);
+	(((*stack_b)->next)->content) = ((*stack_b)->content);
+	((*stack_b)->content) = tmp;
 	return ;
 }
 
-void	sb(int **stack_a, int **stack_b)
+void	ss(t_list **stack_a, t_list **stack_b)
 {
-	swap(stack_b);
-	return ;
-}
-
-void	ss(int **stack_a, int **stack_b)
-{
-	swap(stack_a);
-	swap(stack_b);
+	sa(stack_a);
+	sb(stack_b);
 	return ;
 }

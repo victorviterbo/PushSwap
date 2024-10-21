@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PushSwap.h                                         :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/21 14:24:44 by vviterbo         ###   ########.fr       */
+/*   Created: 2024/08/03 21:41:57 by vviterbo          #+#    #+#             */
+/*   Updated: 2024/10/09 15:03:47 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stddef.h>
+char	*ft_strmapi(char const *s, char (*f) (unsigned int, char));
 
+char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
+{
+	char	*new_str;
+	size_t	i;
 
-
-#include <libc.h>
-
-
-
-
-
-void    print_list(t_list **lst);
-void	sa(t_list **stack_a);
-void	sb(t_list **stack_b);
-void	ss(t_list **stack_a, t_list **stack_b);
-
-#endif
+	i = 0;
+	new_str = ft_calloc((ft_strlen((char *)s) + 1), sizeof(char));
+	if (!new_str)
+		return (NULL);
+	while (*(s + i))
+	{
+		*(new_str + i) = f(i, *(s + i));
+		i++;
+	}
+	*(new_str + i) = '\0';
+	return (new_str);
+}

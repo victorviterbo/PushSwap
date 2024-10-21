@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PushSwap.h                                         :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/21 14:24:44 by vviterbo         ###   ########.fr       */
+/*   Created: 2024/08/04 09:54:17 by vviterbo          #+#    #+#             */
+/*   Updated: 2024/10/11 12:02:56 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stddef.h>
+t_list	*ft_lstnew(void *content);
 
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*newlst;
 
-
-#include <libc.h>
-
-
-
-
-
-void    print_list(t_list **lst);
-void	sa(t_list **stack_a);
-void	sb(t_list **stack_b);
-void	ss(t_list **stack_a, t_list **stack_b);
-
-#endif
+	newlst = ft_calloc(1, sizeof(t_list));
+	if (!newlst)
+		return (NULL);
+	newlst->content = content;
+	newlst->next = NULL;
+	return (newlst);
+}

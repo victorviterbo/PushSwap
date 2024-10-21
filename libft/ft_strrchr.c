@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PushSwap.h                                         :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/21 14:24:44 by vviterbo         ###   ########.fr       */
+/*   Created: 2024/07/31 12:15:17 by vviterbo          #+#    #+#             */
+/*   Updated: 2024/10/13 13:16:26 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stddef.h>
+char	*ft_strrchr(const char *s, int c);
 
+char	*ft_strrchr(const char *s, int c)
+{
+	size_t			i;
+	unsigned char	uc;
 
-
-#include <libc.h>
-
-
-
-
-
-void    print_list(t_list **lst);
-void	sa(t_list **stack_a);
-void	sb(t_list **stack_b);
-void	ss(t_list **stack_a, t_list **stack_b);
-
-#endif
+	i = 0;
+	uc = (unsigned char)c;
+	while (*(s + i))
+		i++;
+	if (uc == '\0')
+		return ((char *)(s + i));
+	while (i > 0)
+	{
+		i--;
+		if ((unsigned char)*(s + i) == uc)
+			return ((char *)(s + i));
+	}
+	return (NULL);
+}

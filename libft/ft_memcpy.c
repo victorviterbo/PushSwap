@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PushSwap.h                                         :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/21 14:24:44 by vviterbo         ###   ########.fr       */
+/*   Created: 2024/07/31 08:21:23 by vviterbo          #+#    #+#             */
+/*   Updated: 2024/10/13 13:24:16 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stddef.h>
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t			i;
+	unsigned char	*bdst;
+	unsigned char	*bsrc;
 
-
-#include <libc.h>
-
-
-
-
-
-void    print_list(t_list **lst);
-void	sa(t_list **stack_a);
-void	sb(t_list **stack_b);
-void	ss(t_list **stack_a, t_list **stack_b);
-
-#endif
+	if (!dst && !src)
+		return (NULL);
+	i = 0;
+	bdst = (unsigned char *)dst;
+	bsrc = (unsigned char *)src;
+	while (i < n)
+	{
+		*(bdst + i) = *(bsrc + i);
+		i++;
+	}
+	return (dst);
+}
