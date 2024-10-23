@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_pop.c                                         :+:      :+:    :+:   */
+/*   revrotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 15:27:51 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/23 15:35:14 by vviterbo         ###   ########.fr       */
+/*   Created: 2024/10/23 16:58:46 by vviterbo          #+#    #+#             */
+/*   Updated: 2024/10/23 17:18:00 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PushSwap.h"
 
-t_list	*pop(t_list **lst);
-t_list	**push(t_list **lst, t_list *elem);
+void	rra(t_list **stack_a);
+void	rrb(t_list **stack_b);
+void	rrr(t_list **stack_a, t_list **stack_b);
 
-t_list	*pop(t_list **lst)
+void	rra(t_list **stack_a)
 {
-	t_list	*ret;
+	t_list	*tmp;
 
-	ret = *lst;
-	*lst = (*lst)->next;
-	ret->next = NULL;
-	return (ret);
+	tmp = (*stack_a)->next;
+	ft_lstlast(*stack_a)->next = *stack_a;
+	(*stack_a)->next = NULL;
+	(*stack_a) = tmp;
+	return ;
 }
 
-t_list	**push(t_list **lst, t_list *elem)
+void	rrb(t_list **stack_b)
 {
-	elem->next = *lst;
-	return (&elem);
+	rra(stack_b);
+	return ;
+}
+
+void	rrr(t_list **stack_a, t_list **stack_b)
+{
+	rra(stack_a);
+	rra(stack_b);
+	return ;
 }
