@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_list.c                                       :+:      :+:    :+:   */
+/*   swap_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 14:18:42 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/21 14:25:28 by vviterbo         ###   ########.fr       */
+/*   Created: 2024/10/18 18:19:47 by vviterbo          #+#    #+#             */
+/*   Updated: 2024/10/23 17:01:21 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PushSwap.h"
 
-void    print_list(t_list **lst);
+void	sa(t_list **stack_a);
+void	sb(t_list **stack_b);
+void	ss(t_list **stack_a, t_list **stack_b);
 
-void    print_list(t_list **lst)
+void	sa(t_list **stack_a)
 {
-    t_list  *current;
+	void	*tmp;
 
-    if (!lst || !*lst)
-        return ;
-    current = *lst;
-    printf("---------------------------\n");
-    while (current && current->content)
-    {
-        printf("%i\n", *((int *)current->content));
-        current = current->next;
-    }
-    printf("---------------------------\n");
-    
+	tmp = (((*stack_a)->next)->content);
+	(((*stack_a)->next)->content) = ((*stack_a)->content);
+	((*stack_a)->content) = tmp;
+	return ;
+}
+
+void	sb(t_list **stack_b)
+{
+	sa(stack_b);
+	return ;
+}
+
+void	ss(t_list **stack_a, t_list **stack_b)
+{
+	sa(stack_a);
+	sb(stack_b);
+	return ;
 }
