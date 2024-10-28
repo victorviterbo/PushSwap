@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/28 15:28:36 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/28 16:24:36 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void	merge(t_list **stack_a, t_list **stack_b)
 	size_t	i;
 
 	len = ft_lstsize(*stack_b);
+	if (len > ft_lstsize(*stack_a))
+		len = ft_lstsize(*stack_a);
 	i = 0;
 	while (i < len)
 	{
@@ -99,8 +101,6 @@ void	merge(t_list **stack_a, t_list **stack_b)
 
 void	insert(t_list **stack_a, t_list **stack_b)
 {
-
-	//print_list(stack_a, stack_b);
 	if (*(int *)(*stack_a)->content <= get_min(stack_b))
 	{
 		pb(stack_a, stack_b);
@@ -118,7 +118,6 @@ void	insert(t_list **stack_a, t_list **stack_b)
 		rb(stack_b);
 	}
 	pb(stack_a, stack_b);
-	//print_list(stack_a, stack_b);
 	return ;
 }
 
