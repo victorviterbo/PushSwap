@@ -6,11 +6,11 @@
 #    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2024/10/23 17:17:39 by vviterbo         ###   ########.fr        #
+#    Updated: 2024/10/26 17:07:33 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = pushswap
+NAME = push_swap
 
 SRCS =	push.c swap.c main.c print.c rotate.c revrotate.c
 
