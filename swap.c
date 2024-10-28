@@ -6,16 +6,16 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:19:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/28 17:41:36 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:28:07 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PushSwap.h"
 
 void	swap(t_list **stack);
-void	sa(t_list **stack_a);
-void	sb(t_list **stack_b);
-void	ss(t_list **stack_a, t_list **stack_b);
+char	*sa(t_list **stack_a);
+char	*sb(t_list **stack_b);
+char	*ss(t_list **stack_a, t_list **stack_b);
 
 void	swap(t_list **stack)
 {
@@ -27,24 +27,21 @@ void	swap(t_list **stack)
 	return ;
 }
 
-void	sa(t_list **stack_a)
+char	*sa(t_list **stack_a)
 {
 	swap(stack_a);
-	write(1, "sa\n", 3);
-	return ;
+	return ("sa\n");
 }
 
-void	sb(t_list **stack_b)
+char	*sb(t_list **stack_b)
 {
 	swap(stack_b);
-	write(1, "sb\n", 3);
-	return ;
+	return ("sb\n");
 }
 
-void	ss(t_list **stack_a, t_list **stack_b)
+char	*ss(t_list **stack_a, t_list **stack_b)
 {
 	swap(stack_a);
 	swap(stack_b);
-	write(1, "ss\n", 3);
-	return ;
+	return ("sa\nsb\n");
 }

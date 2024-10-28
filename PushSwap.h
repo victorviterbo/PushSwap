@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/28 19:56:47 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/28 21:42:23 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,42 @@
 
 
 void	print_list(t_list **lst1, t_list **lst2);
+int		minichecker(t_list **stack_a, t_list **stack_b);
+
+char	*init(t_list **stack_a, t_list **stack_b);
+char	*merge(t_list **stack_a, t_list **stack_b);
+char	*insert(t_list **stack_a, t_list **stack_b);
+char	*sort(t_list **stack_a, t_list **stack_b, size_t n);
 
 void	push(t_list **stack_a, t_list **stack_b);
-void	pa(t_list **stack_a, t_list **stack_b);
-void	pb(t_list **stack_a, t_list **stack_b);
+char	*pa(t_list **stack_a, t_list **stack_b);
+char	*pb(t_list **stack_a, t_list **stack_b);
+char	*push_bloc(t_list **stack_a, t_list **stack_b, size_t size, int dir);
 
 void	revrotate(t_list **stack);
-void	rra(t_list **stack_a);
-void	rrb(t_list **stack_b);
-void	rrr(t_list **stack_a, t_list **stack_b);
+char	*rra(t_list **stack_a);
+char	*rrb(t_list **stack_b);
+char	*rrr(t_list **stack_a, t_list **stack_b);
 
 void	rotate(t_list **stack);
-void	ra(t_list **stack_a);
-void	rb(t_list **stack_b);
-void	rr(t_list **stack_a, t_list **stack_b);
+char	*ra(t_list **stack_a);
+char	*rb(t_list **stack_b);
+char	*rr(t_list **stack_a, t_list **stack_b);
+char	*rotate_i(t_list **stack_a, size_t n);
 
 void	swap(t_list **stack);
-void	sa(t_list **stack_a);
-void	sb(t_list **stack_b);
-void	ss(t_list **stack_a, t_list **stack_b);
+char	*sa(t_list **stack_a);
+char	*sb(t_list **stack_b);
+char	*ss(t_list **stack_a, t_list **stack_b);
+
+int		get_min(t_list **stack_a);
+int		get_max(t_list **stack_a);
+char	*reset_a(t_list **stack_a);
+char	*reset_b(t_list **stack_b);
+t_list	**parse_input(int argc, char *argv[]);
+
+char	*simplify(char *s, int last_size);
+char	*cut(char *s, size_t start, size_t end, int ip);
+int		gotonext(char *s, int i);
 
 #endif

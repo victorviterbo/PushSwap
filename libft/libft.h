@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:33:18 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/13 14:25:14 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:20:46 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+
+char	*ft_strjoin_ip(char const *s1, char const *s2, int in_place);
 
 #endif

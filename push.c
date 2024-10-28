@@ -6,16 +6,16 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 11:45:15 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/28 19:54:02 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:14:11 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PushSwap.h"
 
 void	push(t_list **stack_a, t_list **stack_b);
-void	pa(t_list **stack_a, t_list **stack_b);
-void	pb(t_list **stack_a, t_list **stack_b);
-void	push_bloc(t_list **stack_a, t_list **stack_b, size_t size, int dir);
+char	*pa(t_list **stack_a, t_list **stack_b);
+char	*pb(t_list **stack_a, t_list **stack_b);
+char	*push_bloc(t_list **stack_a, t_list **stack_b, size_t size, int dir);
 
 void	push(t_list **stack_a, t_list **stack_b)
 {
@@ -35,31 +35,32 @@ void	push(t_list **stack_a, t_list **stack_b)
 	return ;
 }
 
-void	pa(t_list **stack_a, t_list **stack_b)
+char	*pa(t_list **stack_a, t_list **stack_b)
 {
 	push(stack_a, stack_b);
-	write(1, "pa\n", 3);
-	return ;
+	return ("pa\n");
 }
 
-void	pb(t_list **stack_a, t_list **stack_b)
+char	*pb(t_list **stack_a, t_list **stack_b)
 {
 	push(stack_b, stack_a);
-	write(1, "pb\n", 3);
+	return ("pb\n");
 }
 
-void	push_bloc(t_list **stack_a, t_list **stack_b, size_t size, int dir)
+char	*push_bloc(t_list **stack_a, t_list **stack_b, size_t size, int dir)
 {
 	size_t	i;
+	char	*ret;
 
 	i = 0;
+	ret = ft_calloc(1, 1);
 	while (i < size)
 	{
 		if (dir == 1)
-			pb(stack_a, stack_b);
+			ret = ft_strjoin_ip(ret, pb(stack_a, stack_b), 1);
 		else if (dir == -1)
-			pa(stack_a, stack_b);
+			ret = ft_strjoin_ip(ret, pa(stack_a, stack_b), 1);
 		i++;
 	}
-	return ;
+	return (ret);
 }

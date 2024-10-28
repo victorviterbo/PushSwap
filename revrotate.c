@@ -6,16 +6,16 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:58:46 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/28 17:47:52 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:59:42 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PushSwap.h"
 
 void	revrotate(t_list **stack);
-void	rra(t_list **stack_a);
-void	rrb(t_list **stack_b);
-void	rrr(t_list **stack_a, t_list **stack_b);
+char	*rra(t_list **stack_a);
+char	*rrb(t_list **stack_b);
+char	*rrr(t_list **stack_a, t_list **stack_b);
 
 void	revrotate(t_list **stack)
 {
@@ -28,24 +28,21 @@ void	revrotate(t_list **stack)
 	return ;
 }
 
-void	rra(t_list **stack_a)
+char	*rra(t_list **stack_a)
 {
 	revrotate(stack_a);
-	write(1, "rra\n", 4);
-	return ;
+	return ("rra\n");
 }
 
-void	rrb(t_list **stack_b)
+char	*rrb(t_list **stack_b)
 {
 	revrotate(stack_b);
-	write(1, "rrb\n", 4);
-	return ;
+	return ("rrb\n");
 }
 
-void	rrr(t_list **stack_a, t_list **stack_b)
+char	*rrr(t_list **stack_a, t_list **stack_b)
 {
 	revrotate(stack_a);
 	revrotate(stack_b);
-	write(1, "rrr\n", 4);
-	return ;
+	return ("rrr\n");
 }

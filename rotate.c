@@ -6,17 +6,17 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:58:46 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/28 19:56:57 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:59:24 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PushSwap.h"
 
 void	rotate(t_list **stack);
-void	ra(t_list **stack_a);
-void	rb(t_list **stack_b);
-void	rr(t_list **stack_a, t_list **stack_b);
-void	rotate_i(t_list **stack_a, size_t n);
+char	*ra(t_list **stack_a);
+char	*rb(t_list **stack_b);
+char	*rr(t_list **stack_a, t_list **stack_b);
+char	*rotate_i(t_list **stack_a, size_t n);
 
 void	rotate(t_list **stack)
 {
@@ -29,37 +29,36 @@ void	rotate(t_list **stack)
 	return ;
 }
 
-void	ra(t_list **stack_a)
+char	*ra(t_list **stack_a)
 {
 	rotate(stack_a);
-	write(1, "ra\n", 3);
-	return ;
+	return ("ra\n");
 }
 
-void	rb(t_list **stack_b)
+char	*rb(t_list **stack_b)
 {
 	rotate(stack_b);
-	write(1, "rb\n", 3);
-	return ;
+	return ("rb\n");
 }
 
-void	rr(t_list **stack_a, t_list **stack_b)
+char	*rr(t_list **stack_a, t_list **stack_b)
 {
 	rotate(stack_a);
 	rotate(stack_b);
-	write(1, "rr\n", 3);
-	return ;
+	return ("rr\n");
 }
 
-void	rotate_i(t_list **stack_a, size_t n)
+char	*rotate_i(t_list **stack_a, size_t n)
 {
 	size_t	i;
+	char	*ret;
 
 	i = 0;
+	ret = ft_calloc(1, 1);
 	while (i < n)
 	{
-		ra(stack_a);
+		ret = ft_strjoin_ip(ret, ra(stack_a), 1);
 		i++;
 	}
-	return ;
+	return (ret);
 }
