@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 11:45:15 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/23 17:10:12 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:24:51 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ void	pa(t_list **stack_a, t_list **stack_b)
 	next_node_b = (*stack_b)->next;
 	(*stack_a)->next = next_node_a;
 	*stack_b = next_node_b;
+	write(1, "pa\n", 3);
 	return ;
 }
 
 void	pb(t_list **stack_a, t_list **stack_b)
 {
 	pa(stack_b, stack_a);
+	write(1, "pb\n", 3);
 }

@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/28 14:20:10 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:28:08 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	merge(t_list **stack_a, t_list **stack_b);
 void	insert(t_list **stack_a, t_list **stack_b);
 void	rotate_i(t_list **stack_a, size_t n);
 void	sort(t_list **stack_a, t_list **stack_b, size_t n);
+int		get_min(t_list **stack_a);
+int		get_max(t_list **stack_a);
+void	reset(t_list **stack_a);
 
 int	main(int argc, char *argv[])
 {
@@ -42,6 +45,9 @@ int	main(int argc, char *argv[])
 	init(stack_a, stack_b);
 	print_list(stack_a, stack_b);
 	sort(stack_a, stack_b, 4);
+	print_list(stack_a, stack_b);
+	//reset(stack_a);
+	print_list(stack_a, stack_b);
 	return (1);
 }
 
@@ -98,40 +104,26 @@ void	merge(t_list **stack_a, t_list **stack_b)
 
 void	insert(t_list **stack_a, t_list **stack_b)
 {
-	int	i;
-	int	len;
 
-	i = 0;
-	len = ft_lstsize(*stack_b);
-	print_list(stack_a, stack_b);
-	while (*(int *)(*stack_a)->content > *(int *)(*stack_b)->content)
+	//print_list(stack_a, stack_b);
+	if (*(int *)(*stack_a)->content <= get_min(stack_b))
 	{
-		if (*(int *)(*stack_b)->content > *(int *)(*stack_b)->next->content)
-		{
-			rb(stack_b);
-			break ;
-		}
+		pb(stack_a, stack_b);
 		rb(stack_b);
-		i++;
+		return ;
+	}
+	else if (*(int *)(*stack_a)->content >= get_max(stack_b))
+	{
+		reset(stack_b);
+		pb(stack_a, stack_b);
+		return ;
+	}
+	while (*(int *)(*stack_a)->content < *(int *)(*stack_b)->content)
+	{
+		rb(stack_b);
 	}
 	pb(stack_a, stack_b);
-	print_list(stack_a, stack_b);
-	if (2 * i > len)
-	{
-		while (i < len + 1)
-		{
-			rb(stack_b);
-			i++;
-		}
-	}
-	else
-	{
-		while (i > 0)
-		{
-			rrb(stack_b);
-			i--;
-		}
-	}
+	//print_list(stack_a, stack_b);
 	return ;
 }
 
@@ -151,10 +143,50 @@ void	rotate_i(t_list **stack_a, size_t n)
 void	sort(t_list **stack_a, t_list **stack_b, size_t n)
 {
 	printf("coucou running with n = %zu\n", n);
-	if ((int)n > ft_lstsize(*stack_a))
+	if (2 * (int)n > ft_lstsize(*stack_a))
 		return ;
 	push_bloc(stack_a, stack_b, n);
 	merge(stack_a, stack_b);
+	reset(stack_b);
 	push_bloc(stack_b, stack_a, 2 * n);
 	return (sort(stack_a, stack_b, 2 * n));
+}
+
+int	get_min(t_list **stack_a)
+{
+	int		min;
+	t_list	*current;
+
+	min = INT_MAX;
+	current = *stack_a;
+	while (current)
+	{
+		if (*(int *)current->content < min)
+			min = *(int *)current->content;
+		current = current->next;
+	}
+	return (min);
+}
+
+int	get_max(t_list **stack_a)
+{
+	int		max;
+	t_list	*current;
+
+	max = INT_MIN;
+	current = *stack_a;
+	while (current)
+	{
+		if (*(int *)current->content > max)
+			max = *(int *)current->content;
+		current = current->next;
+	}
+	return (max);
+}
+
+void	reset(t_list **stack_a)
+{
+	while (*(int *)(*stack_a)->content != get_max(stack_a))
+		ra(stack_a);
+	return;
 }
