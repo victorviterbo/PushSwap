@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 11:45:15 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/28 18:40:23 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/28 19:54:02 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	push(t_list **stack_a, t_list **stack_b);
 void	pa(t_list **stack_a, t_list **stack_b);
 void	pb(t_list **stack_a, t_list **stack_b);
+void	push_bloc(t_list **stack_a, t_list **stack_b, size_t size, int dir);
 
 void	push(t_list **stack_a, t_list **stack_b)
 {
@@ -45,4 +46,20 @@ void	pb(t_list **stack_a, t_list **stack_b)
 {
 	push(stack_b, stack_a);
 	write(1, "pb\n", 3);
+}
+
+void	push_bloc(t_list **stack_a, t_list **stack_b, size_t size, int dir)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (dir == 1)
+			pb(stack_a, stack_b);
+		else if (dir == -1)
+			pa(stack_a, stack_b);
+		i++;
+	}
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:58:46 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/28 17:43:17 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/28 19:56:57 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	rotate(t_list **stack);
 void	ra(t_list **stack_a);
 void	rb(t_list **stack_b);
 void	rr(t_list **stack_a, t_list **stack_b);
+void	rotate_i(t_list **stack_a, size_t n);
 
 void	rotate(t_list **stack)
 {
@@ -47,5 +48,18 @@ void	rr(t_list **stack_a, t_list **stack_b)
 	rotate(stack_a);
 	rotate(stack_b);
 	write(1, "rr\n", 3);
+	return ;
+}
+
+void	rotate_i(t_list **stack_a, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		ra(stack_a);
+		i++;
+	}
 	return ;
 }
