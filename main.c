@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/28 15:28:08 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:28:36 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,8 @@ int	main(int argc, char *argv[])
 		ft_lstadd_back(stack_a, new_node);
 		i++;
 	}
-	print_list(stack_a, stack_b);
 	init(stack_a, stack_b);
-	print_list(stack_a, stack_b);
 	sort(stack_a, stack_b, 4);
-	print_list(stack_a, stack_b);
-	//reset(stack_a);
-	print_list(stack_a, stack_b);
 	return (1);
 }
 
@@ -142,7 +137,6 @@ void	rotate_i(t_list **stack_a, size_t n)
 
 void	sort(t_list **stack_a, t_list **stack_b, size_t n)
 {
-	printf("coucou running with n = %zu\n", n);
 	if (2 * (int)n > ft_lstsize(*stack_a))
 		return ;
 	push_bloc(stack_a, stack_b, n);
