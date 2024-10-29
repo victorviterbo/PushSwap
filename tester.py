@@ -8,33 +8,31 @@ import numpy as np
 import subprocess
 
 RERUN = True
-x = input("enter number of elements to be sorted")
+"""x = input("enter number of elements to be sorted")
 try:
     x = [int(x)]
 except (ValueError, TypeError):
-    x = [pow(3, i) for i in range(4, 8, 1)]
-
+    x = [pow(3, i) for i in range(4, 5, 1)]"""
+x = [pow(3, i) for i in range(2, 3, 1)]
 if (RERUN):
 	results = dict()
 	for size in x:
 		results[size] = []
 		print("Running for size "+str(size))
-		for j in range(5):
+		for j in range(1):
 			a = ""
 			for i in range(size):
-				tmp = random.randint(-2*size, 2*size)
+				tmp = random.randint(0, 2*size)
 				while (str(tmp) in a):
-					tmp = random.randint(-2*size, 2*size)
+					tmp = random.randint(0, 2*size)
 				a += str(tmp) + " "
 			a = a[0:len(a)-1]
 			ret = os.system('ARG="'+str(a)+'"')
 			print('ARG="'+str(a)+'"')
 			assert not ret
-			result = subprocess.run(["push_swap", "$ARG", "|", "./checker_Mac", "$ARG"], capture_output=True, text=True)
-			print(result.stdout)
-			os.system("./push_swap $ARG | ./checker_Mac $ARG > aa")
-			print("./push_swap $ARG | ./checker_Mac $ARG > aa")
-			print(ret)
+			result = subprocess.run(["./push_swap", "$ARG", "|", "./checker_Mac", "$ARG"], capture_output=True, text=True)
+			#print(result.stdout)
+			print(" ".join(["./push_swap", "$ARG", "|", "./checker_Mac", "$ARG"]))
 			with open("tmp.out", "r") as f:
 				n = len(f.readlines())
 			results[size].append(n)
