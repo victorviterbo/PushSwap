@@ -6,17 +6,17 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 21:01:34 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/28 21:39:34 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/28 22:20:08 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PushSwap.h"
 
-char	*simplify(char *s, int last_size);
+char	*simplify(char *s, size_t last_size);
 char	*cut(char *s, size_t start, size_t end, int ip);
 int		gotonext(char *s, int i);
 
-char	*simplify(char *s, int last_size)
+char	*simplify(char *s, size_t last_size)
 {
 	size_t	i;
 	size_t	n;
@@ -41,6 +41,7 @@ char	*simplify(char *s, int last_size)
 			return (simplify(cut(s, i, gotonext(s, n), 3), last_size));
 		i = n;
 	}
+	return (s);
 }
 
 char	*cut(char *s, size_t start, size_t end, int ip)

@@ -6,13 +6,13 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/28 21:42:28 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/28 22:27:41 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PushSwap.h"
 
-int	main(int argc, char *argv[]);
+int		main(int argc, char *argv[]);
 char	*init(t_list **stack_a, t_list **stack_b);
 char	*merge(t_list **stack_a, t_list **stack_b);
 char	*insert(t_list **stack_a, t_list **stack_b);
@@ -115,6 +115,7 @@ char	*sort(t_list **stack_a, t_list **stack_b, size_t n)
 		ret = ft_strjoin_ip(ret, merge(stack_a, stack_b), 1);
 		ret = ft_strjoin_ip(ret, reset_b(stack_b), 1);
 		ret = ft_strjoin_ip(ret, push_bloc(stack_a, stack_b, 2 * n, -1), 1);
+		n *= 2;
 	}
 	return (ret);
 }
