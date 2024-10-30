@@ -13,7 +13,7 @@ try:
     x = [int(x)]
 except (ValueError, TypeError):
     x = [pow(3, i) for i in range(4, 5, 1)]"""
-x = [pow(3, i) for i in range(2, 3, 1)]
+x = [pow(3, i) for i in range(5, 6, 1)]
 if (RERUN):
 	results = dict()
 	for size in x:
