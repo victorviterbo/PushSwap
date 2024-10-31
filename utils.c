@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/31 20:07:23 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/31 20:49:58 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,16 @@ int	get_max(t_list **stack_a)
 char	*reset(t_list **stack, char ab)
 {
 	char	*ret;
+	int		target;
 
 	ret = ft_calloc(1, 1);
-	while (*(int *)(*stack)->content != get_min(stack))
+	if (!ret)
+		return (NULL);
+	if (ab == 'a')
+		target = get_min(stack);
+	else
+		target = get_max(stack);
+	while (*(int *)(*stack)->content != target)
 	{
 		if (ab == 'a')
 			ret = ft_strjoin_ip(ret, ra(stack), 1);
@@ -76,9 +83,10 @@ t_list	**parse_input(int argc, char *argv[])
 	stack_a = ft_calloc(1, sizeof(t_list *));
 	if (argc == 2)
 		argv = ft_split(argv[1], ' ');
+	else
+		i = 1;
 	while (argv[i])
 	{
-		printf("arg %zu is %s\n", i, argv[i]);
 		if (!ft_isnumber(argv[i]))
 			return (free_stack(stack_a));
 		tmp = ft_calloc(1, sizeof(int));

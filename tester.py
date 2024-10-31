@@ -13,7 +13,7 @@ try:
     x = [int(x)]
 except (ValueError, TypeError):
     x = [pow(3, i) for i in range(4, 5, 1)]"""
-x = [pow(3, i) for i in range(5, 6, 1)]
+x = [pow(3, i) for i in range(2, 6, 10)]
 if (RERUN):
 	results = dict()
 	for size in x:
@@ -30,8 +30,9 @@ if (RERUN):
 			ret = os.system('ARG="'+str(a)+'"')
 			print('ARG="'+str(a)+'"')
 			assert not ret
-			result = subprocess.run(["./push_swap", "$ARG", "|", "./checker_Mac", "$ARG"], capture_output=True, text=True)
-			#print(result.stdout)
+			pushswap = subprocess.run(["./push_swap", "$ARG", ">", "tmp.ps"], shell=True)
+			result = subprocess.run(["cat", "out.tmp", "|", "./checker_Mac", "$ARG"], capture_output=True, text=True, shell=True)
+			print(result.stdout)
 			print(" ".join(["./push_swap", "$ARG", "|", "./checker_Mac", "$ARG"]))
 			with open("tmp.out", "r") as f:
 				n = len(f.readlines())

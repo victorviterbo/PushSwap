@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/30 15:14:17 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/31 20:48:09 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,20 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	stack_b = ft_calloc(1, sizeof(t_list *));
-	//print_list(stack_a, stack_b);
+	printf("before init\n");
+	print_list(stack_a, stack_b);
 	instructions = ft_strjoin_ip(instructions, init(stack_a, stack_b), 1);
-	//print_list(stack_a, stack_b);
-	instructions = ft_strjoin_ip(instructions, sort(stack_a, stack_b, 4), 1);
-	//print_list(stack_a, stack_b);
+	printf("after init\n");
+	print_list(stack_a, stack_b);
+	instructions = ft_strjoin_ip(instructions, sort(stack_a, stack_b, 2), 1);
+	printf("after sort\n");
+	print_list(stack_a, stack_b);
 	instructions = ft_strjoin_ip(instructions, reset(stack_a, 'a'), 1);
-	//print_list(stack_a, stack_b);
-	instructions = simplify(instructions, ft_strlen(instructions) + 1);
-	write(1, instructions, ft_strlen(instructions));
-	//print_list(stack_a, stack_b);
+	printf("after reset\n");
+	print_list(stack_a, stack_b);
+	//instructions = simplify(instructions, ft_strlen(instructions) + 1);
+	//write(1, instructions, ft_strlen(instructions));
+	print_list(stack_a, stack_b);
 	return (1);
 }
 
@@ -53,20 +57,27 @@ char	*init(t_list **stack_a, t_list **stack_b)
 
 	ret = ft_calloc(1, 1);
 	len = ft_lstsize(*stack_a);
-	i = len % 4;
+	i = len % 2;
 	while (i < len)
 	{
+		print_list(stack_a, stack_b);
 		if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content)
 			ret = ft_strjoin_ip(ret, sa(stack_a), 1);
-		ret = ft_strjoin_ip(ret, push_bloc(stack_a, stack_b, 2, 1), 1);
+		printf("i = %zu\n", i);
+		print_list(stack_a, stack_b);
+		/*ret = ft_strjoin_ip(ret, push_bloc(stack_a, stack_b, 2, 1), 1);
 		if ((*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content))
 			ret = ft_strjoin_ip(ret, sa(stack_a), 1);
+		print_list(stack_a, stack_b);
 		ret = ft_strjoin_ip(ret, merge(stack_a, stack_b), 1);
+		print_list(stack_a, stack_b);
 		ret = ft_strjoin_ip(ret, push_bloc(stack_a, stack_b, 4, -1), 1);
-		ret = ft_strjoin_ip(ret, rotate_i(stack_a, 4), 1);
-		i += 4;
+		print_list(stack_a, stack_b);;
+		print_list(stack_a, stack_b);*/
+		ret = ft_strjoin_ip(ret, rotate_i(stack_a, 2), 1);
+		i += 2;
 	}
-	ret = ft_strjoin_ip(ret, rotate_i(stack_a, len % 4), 1);
+	ret = ft_strjoin_ip(ret, rotate_i(stack_a, len % 2), 1);
 	return (ret);
 }
 
