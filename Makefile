@@ -6,7 +6,7 @@
 #    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2024/10/28 22:19:07 by vviterbo         ###   ########.fr        #
+#    Updated: 2024/10/31 18:31:43 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS =	push.c swap.c main.c rotate.c revrotate.c utils.c simplify.c print.c
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 
-HEADER = PushSwap.h libft/libft.h
+#HEADER = PushSwap.h libft/libft.h
 
 LIB = libft
 

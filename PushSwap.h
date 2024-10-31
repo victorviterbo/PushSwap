@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/28 22:19:40 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/31 20:07:55 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ char	*ss(t_list **stack_a, t_list **stack_b);
 
 int		get_min(t_list **stack_a);
 int		get_max(t_list **stack_a);
-char	*reset_a(t_list **stack_a);
-char	*reset_b(t_list **stack_b);
+char	*reset(t_list **stack, char ab);
 t_list	**parse_input(int argc, char *argv[]);
+void	*free_stack(t_list **stack);
 
 char	*simplify(char *s, size_t last_size);
 char	*cut(char *s, size_t start, size_t end, int ip);

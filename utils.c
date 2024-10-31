@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/28 20:59:10 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/31 20:07:23 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		get_min(t_list **stack_a);
 int		get_max(t_list **stack_a);
-char	*reset_a(t_list **stack_a);
-char	*reset_b(t_list **stack_b);
+char	*reset(t_list **stack, char ab);
 t_list	**parse_input(int argc, char *argv[]);
+void	*free_stack(t_list **stack);
 
 int	get_min(t_list **stack_a)
 {
@@ -50,38 +50,37 @@ int	get_max(t_list **stack_a)
 	return (max);
 }
 
-char	*reset_a(t_list **stack_a)
+char	*reset(t_list **stack, char ab)
 {
 	char	*ret;
 
 	ret = ft_calloc(1, 1);
-	while (*(int *)(*stack_a)->content != get_min(stack_a))
-		ret = ft_strjoin_ip(ret, ra(stack_a), 1);
-	return (ret);
-}
-
-char	*reset_b(t_list **stack_b)
-{
-	char	*ret;
-
-	ret = ft_calloc(1, 1);
-	while (*(int *)(*stack_b)->content != get_max(stack_b))
-		ret = ft_strjoin_ip(ret, rb(stack_b), 1);
+	while (*(int *)(*stack)->content != get_min(stack))
+	{
+		if (ab == 'a')
+			ret = ft_strjoin_ip(ret, ra(stack), 1);
+		else
+			ret = ft_strjoin_ip(ret, rb(stack), 1);
+	}
 	return (ret);
 }
 
 t_list	**parse_input(int argc, char *argv[])
 {
-	int		i;
+	size_t	i;
 	int		*tmp;
 	t_list	*new_node;
 	t_list	**stack_a;
 
-	i = 1;
+	i = 0;
 	stack_a = ft_calloc(1, sizeof(t_list *));
-
-	while (i < argc)
+	if (argc == 2)
+		argv = ft_split(argv[1], ' ');
+	while (argv[i])
 	{
+		printf("arg %zu is %s\n", i, argv[i]);
+		if (!ft_isnumber(argv[i]))
+			return (free_stack(stack_a));
 		tmp = ft_calloc(1, sizeof(int));
 		*tmp = ft_atoi(argv[i]);
 		new_node = ft_lstnew(tmp);
@@ -89,4 +88,20 @@ t_list	**parse_input(int argc, char *argv[])
 		i++;
 	}
 	return (stack_a);
+}
+
+void	*free_stack(t_list **stack)
+{
+	t_list	*node;
+	t_list	*next_node;
+
+	node = *stack;
+	while (node)
+	{
+		next_node = node->next;
+		free(node->content);
+		free(node);
+		node = next_node;
+	}
+	return (NULL);
 }
