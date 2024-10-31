@@ -14,6 +14,7 @@ try:
 except (ValueError, TypeError):
     x = [pow(3, i) for i in range(4, 5, 1)]"""
 x = [pow(3, i) for i in range(2, 6, 10)]
+x = [int(input("enter size to be tested: "))]
 if (RERUN):
 	results = dict()
 	for size in x:
@@ -29,7 +30,7 @@ if (RERUN):
 			a = a[0:len(a)-1]
 			ret = os.system('ARG="'+str(a)+'"')
 			print('ARG="'+str(a)+'"')
-			assert not ret
+			quit()
 			pushswap = subprocess.run(["./push_swap", "$ARG", ">", "tmp.ps"], shell=True)
 			result = subprocess.run(["cat", "out.tmp", "|", "./checker_Mac", "$ARG"], capture_output=True, text=True, shell=True)
 			print(result.stdout)
