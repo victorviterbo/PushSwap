@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/31 20:53:14 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/31 21:07:04 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,6 @@
 
 # include "libft/libft.h"
 # include <stddef.h>
-
-
-
-#include <libc.h>
-
-
-
-
 
 void	print_list(t_list **lst1, t_list **lst2);
 int		minichecker(t_list **stack_a, t_list **stack_b);

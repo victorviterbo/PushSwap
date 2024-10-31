@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 21:01:34 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/28 22:20:08 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/10/31 21:08:11 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*cut(char *s, size_t start, size_t end, int ip)
 	return (ft_strjoin_ip(first_half, second_half, ip));
 }
 
-int		gotonext(char *s, int i)
+int	gotonext(char *s, int i)
 {
 	while (*(s + i) != '\n')
 		i++;
