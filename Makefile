@@ -6,13 +6,13 @@
 #    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2024/10/31 21:07:18 by vviterbo         ###   ########.fr        #
+#    Updated: 2024/11/01 17:36:12 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRCS =	push.c swap.c main.c rotate.c revrotate.c utils.c simplify.c
+SRCS =	push.c swap.c main.c rotate.c revrotate.c utils.c simplify.c print.c
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 
