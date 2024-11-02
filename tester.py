@@ -8,19 +8,13 @@ import json
 import subprocess
 
 RERUN = True
-"""x = input("enter number of elements to be sorted")
-try:
-    x = [int(x)]
-except (ValueError, TypeError):
-    x = [pow(3, i) for i in range(4, 5, 1)]"""
-x = [pow(3, i) for i in range(2, 6, 10)]
-#x = [int(input("enter size to be tested: "))]
+x = [pow(3, i) for i in range(2, 6, 1)]
 if (RERUN):
 	results = dict()
 	for size in x:
 		results[size] = []
 		print("Running for size "+str(size))
-		for j in range(5):
+		for j in range(10):
 			a = ""
 			for i in range(size):
 				tmp = random.randint(0, 2*size)
@@ -28,18 +22,7 @@ if (RERUN):
 					tmp = random.randint(0, 2*size)
 				a += str(tmp) + " "
 			a = a[0:len(a)-1]
-			#ret = os.system('ARG="'+str(a)+'"')
-			print('ARG="'+str(a)+'"')
-			#quit()
-			print('ARG="'+str(a)+'" ;./push_swap $ARG | ./checker_Mac $ARG')
 			subprocess.run(['ARG="'+str(a)+'" ;./push_swap $ARG | ./checker_Mac $ARG'], shell=True)
-			#check = subprocess.Popen(["cat", "out.tmp", "|", "./checker_Mac", "$ARG"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-			#output, error = check.communicate()
-			#print(output.decode())
-			#print(" ".join(["./push_swap", "$ARG", "|", "./checker_Mac", "$ARG"]))
-			#with open("out.tmp", "r") as f:
-			#	n = len(f.readlines())
-			#results[size].append(n)
 	with open("test.json", "w") as json_file:
 		json.dump(results, json_file, indent=4)
 
