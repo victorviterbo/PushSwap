@@ -6,12 +6,13 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 17:10:00 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/03 17:10:56 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/03 18:14:32 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 # define CHECKER_H
+
 # include "PushSwap.h"
 
 int	main(int argc, char *argv[]);
