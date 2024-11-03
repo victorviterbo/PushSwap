@@ -6,12 +6,21 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:33:18 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/03 14:29:21 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/03 17:49:36 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
+
+# ifndef FD_MAX
+#  define FD_MAX 1024
+# endif
+
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -71,5 +80,15 @@ int		ft_toupper(int c);
 
 char	*ft_strjoin_ip(char const *s1, char const *s2, int in_place);
 int		ft_isnumber(char *str);
+
+char	*get_next_line(int fd);
+char	*agglutinate(int fd, char *g_lst_files, char *line);
+char	*ft_strchr(const char *s, int c);
+void	ft_bzero(void *s, unsigned int n);
+char	*ft_strjoin_gnl(char const *s1, char const *s2, int in_place);
+size_t	ft_strlen(const char *str);
+char	*ft_strndup(const char *s1, size_t size);
+void	*ft_memmove(void *dst, const void *src, size_t n);
+void	*ft_calloc(size_t count, size_t size);
 
 #endif

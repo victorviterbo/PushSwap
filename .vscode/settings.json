@@ -6,6 +6,7 @@
 		"ranges": "c",
 		"tuple": "c",
 		"ostream": "c",
-		"*.tcc": "c"
+		"*.tcc": "c",
+		"libft.h": "c"
 	}
 }
