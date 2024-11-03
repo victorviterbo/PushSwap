@@ -6,15 +6,21 @@
 #    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2024/11/03 17:04:32 by vviterbo         ###   ########.fr        #
+#    Updated: 2024/11/03 17:12:30 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
+NAME_BONUS = checker
+
 SRCS =	push.c swap.c main.c rotate.c revrotate.c utils.c simplify.c exit.c print.c
 
+SRCS_BONUS = checker.c
+
 OBJS = $(patsubst %.c, %.o, $(SRCS))
+
+OBJS_BONUS = checker.o
 
 LIB = libft/
 
@@ -26,9 +32,11 @@ all: $(NAME)
 
 clean :
 	@rm -f $(OBJS)
+	@rm -f $(OBJS_BONUS)
 
 fclean : clean
 	@rm -f $(NAME)
+	@rm -f $(NAME_BONUS)
 
 re : fclean all
 
@@ -37,6 +45,6 @@ $(NAME):
 	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME) -I $(LIB)/libft.h -L $(LIB) -lft
 
 bonus : all
-	@$(MAKE) bonus/ all
+	@$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(NAME) -I $(LIB)/libft.h checker.h -L $(LIB) -lft
 
 .PHONY: all clean fclean re bonus
