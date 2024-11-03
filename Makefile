@@ -6,7 +6,7 @@
 #    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2024/11/03 17:12:30 by vviterbo         ###   ########.fr        #
+#    Updated: 2024/11/03 17:22:11 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,9 +42,9 @@ re : fclean all
 
 $(NAME): 
 	@$(MAKE) -C libft/ xtra
-	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME) -I $(LIB)/libft.h -L $(LIB) -lft
+	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME) -L $(LIB) -lft
 
 bonus : all
-	@$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(NAME) -I $(LIB)/libft.h checker.h -L $(LIB) -lft
+	$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(NAME_BONUS) -L $(LIB) -lft
 
 .PHONY: all clean fclean re bonus
