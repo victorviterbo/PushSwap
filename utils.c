@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/01 17:34:59 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/03 14:54:29 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		get_min(t_list **stack_a);
 int		get_max(t_list **stack_a);
 char	*reset(t_list **stack, char ab);
 t_list	**parse_input(int argc, char *argv[]);
-void	*free_stack(t_list **stack);
+void	cleanUp(t_list **stack, int exit_status);
 
 int	get_min(t_list **stack_a)
 {
@@ -88,7 +88,7 @@ t_list	**parse_input(int argc, char *argv[])
 	while (argv[i])
 	{
 		if (!ft_isnumber(argv[i]))
-			return (free_stack(stack_a));
+			exit(EXIT_FAILURE);
 		tmp = ft_calloc(1, sizeof(int));
 		*tmp = ft_atoi(argv[i]);
 		new_node = ft_lstnew(tmp);
@@ -98,7 +98,7 @@ t_list	**parse_input(int argc, char *argv[])
 	return (stack_a);
 }
 
-void	*free_stack(t_list **stack)
+void	cleanUp(t_list **stack, int exit_status)
 {
 	t_list	*node;
 	t_list	*next_node;
@@ -111,5 +111,7 @@ void	*free_stack(t_list **stack)
 		free(node);
 		node = next_node;
 	}
-	return (NULL);
+	if (exit_status == EXIT_FAILURE)
+		write(1, "Error\n", 6);
+	return ;
 }

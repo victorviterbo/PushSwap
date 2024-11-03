@@ -4,6 +4,8 @@
 		"optional": "c",
 		"utility": "c",
 		"ranges": "c",
-		"tuple": "c"
+		"tuple": "c",
+		"ostream": "c",
+		"*.tcc": "c"
 	}
 }

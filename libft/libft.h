@@ -6,13 +6,13 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:33:18 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/10/30 13:38:11 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/03 14:29:21 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-//# include <stddef.h>
+# include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
 

@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:58:46 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/03 11:13:06 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/03 13:24:09 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@ char	*revrotate_i(t_list **stack_a, size_t n);
 void	revrotate(t_list **stack)
 {
 	t_list	*tmp;
+	t_list	*current;
 
-	tmp = (*stack)->next;
+	tmp = ft_lstlast(*stack);
 	ft_lstlast(*stack)->next = *stack;
-	(*stack)->next = NULL;
+	current = *stack;
+	while (current->next != tmp)
+		current = current->next;
+	current->next = NULL;
 	(*stack) = tmp;
 	return ;
 }

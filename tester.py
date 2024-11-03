@@ -1,15 +1,15 @@
 import random
 import os
-#import matplotlib.pyplot as plt
 import math as m
-#from scipy.stats import linregress
+from scipy.stats import linregress
 import json
-#import numpy as np
 import subprocess
 
+os.system("rm out.tmp ok.txt")
 RERUN = True
 x = [pow(3, i) for i in range(2, 6, 1)]
 if (RERUN):
+	os.system("rm test.json")
 	results = dict()
 	for size in x:
 		results[size] = []
@@ -17,19 +17,20 @@ if (RERUN):
 		for j in range(10):
 			a = ""
 			for i in range(size):
-				tmp = random.randint(0, 2*size)
+				tmp = random.randint(-2*size, 2*size)
 				while (str(tmp) in a):
 					tmp = random.randint(0, 2*size)
 				a += str(tmp) + " "
 			a = a[0:len(a)-1]
-			os.system('ARG="'+str(a)+'"; ./push_swap $ARG > out.tmp; cat out.tmp | ./checker_Mac $ARG >> ok.txt')
+			os.system('ARG="'+str(a)+'"; ./push_swap $ARG > out.tmp; cat out.tmp | ./checker_Mac $ARG > ok.txt')
 			with open("ok.txt", "r") as f:
 				ok = f.readlines()
 				if not ok:
-					print("ERROR WTF")
+					print("ERROR ! checker produced not output")
 				ok = ok[-1]
 				if (ok != "OK\n"):
 					print(ok)
+					print("Failed with input :")
 					print(a)
 					quit()
 				else:

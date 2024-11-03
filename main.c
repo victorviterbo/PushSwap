@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/03 11:12:44 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/03 14:56:33 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ int	main(int argc, char *argv[])
 	t_list	**stack_b;
 	char	*instructions;
 
+	atexit(cleanUp(stack_a, EXIT_FAILURE));
 	instructions = ft_calloc(1, 1);
 	stack_a = parse_input(argc, argv);
-	if (!stack_a)
-		return (write(1, "Error\n", 6), 0);
 	stack_b = ft_calloc(1, sizeof(t_list *));
 	if (debug)
 	{
@@ -54,8 +53,7 @@ int	main(int argc, char *argv[])
 		printf("4\n");
 		print_list(stack_a, stack_b);
 	}
-	//instructions = simplify(instructions, ft_strlen(instructions) + 1);
-
+	instructions = simplify(instructions, ft_strlen(instructions) + 1);
 	if (debug)
 	{
 		printf("5\n");
@@ -63,7 +61,8 @@ int	main(int argc, char *argv[])
 	}
 	else
 		write(1, instructions, ft_strlen(instructions));
-	return (1);
+	return (cleanUp(stack_a, EXIT_SUCCESS),
+		cleanUp(stack_b, EXIT_SUCCESS), free(instructions), 1);
 }
 
 char	*init(t_list **stack_a)
@@ -111,13 +110,13 @@ char	*insert(t_list **stack_a, t_list **stack_b)
 
 	ret = ft_calloc(1, 1);
 	sta = *(int *)(*stack_a)->content;
-	if (sta <= get_min(stack_b))
+	if (sta <= get(stack_b, 0))
 	{
 		ret = ft_strjoin_ip(ret, pb(stack_a, stack_b), 1);
 		ret = ft_strjoin_ip(ret, rb(stack_b), 1);
 		return (ret);
 	}
-	else if (sta >= get_max(stack_b))
+	else if (sta >= get(stack_b, 1))
 	{
 		ret = ft_strjoin_ip(ret, reset(stack_b, 'b'), 1);
 		ret = ft_strjoin_ip(ret, pb(stack_a, stack_b), 1);
