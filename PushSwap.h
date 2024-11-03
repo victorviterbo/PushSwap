@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/02 10:44:52 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/03 11:02:31 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	revrotate(t_list **stack);
 char	*rra(t_list **stack_a);
 char	*rrb(t_list **stack_b);
 char	*rrr(t_list **stack_a, t_list **stack_b);
+char	*revrotate_i(t_list **stack_a, size_t n);
 
 void	rotate(t_list **stack);
 char	*ra(t_list **stack_a);

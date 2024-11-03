@@ -22,7 +22,21 @@ if (RERUN):
 					tmp = random.randint(0, 2*size)
 				a += str(tmp) + " "
 			a = a[0:len(a)-1]
-			subprocess.run(['ARG="'+str(a)+'" ;./push_swap $ARG | ./checker_Mac $ARG'], shell=True)
+			os.system('ARG="'+str(a)+'"; ./push_swap $ARG > out.tmp; cat out.tmp | ./checker_Mac $ARG >> ok.txt')
+			with open("ok.txt", "r") as f:
+				ok = f.readlines()
+				if not ok:
+					print("ERROR WTF")
+				ok = ok[-1]
+				if (ok != "OK\n"):
+					print(ok)
+					print(a)
+					quit()
+				else:
+					print("OK !")
+			with open("out.tmp", "r") as f:
+				n = len(f.readlines())
+			results[size].append(n)
 	with open("test.json", "w") as json_file:
 		json.dump(results, json_file, indent=4)
 

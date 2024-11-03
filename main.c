@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/02 10:48:15 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/03 11:12:44 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ int	main(int argc, char *argv[])
 	instructions = ft_calloc(1, 1);
 	stack_a = parse_input(argc, argv);
 	if (!stack_a)
-	{
-		write(1, "Error\n", 6);
-		return (0);
-	}
+		return (write(1, "Error\n", 6), 0);
 	stack_b = ft_calloc(1, sizeof(t_list *));
 	if (debug)
 	{
@@ -57,7 +54,7 @@ int	main(int argc, char *argv[])
 		printf("4\n");
 		print_list(stack_a, stack_b);
 	}
-	instructions = simplify(instructions, ft_strlen(instructions) + 1);
+	//instructions = simplify(instructions, ft_strlen(instructions) + 1);
 
 	if (debug)
 	{
@@ -128,7 +125,7 @@ char	*insert(t_list **stack_a, t_list **stack_b)
 	}
 	while (!((*(int *)(*stack_b)->content) <= sta
 		&& (sta <= *(int *)ft_lstlast(*stack_b)->content)))
-		ret = ft_strjoin_ip(ret, rb(stack_b), 1);
+		ret = ft_strjoin_ip(ret, rrb(stack_b), 1);
 	ret = ft_strjoin_ip(ret, pb(stack_a, stack_b), 1);
 	return (ret);
 }
@@ -158,7 +155,10 @@ char	*sort(t_list **stack_a, t_list **stack_b, size_t n)
 				printf("2.2 for n = %zu\n", n);
 				print_list(stack_a, stack_b);
 			}
-			ret = ft_strjoin_ip(ret, merge(stack_a, stack_b, lencopy - n), 1);
+			if (n > lencopy - n)
+				ret = ft_strjoin_ip(ret, merge(stack_a, stack_b, lencopy - n), 1);
+			else
+				ret = ft_strjoin_ip(ret, merge(stack_a, stack_b, n), 1);
 			if (debug)
 			{
 				printf("2.3 for n = %zu\n", n);
