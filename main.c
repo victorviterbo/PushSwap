@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/03 14:56:33 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/03 15:20:42 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int argc, char *argv[])
 	t_list	**stack_b;
 	char	*instructions;
 
-	atexit(cleanUp(stack_a, EXIT_FAILURE));
 	instructions = ft_calloc(1, 1);
 	stack_a = parse_input(argc, argv);
 	stack_b = ft_calloc(1, sizeof(t_list *));
@@ -61,8 +60,8 @@ int	main(int argc, char *argv[])
 	}
 	else
 		write(1, instructions, ft_strlen(instructions));
-	return (cleanUp(stack_a, EXIT_SUCCESS),
-		cleanUp(stack_b, EXIT_SUCCESS), free(instructions), 1);
+	return (ft_lstclear(stack_a, free), ft_lstclear(stack_b, free),
+		free(instructions), 1);
 }
 
 char	*init(t_list **stack_a)
@@ -110,13 +109,13 @@ char	*insert(t_list **stack_a, t_list **stack_b)
 
 	ret = ft_calloc(1, 1);
 	sta = *(int *)(*stack_a)->content;
-	if (sta <= get(stack_b, 0))
+	if (sta <= get_min(stack_b))
 	{
 		ret = ft_strjoin_ip(ret, pb(stack_a, stack_b), 1);
 		ret = ft_strjoin_ip(ret, rb(stack_b), 1);
 		return (ret);
 	}
-	else if (sta >= get(stack_b, 1))
+	else if (sta >= get_max(stack_b))
 	{
 		ret = ft_strjoin_ip(ret, reset(stack_b, 'b'), 1);
 		ret = ft_strjoin_ip(ret, pb(stack_a, stack_b), 1);

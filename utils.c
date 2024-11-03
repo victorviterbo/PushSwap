@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/03 14:54:29 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/03 16:03:47 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		get_min(t_list **stack_a);
 int		get_max(t_list **stack_a);
 char	*reset(t_list **stack, char ab);
 t_list	**parse_input(int argc, char *argv[]);
-void	cleanUp(t_list **stack, int exit_status);
+void	cleanUp(void);
 
 int	get_min(t_list **stack_a)
 {
@@ -75,8 +75,6 @@ char	*reset(t_list **stack, char ab)
 t_list	**parse_input(int argc, char *argv[])
 {
 	size_t	i;
-	int		*tmp;
-	t_list	*new_node;
 	t_list	**stack_a;
 
 	i = 0;
@@ -87,31 +85,36 @@ t_list	**parse_input(int argc, char *argv[])
 		i = 1;
 	while (argv[i])
 	{
-		if (!ft_isnumber(argv[i]))
-			exit(EXIT_FAILURE);
-		tmp = ft_calloc(1, sizeof(int));
-		*tmp = ft_atoi(argv[i]);
-		new_node = ft_lstnew(tmp);
-		ft_lstadd_back(stack_a, new_node);
+		add_to_stack(stack_a, argv[i]);
 		i++;
 	}
 	return (stack_a);
 }
 
-void	cleanUp(t_list **stack, int exit_status)
+void	add_to_stack(t_list **stack, char *str)
 {
-	t_list	*node;
-	t_list	*next_node;
+	size_t	i;
+	int		*tmp;
+	char	**splitted;
+	t_list	*new_node;
 
-	node = *stack;
-	while (node)
+	i = 0;
+	splitted = ft_split(str, ' ');
+	while (*(splitted + i))
 	{
-		next_node = node->next;
-		free(node->content);
-		free(node);
-		node = next_node;
+		if (ft_strchr(*(splitted + i), ' '))
+			add_to_stack(stack, *(splitted + i));
+		else
+		{
+			if (!ft_isnumber(*(splitted + i)))
+				exit_gracefully(stack, NULL, NULL, 1);
+			tmp = ft_calloc(1, sizeof(int));
+			if (!tmp)
+				exit_gracefully(stack, NULL, NULL, 0);
+			*tmp = ft_atoi(*(splitted + i));
+			new_node = ft_lstnew(tmp);
+			ft_lstadd_back(stack, new_node);
+		}
+		i++;
 	}
-	if (exit_status == EXIT_FAILURE)
-		write(1, "Error\n", 6);
-	return ;
 }
