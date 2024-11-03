@@ -6,7 +6,7 @@
 #    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2024/11/03 18:16:10 by vviterbo         ###   ########.fr        #
+#    Updated: 2024/11/03 18:55:33 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = push_swap
 
 NAME_BONUS = checker
 
-SRCS =	push.c swap.c main.c rotate.c revrotate.c utils.c simplify.c exit.c print.c
+SRCS =	push.c swap.c rotate.c revrotate.c utils.c simplify.c exit.c print.c
 
 SRCS_BONUS = checker.c
 
@@ -42,9 +42,9 @@ re : fclean all
 
 $(NAME): 
 	@$(MAKE) -C libft/ xtra
-	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME) -L $(LIB) -lft
+	@$(CC) $(CFLAGS) $(SRCS) main.c -o $(NAME) -L $(LIB) -lft
 
 bonus : all
-	@$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(NAME_BONUS) -L $(LIB) -lft -I .
+	@$(CC) $(CFLAGS) $(SRCS) $(SRCS_BONUS) -o $(NAME_BONUS) -L $(LIB) -lft -I .
 
 .PHONY: all clean fclean re bonus

@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:18:42 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/01 17:41:53 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/03 18:56:13 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,4 @@ void	print_list(t_list **lst1, t_list **lst2)
 	}
 	printf("---------------------------\n");
 	return ;
-}
-
-int	minichecker(t_list **stack_a, t_list **stack_b)
-{
-	t_list	*current;
-	int		last;
-
-	if ((*stack_b))
-		return (0);
-	last = *(int *)(*stack_a)->content;
-	current = (*stack_a)->next;
-	while (current)
-	{
-		if (*(int *)current->content < last)
-			return (0);
-		last = *(int *)current->content;
-		current = current->next;
-	}
-	return (1);
 }
