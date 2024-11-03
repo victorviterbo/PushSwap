@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/03 16:21:16 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/03 16:56:50 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	main(int argc, char *argv[])
 	}
 	else
 		write(1, instructions, ft_strlen(instructions));
-	//write(1, "ra\nra\n", 6);
 	return (ft_lstclear(stack_a, free), ft_lstclear(stack_b, free),
 		free(instructions), 1);
 }

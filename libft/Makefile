@@ -6,7 +6,7 @@
 #    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2024/10/30 13:38:27 by vviterbo         ###   ########.fr        #
+#    Updated: 2024/11/03 16:41:16 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ fclean : clean
 
 re : fclean all
 
-bonus : re $(OBJS) $(OBJS_BONUS)
+bonus : re $(OBJS_BONUS)
 	@ar rcs $(NAME) $(OBJS)
 	@ar rcs $(NAME) $(OBJS_BONUS)
 

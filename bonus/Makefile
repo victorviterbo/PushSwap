@@ -6,17 +6,17 @@
 #    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2024/11/03 17:04:32 by vviterbo         ###   ########.fr        #
+#    Updated: 2024/11/03 17:03:47 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+NAME = checker
 
-SRCS =	push.c swap.c main.c rotate.c revrotate.c utils.c simplify.c exit.c print.c
+SRCS =	checker.c
 
-OBJS = $(patsubst %.c, %.o, $(SRCS))
+OBJS = checker.o
 
-LIB = libft/
+LIB = ../libft
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -32,11 +32,15 @@ fclean : clean
 
 re : fclean all
 
-$(NAME): 
-	@$(MAKE) -C libft/ xtra
+$(NAME):
 	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME) -I $(LIB)/libft.h -L $(LIB) -lft
 
-bonus : all
-	@$(MAKE) bonus/ all
+all: $(NAME)
+
+clean :
+	@rm -f $(OBJS)
+
+fclean : clean
+	@rm -f $(NAME)
 
 .PHONY: all clean fclean re bonus

@@ -6,11 +6,11 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:24:19 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/03 16:27:30 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/03 16:54:23 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PushSwap.h"
+#include "checker.h"
 
 int	main(int argc, char *argv[]);
 int	minichecker(t_list **stack_a, t_list **stack_b);
@@ -56,4 +56,31 @@ int	minichecker(t_list **stack_a, t_list **stack_b)
 		current = current->next;
 	}
 	return (1);
+}
+
+int	do_operation(t_list **stack_a, t_list **stack_b, char *op, int len)
+{
+	if (!ft_memcmp(op, "sa\n", len))
+		return (sa(stack_a), 0);
+	else if (!ft_memcmp(op, "sb\n", len))
+		return (sb(stack_b), 0);
+	else if (!ft_memcmp(op, "ss\n", len))
+		return (ss(stack_a, stack_b), 0);
+	else if (!ft_memcmp(op, "ra\n", len))
+		return (ra(stack_a), 0);
+	else if (!ft_memcmp(op, "rb\n", len))
+		return (rb(stack_b), 0);
+	else if (!ft_memcmp(op, "rr\n", len))
+		return (rr(stack_a, stack_b), 0);
+	else if (!ft_memcmp(op, "pa\n", len))
+		return (pa(stack_a, stack_b), 0);
+	else if (!ft_memcmp(op, "pb\n", len))
+		return (pb(stack_a, stack_b), 0);
+	else if (!ft_memcmp(op, "rra\n", len))
+		return (rra(stack_a), 0);
+	else if (!ft_memcmp(op, "rrb\n", len))
+		return (rra(stack_b), 0);
+	else if (!ft_memcmp(op, "rrr\n", len))
+		return (rrr(stack_a, stack_b), 0);
+	exit_gracefully(stack_a, stack_b, NULL, 0);
 }

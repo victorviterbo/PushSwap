@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/03 16:03:03 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/03 16:56:02 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ char	*simplify(char *s, size_t last_size);
 char	*cut(char *s, size_t start, size_t end, int ip);
 int		gotonext(char *s, int i);
 
-void	exit_gracefully(t_list **stack_a, t_list **stack_b,
-			char *str, int status);
+void	exit_gracefully(t_list **stack_a, int status);
 
 #endif

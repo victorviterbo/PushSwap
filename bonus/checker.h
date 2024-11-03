@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 15:33:13 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/03 16:56:35 by vviterbo         ###   ########.fr       */
+/*   Created: 2024/11/03 16:38:32 by vviterbo          #+#    #+#             */
+/*   Updated: 2024/11/03 16:45:06 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PushSwap.h"
+#ifndef CHECKER_H
+# define CHECKER_H
+# include "../PushSwap.h"
 
-void	exit_gracefully(t_list **stack_a, int status);
+int	main(int argc, char *argv[]);
+int	minichecker(t_list **stack_a, t_list **stack_b);
 
-void	exit_gracefully(t_list **stack_a, int status)
-{
-	ft_lstclear(stack_a, free);
-	if (status)
-		write(1, "Error\n", 6);
-	exit(EXIT_FAILURE);
-}
+#endif
