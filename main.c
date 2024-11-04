@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/04 13:46:56 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:58:37 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char *argv[])
 	instructions = ft_strjoin_ip(instructions, init(stack_a), 1);
 	instructions = ft_strjoin_ip(instructions, sort(stack_a, stack_b, 2), 1);
 	instructions = ft_strjoin_ip(instructions, reset(stack_a, 'a'), 1);
-	instructions = simplify(instructions, ft_strlen(instructions) + 1);
+	//instructions = simplify(instructions, ft_strlen(instructions) + 1);
 	write(1, instructions, ft_strlen(instructions));
 	return (ft_lstclear(stack_a, free), ft_lstclear(stack_b, free),
 		free(instructions), 1);
