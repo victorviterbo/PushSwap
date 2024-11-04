@@ -6,7 +6,7 @@ import json
 import subprocess
 
 os.system("rm out.tmp ok.txt")
-RERUN = False
+RERUN = True
 x = [pow(3, i) for i in range(2, 7, 1)]
 if (RERUN):
 	os.system("rm test.json")

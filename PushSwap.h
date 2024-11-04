@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/03 18:55:53 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:18:47 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,6 @@
 # include <stddef.h>
 # include <limits.h>
 # include <stdlib.h>
-
-
-
-
-#include <libc.h>
-
-
-
-
-
-
-
-void	print_list(t_list **lst1, t_list **lst2);
-
-
-
-
-
 
 char	*init(t_list **stack_a);
 char	*merge(t_list **stack_a, t_list **stack_b, size_t size_a);

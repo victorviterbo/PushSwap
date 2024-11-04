@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/03 18:12:42 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:29:46 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	get_min(t_list **stack_a)
 	current = *stack_a;
 	while (current)
 	{
-		if (*(int *)current->content < min)
-			min = *(int *)current->content;
+		min = ft_min(min, *(int *)current->content);
 		current = current->next;
 	}
 	return (min);
@@ -43,8 +42,7 @@ int	get_max(t_list **stack_a)
 	current = *stack_a;
 	while (current)
 	{
-		if (*(int *)current->content > max)
-			max = *(int *)current->content;
+		max = ft_max(max, *(int *)current->content);
 		current = current->next;
 	}
 	return (max);

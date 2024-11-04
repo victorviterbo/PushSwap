@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/03 16:56:50 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:46:56 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ char	*merge(t_list **stack_a, t_list **stack_b, size_t size_a);
 char	*insert(t_list **stack_a, t_list **stack_b);
 char	*sort(t_list **stack_a, t_list **stack_b, size_t n);
 
-int	debug = 0;
-
 int	main(int argc, char *argv[])
 {
 	t_list	**stack_a;
@@ -29,37 +27,11 @@ int	main(int argc, char *argv[])
 	instructions = ft_calloc(1, 1);
 	stack_a = parse_input(argc, argv);
 	stack_b = ft_calloc(1, sizeof(t_list *));
-	if (debug)
-	{
-		printf("1\n");
-		print_list(stack_a, stack_b);
-	}
 	instructions = ft_strjoin_ip(instructions, init(stack_a), 1);
-	if (debug)
-	{
-		printf("2\n");
-		print_list(stack_a, stack_b);
-	}
 	instructions = ft_strjoin_ip(instructions, sort(stack_a, stack_b, 2), 1);
-	if (debug)
-	{
-		printf("3\n");
-		print_list(stack_a, stack_b);
-	}
 	instructions = ft_strjoin_ip(instructions, reset(stack_a, 'a'), 1);
-	if (debug)
-	{
-		printf("4\n");
-		print_list(stack_a, stack_b);
-	}
 	instructions = simplify(instructions, ft_strlen(instructions) + 1);
-	if (debug)
-	{
-		printf("5\n");
-		print_list(stack_a, stack_b);
-	}
-	else
-		write(1, instructions, ft_strlen(instructions));
+	write(1, instructions, ft_strlen(instructions));
 	return (ft_lstclear(stack_a, free), ft_lstclear(stack_b, free),
 		free(instructions), 1);
 }
@@ -108,6 +80,8 @@ char	*insert(t_list **stack_a, t_list **stack_b)
 	char	*ret;
 
 	ret = ft_calloc(1, 1);
+	if (!ret)
+		return (NULL);
 	sta = *(int *)(*stack_a)->content;
 	if (sta <= get_min(stack_b))
 	{
@@ -131,60 +105,28 @@ char	*insert(t_list **stack_a, t_list **stack_b)
 char	*sort(t_list **stack_a, t_list **stack_b, size_t n)
 {
 	char	*ret;
-	size_t	len;
-	size_t	lencopy;
+	size_t	lenleft;
 	size_t	sorted;
 
 	ret = ft_calloc(1, 1);
-	len = (size_t)ft_lstsize(*stack_a);
-	while (n <= len)
+	if (!ret)
+		return (NULL);
+	while (n <= (size_t)ft_lstsize(*stack_a))
 	{
-		lencopy = len;
-		while (lencopy >= n)
+		lenleft = (size_t)ft_lstsize(*stack_a);
+		while (lenleft >= n)
 		{
-			if (debug)
-			{
-				printf("2.1 for n = %zu\n", n);
-				print_list(stack_a, stack_b);
-			}
 			ret = ft_strjoin_ip(ret, push_bloc(stack_a, stack_b, n, 1), 1);
-			if (debug)
-			{
-				printf("2.2 for n = %zu\n", n);
-				print_list(stack_a, stack_b);
-			}
-			if (n > lencopy - n)
-				ret = ft_strjoin_ip(ret, merge(stack_a, stack_b, lencopy - n), 1);
-			else
-				ret = ft_strjoin_ip(ret, merge(stack_a, stack_b, n), 1);
-			if (debug)
-			{
-				printf("2.3 for n = %zu\n", n);
-				print_list(stack_a, stack_b);
-			}
+			ret = ft_strjoin_ip(ret, merge(stack_a, stack_b,
+							ft_min(lenleft - n, n)), 1);
 			ret = ft_strjoin_ip(ret, reset(stack_b, 'b'), 1);
-			if (debug)
-			{
-				printf("2.4 for n = %zu\n", n);
-				print_list(stack_a, stack_b);
-			}
 			sorted = ft_lstsize(*stack_b);
 			ret = ft_strjoin_ip(ret, push_bloc(stack_a, stack_b,
 						sorted, -1), 1);
-			if (debug)
-			{
-				printf("2.5 for n = %zu\n", n);
-				print_list(stack_a, stack_b);
-			}
 			ret = ft_strjoin_ip(ret, rotate_i(stack_a, sorted), 1);
-			if (debug)
-			{
-				printf("2.6 for n = %zu\n", n);
-				print_list(stack_a, stack_b);
-			}
-			lencopy -= sorted;
+			lenleft -= sorted;
 		}
-		ret = ft_strjoin_ip(ret, rotate_i(stack_a, lencopy), 1);
+		ret = ft_strjoin_ip(ret, rotate_i(stack_a, lenleft), 1);
 		n *= 2;
 	}
 	return (ret);
