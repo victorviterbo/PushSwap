@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/04 16:00:42 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/04 20:12:48 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,20 @@ t_list	**parse_input(int argc, char *argv[])
 
 	i = 0;
 	stack_a = ft_calloc(1, sizeof(t_list *));
+	if (!stack_a)
+		return (NULL);
 	if (argc == 2)
 		arguments = ft_split(argv[1], ' ');
 	else
+	{
 		arguments = ft_strarray_mapi(argv, ft_strdup);
-	write(1, "0.2\n", 4);
+		i = 1;
+	}
 	while (arguments[i])
 	{
-		write(1, "0.3\n", 4);
 		add_to_stack(stack_a, arguments[i]);
-		write(1, "0.4\n", 4);
 		i++;
 	}
-	write(1, "0.5\n", 4);
 	return (stack_a);
 }
 
@@ -79,6 +80,8 @@ void	add_to_stack(t_list **stack, char *str)
 			exit_gracefully(stack, NULL, NULL, EXIT_FAILURE);
 		}
 		new_node = ft_lstnew(tmp);
+		if (!new_node)
+			exit_gracefully(stack, NULL, NULL, EXIT_FAILURE);
 		ft_lstadd_back(stack, new_node);
 	}
 }
