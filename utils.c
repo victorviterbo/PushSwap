@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/04 13:29:46 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:31:33 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		get_min(t_list **stack_a);
 int		get_max(t_list **stack_a);
-char	*reset(t_list **stack, char ab);
+void	reset(t_list **stack, char ab);
 t_list	**parse_input(int argc, char *argv[]);
-void	cleanUp(void);
+void	add_to_stack(t_list **stack, char *str);
 
 int	get_min(t_list **stack_a)
 {
@@ -48,14 +48,10 @@ int	get_max(t_list **stack_a)
 	return (max);
 }
 
-char	*reset(t_list **stack, char ab)
+void	reset(t_list **stack, char ab)
 {
-	char	*ret;
 	int		target;
 
-	ret = ft_calloc(1, 1);
-	if (!ret)
-		return (NULL);
 	if (ab == 'a')
 		target = get_min(stack);
 	else
@@ -63,11 +59,11 @@ char	*reset(t_list **stack, char ab)
 	while (*(int *)(*stack)->content != target)
 	{
 		if (ab == 'a')
-			ret = ft_strjoin_ip(ret, ra(stack), 1);
+			ra(stack);
 		else
-			ret = ft_strjoin_ip(ret, rb(stack), 1);
+			rb(stack);
 	}
-	return (ret);
+	return ;
 }
 
 t_list	**parse_input(int argc, char *argv[])
