@@ -1,2 +1,9 @@
-*.o
-*/*.o
+/*.o
+/*/*.o
+/*.a
+/*/*.a
+/push_swap
+/checker
+/*.json
+/*.txt
+/*.tmp
