@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:33:13 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/04 14:50:13 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:18:46 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	exit_gracefully(t_list **stack_a, t_list **stack_b,
 		free(str);
 	if (status == EXIT_FAILURE)
 		write(1, "Error\n", 6);
-	exit(EXIT_FAILURE);
+	exit(status);
 }

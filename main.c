@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/04 14:51:04 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:45:58 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,18 @@ int	main(int argc, char *argv[])
 	char	*instructions;
 
 	instructions = ft_calloc(1, 1);
+	write(1, "0.1\n", 4);
 	stack_a = parse_input(argc, argv);
 	stack_b = ft_calloc(1, sizeof(t_list *));
+	write(1, "1\n", 2);
 	init(stack_a);
+	write(1, "2\n", 2);
 	sort(stack_a, stack_b, 2);
+	write(1, "3\n", 2);
 	reset(stack_a, 'a');
+	write(1, "4\n", 2);
 	write(1, instructions, ft_strlen(instructions));
+	write(1, "5\n", 2);
 	exit_gracefully(stack_a, stack_b, NULL, EXIT_SUCCESS);
 	return (1);
 }
@@ -72,13 +78,13 @@ void	insert(t_list **stack_a, t_list **stack_b)
 	int		sta;
 
 	sta = *(int *)(*stack_a)->content;
-	if (sta <= get_min(stack_b))
+	if (sta <= ft_lstmin(stack_b))
 	{
 		pb(stack_a, stack_b);
 		rb(stack_b);
 		return ;
 	}
-	else if (sta >= get_max(stack_b))
+	else if (sta >= ft_lstmax(stack_b))
 	{
 		reset(stack_b, 'b');
 		pb(stack_a, stack_b);

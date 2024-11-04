@@ -26,7 +26,7 @@ if (RERUN):
 			with open("ok.txt", "r") as f:
 				ok = f.readlines()
 				if not ok:
-					print("ERROR ! checker produced not output")
+					print("ERROR ! checker produced no output")
 				ok = ok[-1]
 				if (ok != "OK\n"):
 					print(ok)
