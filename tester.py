@@ -6,8 +6,8 @@ import json
 import subprocess
 
 os.system("rm out.tmp ok.txt")
-RERUN = True
-x = [pow(3, i) for i in range(2, 6, 1)]
+RERUN = False
+x = [pow(3, i) for i in range(2, 7, 1)]
 if (RERUN):
 	os.system("rm test.json")
 	results = dict()
@@ -55,19 +55,19 @@ x3 = [i * m.log(i) for i in x]
 x4 = [i * i for i in x]
 
 r_values = []
-
+slopes = []
 slope, intercept, r_value, p_value, std_err = linregress(x1, y1)
-r_values = [r_value]
-print(slope, intercept, r_value, p_value, std_err)
+r_values.append(r_value)
+slopes.append(slope)
 slope, intercept, r_value, p_value, std_err = linregress(x2, y1)
 r_values.append(r_value)
-print(slope, intercept, r_value, p_value, std_err)
+slopes.append(slope)
 slope, intercept, r_value, p_value, std_err = linregress(x3, y1)
 r_values.append(r_value)
-print(slope, intercept, r_value, p_value, std_err)
+slopes.append(slope)
 slope, intercept, r_value, p_value, std_err = linregress(x4, y1)
 r_values.append(r_value)
-print(slope, intercept, r_value, p_value, std_err)
+slopes.append(slope)
 
 if r_values[0] == max(r_values):
 	best_fit = 0
@@ -79,11 +79,12 @@ if r_values[0] == max(r_values):
 		if best_R < r_value:
 			best_fit = exp
 			best_R = r_value
-	print("Your program time complexity is O(n) = n^"+str(exponent)+" with an R^2 of "+str(r_values[3]))
+			bestslope = slope
+	print("Your program time complexity is O(n) = "+str(round(bestslope))+"*n^"+str(exponent)+" with an R^2 of "+str(r_values[3]))
 elif  r_values[1] == max(r_values):
-	print("Your program time complexity is O(n) = log(n) with an R^2 of "+str(r_values[1]))
+	print("Your program time complexity is O(n) = "+str(round(slopes[1]))+"*log(n) with an R^2 of "+str(r_values[1]))
 elif  r_values[2] == max(r_values):
-	print("Your program time complexity is O(n) = nlog(n) with an R^2 of "+str(r_values[2]))
+	print("Your program time complexity is O(n) = "+str(round(slopes[2]))+"*nlog(n) with an R^2 of "+str(r_values[2]))
 elif  r_values[3] == max(r_values):
 	best_fit = 0
 	best_R = 0
@@ -94,4 +95,5 @@ elif  r_values[3] == max(r_values):
 		if best_R < r_value:
 			best_fit = exp
 			best_R = r_value
-	print("Your program time complexity is O(n) = n^"+str(exponent)+" with an R^2 of "+str(r_values[3]))
+			bestslope = slope
+	print("Your program time complexity is O(n) = "+str(round(bestslope))+"*n^"+str(exponent)+" with an R^2 of "+str(r_values[3]))

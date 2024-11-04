@@ -4,6 +4,7 @@
 /*/*.a
 /push_swap
 /checker
-/*.json
+*.json
 /*.txt
 /*.tmp
+/.vscode/
