@@ -6,7 +6,7 @@
 #    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2024/11/03 18:01:52 by vviterbo         ###   ########.fr        #
+#    Updated: 2024/11/04 09:14:53 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ all: $(NAME)
 clean :
 	@rm -f $(OBJS)
 	@rm -f $(OBJS_BONUS)
+	@rm -f $(OBJS_XTRA)
 
 fclean : clean
 	@rm -f $(NAME)
