@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:24:19 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/03 18:14:23 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:52:25 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	main(int argc, char *argv[])
 		if (operation)
 			do_operation(stack_a, stack_b, operation, ft_strlen(operation));
 		else
-			break ;
+			exit_gracefully(stack_a, stack_b, NULL, EXIT_FAILURE);
+		free(operation);
 	}
 	if (minichecker(stack_a, stack_b))
 		write(1, "OK\n", 3);
@@ -83,6 +84,6 @@ int	do_operation(t_list **stack_a, t_list **stack_b, char *op, int len)
 	if (!ft_memcmp(op, "pb\n", len))
 		return (pb(stack_a, stack_b), 0);
 	else
-		exit_gracefully(stack_a, EXIT_FAILURE);
+		exit_gracefully(stack_a, stack_b, op, EXIT_FAILURE);
 	return (1);
 }

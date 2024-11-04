@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/04 14:31:33 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:52:12 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,10 @@ void	add_to_stack(t_list **stack, char *str)
 		else
 		{
 			if (!ft_isnumber(*(splitted + i)))
-				exit_gracefully(stack, EXIT_FAILURE);
+				exit_gracefully(stack, NULL, str, EXIT_FAILURE);
 			tmp = ft_calloc(1, sizeof(int));
 			if (!tmp)
-				exit_gracefully(stack, EXIT_SUCCESS);
+				exit_gracefully(stack, NULL, str, EXIT_SUCCESS);
 			*tmp = ft_atoi(*(splitted + i));
 			new_node = ft_lstnew(tmp);
 			ft_lstadd_back(stack, new_node);

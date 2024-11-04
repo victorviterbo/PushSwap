@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/04 14:41:55 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:51:04 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	main(int argc, char *argv[])
 	sort(stack_a, stack_b, 2);
 	reset(stack_a, 'a');
 	write(1, instructions, ft_strlen(instructions));
-	return (ft_lstclear(stack_a, free), ft_lstclear(stack_b, free), 1);
+	exit_gracefully(stack_a, stack_b, NULL, EXIT_SUCCESS);
+	return (1);
 }
 
 void	init(t_list **stack_a)
