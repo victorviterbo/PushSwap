@@ -7,7 +7,7 @@ import subprocess
 
 os.system("rm out.tmp ok.txt")
 RERUN = True
-x = [pow(3, i) for i in range(2, 7, 1)]
+x = [pow(3, i) for i in range(2, 7, 1)] + [100, 500]
 if (RERUN):
 	os.system("rm test.json")
 	results = dict()

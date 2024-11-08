@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/04 20:14:00 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:50:52 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,14 @@ int	main(int argc, char *argv[])
 
 	stack_a = parse_input(argc, argv);
 	stack_b = ft_calloc(1, sizeof(t_list *));
+	if (minichecker(stack_a, stack_b))
+		exit_gracefully(stack_a, NULL, NULL, EXIT_SUCCESS);
 	init(stack_a);
+	if (minichecker(stack_a, stack_b))
+		exit_gracefully(stack_a, NULL, NULL, EXIT_SUCCESS);
 	sort(stack_a, stack_b, 2);
+	if (minichecker(stack_a, stack_b))
+		exit_gracefully(stack_a, NULL, NULL, EXIT_SUCCESS);
 	reset(stack_a, 'a');
 	exit_gracefully(stack_a, stack_b, NULL, EXIT_SUCCESS);
 	return (1);
@@ -69,13 +75,13 @@ void	insert(t_list **stack_a, t_list **stack_b)
 	int		sta;
 
 	sta = *(int *)(*stack_a)->content;
-	if (sta <= ft_lstmin(stack_b))
+	if (sta <= ft_lstmin(stack_b, INT))
 	{
 		pb(stack_a, stack_b);
 		rb(stack_b);
 		return ;
 	}
-	else if (sta >= ft_lstmax(stack_b))
+	else if (sta >= ft_lstmax(stack_b, INT))
 	{
 		reset(stack_b, 'b');
 		pb(stack_a, stack_b);
@@ -108,6 +114,8 @@ void	sort(t_list **stack_a, t_list **stack_b, size_t n)
 		}
 		rotate_i(stack_a, lenleft);
 		n *= 2;
+		if (minichecker(stack_a, stack_b))
+			exit_gracefully(stack_a, NULL, NULL, EXIT_SUCCESS);
 	}
 	return ;
 }

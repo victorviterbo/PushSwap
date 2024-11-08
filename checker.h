@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 17:10:00 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/03 18:48:52 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:28:22 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "PushSwap.h"
 
 int	main(int argc, char *argv[]);
-int	minichecker(t_list **stack_a, t_list **stack_b);
 int	do_operation(t_list **stack_a, t_list **stack_b, char *op, int len);
 
 #endif

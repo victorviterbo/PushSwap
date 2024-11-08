@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/04 20:12:48 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:50:57 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 void	reset(t_list **stack, char ab);
 t_list	**parse_input(int argc, char *argv[]);
 void	add_to_stack(t_list **stack, char *str);
+void	exit_gracefully(t_list **stack_a, t_list **stack_b,
+			char *str, int status);
 
 void	reset(t_list **stack, char ab)
 {
 	int		target;
 
 	if (ab == 'a')
-		target = ft_lstmin(stack);
+		target = ft_lstmin(stack, INT);
 	else
-		target = ft_lstmax(stack);
+		target = ft_lstmax(stack, INT);
 	while (*(int *)(*stack)->content != target)
 	{
 		if (ab == 'a')
@@ -41,6 +43,8 @@ t_list	**parse_input(int argc, char *argv[])
 	char	**arguments;
 
 	i = 0;
+	if (argc < 2)
+		exit_gracefully(NULL, NULL, NULL, EXIT_FAILURE);
 	stack_a = ft_calloc(1, sizeof(t_list *));
 	if (!stack_a)
 		return (NULL);
@@ -84,4 +88,37 @@ void	add_to_stack(t_list **stack, char *str)
 			exit_gracefully(stack, NULL, NULL, EXIT_FAILURE);
 		ft_lstadd_back(stack, new_node);
 	}
+}
+
+void	exit_gracefully(t_list **stack_a, t_list **stack_b,
+			char *str, int status)
+{
+	if (stack_a)
+		ft_lstclear(stack_a, free);
+	if (stack_b)
+		ft_lstclear(stack_b, free);
+	if (str)
+		free(str);
+	if (status == EXIT_FAILURE)
+		write(1, "Error\n", 6);
+	exit(status);
+}
+
+int	minichecker(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*current;
+	int		last;
+
+	if ((*stack_b))
+		return (0);
+	last = *(int *)(*stack_a)->content;
+	current = (*stack_a)->next;
+	while (current)
+	{
+		if (*(int *)current->content < last)
+			return (0);
+		last = *(int *)current->content;
+		current = current->next;
+	}
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:24:19 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/04 15:18:00 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:52:43 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char *argv[])
 	stack_b = ft_calloc(1, sizeof(t_list *));
 	while (1)
 	{
-		operation = get_next_line(0);
+		operation = ft_get_next_line(0);
 		if (operation)
 			do_operation(stack_a, stack_b, operation, ft_strlen(operation));
 		else
@@ -40,27 +40,14 @@ int	main(int argc, char *argv[])
 	return (0);
 }
 
-int	minichecker(t_list **stack_a, t_list **stack_b)
-{
-	t_list	*current;
-	int		last;
-
-	if ((*stack_b))
-		return (0);
-	last = *(int *)(*stack_a)->content;
-	current = (*stack_a)->next;
-	while (current)
-	{
-		if (*(int *)current->content < last)
-			return (0);
-		last = *(int *)current->content;
-		current = current->next;
-	}
-	return (1);
-}
-
 int	do_operation(t_list **stack_a, t_list **stack_b, char *op, int len)
 {
+	if (!ft_memcmp(op, "rra\n", len))
+		return (rra(stack_a), 0);
+	if (!ft_memcmp(op, "rrb\n", len))
+		return (rrb(stack_b), 0);
+	if (!ft_memcmp(op, "rrr\n", len))
+		return (rrr(stack_a, stack_b), 0);
 	if (!ft_memcmp(op, "sa\n", len))
 		return (sa(stack_a), 0);
 	if (!ft_memcmp(op, "sb\n", len))
@@ -73,12 +60,6 @@ int	do_operation(t_list **stack_a, t_list **stack_b, char *op, int len)
 		return (rb(stack_b), 0);
 	if (!ft_memcmp(op, "rr\n", len))
 		return (rr(stack_a, stack_b), 0);
-	if (!ft_memcmp(op, "rra\n", len))
-		return (rra(stack_a), 0);
-	if (!ft_memcmp(op, "rrb\n", len))
-		return (rrb(stack_b), 0);
-	if (!ft_memcmp(op, "rrr\n", len))
-		return (rrr(stack_a, stack_b), 0);
 	if (!ft_memcmp(op, "pa\n", len))
 		return (pa(stack_a, stack_b), 0);
 	if (!ft_memcmp(op, "pb\n", len))

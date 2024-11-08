@@ -6,7 +6,7 @@
 #    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2024/11/04 20:04:36 by vviterbo         ###   ########.fr        #
+#    Updated: 2024/11/08 11:51:30 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = push_swap
 
 NAME_BONUS = checker
 
-SRCS =	push.c swap.c rotate.c revrotate.c utils.c exit.c
+SRCS =	push.c swap.c rotate.c revrotate.c utils.c
 
 SRCS_BONUS = checker.c
 
