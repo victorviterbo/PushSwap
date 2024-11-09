@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:58:46 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/08 14:01:40 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:11:00 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	revrotate_i(t_list **stack_a, size_t n)
 
 	i = 0;
 	if (!stack_a || !*stack_a)
-		return;
+		return ;
 	if (ft_lstsize(*stack_a) < (int)n * 2)
 		return (rotate_i(stack_a, ft_lstsize(*stack_a) - n));
 	while (i < n)

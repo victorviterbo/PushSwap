@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/08 11:50:52 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:39:14 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char *argv[])
 	sort(stack_a, stack_b, 2);
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(stack_a, NULL, NULL, EXIT_SUCCESS);
-	reset(stack_a, 'a');
+	goto_val(stack_a, 'a', ft_lstmin(stack_a, INT));
 	exit_gracefully(stack_a, stack_b, NULL, EXIT_SUCCESS);
 	return (1);
 }
@@ -66,7 +66,7 @@ void	merge(t_list **stack_a, t_list **stack_b, size_t size_a)
 		insert(stack_a, stack_b);
 		i++;
 	}
-	reset(stack_b, 'b');
+	goto_val(stack_b, 'b', ft_lstmax(stack_b, INT));
 	return ;
 }
 
@@ -83,7 +83,7 @@ void	insert(t_list **stack_a, t_list **stack_b)
 	}
 	else if (sta >= ft_lstmax(stack_b, INT))
 	{
-		reset(stack_b, 'b');
+		goto_val(stack_b, 'b', ft_lstmax(stack_b, INT));
 		pb(stack_a, stack_b);
 		return ;
 	}
@@ -106,7 +106,7 @@ void	sort(t_list **stack_a, t_list **stack_b, size_t n)
 		{
 			push_bloc(stack_a, stack_b, n, 1);
 			merge(stack_a, stack_b, ft_min(lenleft - n, n));
-			reset(stack_b, 'b');
+			goto_val(stack_b, 'b', ft_lstmax(stack_b, INT));
 			sorted = ft_lstsize(*stack_b);
 			push_bloc(stack_a, stack_b, sorted, -1);
 			rotate_i(stack_a, sorted);

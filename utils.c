@@ -6,33 +6,31 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/08 11:50:57 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:40:29 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PushSwap.h"
 
-void	reset(t_list **stack, char ab);
+void	goto_val(t_list **stack, char ab, int value);
 t_list	**parse_input(int argc, char *argv[]);
 void	add_to_stack(t_list **stack, char *str);
 void	exit_gracefully(t_list **stack_a, t_list **stack_b,
 			char *str, int status);
 
-void	reset(t_list **stack, char ab)
+void	goto_val(t_list **stack, char ab, int value)
 {
-	int		target;
+	t_list	*current;
+	size_t	i_rot;
 
-	if (ab == 'a')
-		target = ft_lstmin(stack, INT);
-	else
-		target = ft_lstmax(stack, INT);
-	while (*(int *)(*stack)->content != target)
+	current = *stack;
+	while (current && *(int *)current->content != value)
 	{
-		if (ab == 'a')
-			ra(stack);
-		else
-			rb(stack);
+		current = current->next;
+		i_rot++;
 	}
+	if (current)
+		rotate_i(stack, i_rot, ab);
 	return ;
 }
 
