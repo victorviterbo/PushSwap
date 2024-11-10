@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/10 17:26:05 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:33:21 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ int		minichecker(t_list **stack_a, t_list **stack_b);
 void	add_instr(char *str, bool print);
 t_list	**simplify(t_list **out, int last_size);
 t_list	**cut(t_list **out, int start, int end);
+void	write_output(t_list **stack);
 
 #endif

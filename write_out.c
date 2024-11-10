@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 16:19:38 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/10 17:30:01 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:54:05 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ void	add_instr(char *str, bool print)
 		output = simplify(output, ft_lstsize(*output) + 1);
 		write_output(output);
 	}
-	if (!output && str)
+	else if (!output && str)
 	{
 		output = ft_calloc(1, sizeof(t_list *));
-		*output = ft_lstnew((void *)str);
+		*output = ft_lstnew(ft_strdup((void *)str));
 		if (!output)
 			exit_gracefully(NULL, NULL, NULL, EXIT_FAILURE);
 	}
 	else if (str)
 	{
-		new_instr = ft_lstnew((void *)str);
+		new_instr = ft_lstnew(ft_strdup((void *)str));
 		if (!new_instr)
 			exit_gracefully(output, NULL, NULL, EXIT_SUCCESS);
 		ft_lstadd_back(output, new_instr);
@@ -54,6 +54,7 @@ t_list	**simplify(t_list **out, int last_size)
 	char	*str2;
 
 	i = 0;
+
 	if (last_size == ft_lstsize(*out))
 		return (out);
 	last_size = ft_lstsize(*out);
@@ -74,6 +75,7 @@ t_list	**simplify(t_list **out, int last_size)
 			&& (*(str1 + ft_strlen(str1) - 2) == *(str2 + ft_strlen(str2) - 2)))
 			return (simplify(cut(out, i, i + 2), last_size));
 		i++;
+		current = current->next;
 	}
 	return (out);
 }
@@ -101,16 +103,21 @@ t_list	**cut(t_list **out, int start, int end)
 		current = next;
 		i++;
 	}
-	return out;
+	return (out);
 }
 
 void	write_output(t_list **out)
 {
 	t_list	*current;
+	char	*instruction;
 
 	current = *out;
 	while (current)
 	{
-		
+		instruction = (char *)current->content;
+		write(1, instruction, ft_strlen(instruction));
+		current = current->next;
 	}
+	ft_lstclear(out, free);
+	return ;
 }
