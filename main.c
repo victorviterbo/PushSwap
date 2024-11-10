@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/09 15:39:14 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:13:10 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		main(int argc, char *argv[]);
 void	init(t_list **stack_a);
-void	merge(t_list **stack_a, t_list **stack_b, size_t size_a);
+void	merge(t_list **stack_a, t_list **stack_b, int size_a);
 void	insert(t_list **stack_a, t_list **stack_b);
-void	sort(t_list **stack_a, t_list **stack_b, size_t n);
+void	sort(t_list **stack_a, t_list **stack_b, int n);
 
 int	main(int argc, char *argv[])
 {
@@ -34,6 +34,7 @@ int	main(int argc, char *argv[])
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(stack_a, NULL, NULL, EXIT_SUCCESS);
 	goto_val(stack_a, 'a', ft_lstmin(stack_a, INT));
+	print_list(stack_a, stack_b);
 	exit_gracefully(stack_a, stack_b, NULL, EXIT_SUCCESS);
 	return (1);
 }
@@ -49,16 +50,16 @@ void	init(t_list **stack_a)
 	{
 		if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content)
 			sa(stack_a);
-		rotate_i(stack_a, 2);
+		rotate_i(stack_a, 2, 'a');
 		i += 2;
 	}
-	rotate_i(stack_a, len % 2);
+	rotate_i(stack_a, len % 2, 'a');
 	return ;
 }
 
-void	merge(t_list **stack_a, t_list **stack_b, size_t size_a)
+void	merge(t_list **stack_a, t_list **stack_b, int size_a)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (i < size_a)
@@ -94,28 +95,35 @@ void	insert(t_list **stack_a, t_list **stack_b)
 	return ;
 }
 
-void	sort(t_list **stack_a, t_list **stack_b, size_t n)
+void	sort(t_list **stack_a, t_list **stack_b, int n)
 {
-	size_t	lenleft;
-	size_t	sorted;
+	int	lenleft;
 
-	while (n <= (size_t)ft_lstsize(*stack_a))
+	while (n <= ft_lstsize(*stack_a))
 	{
-		lenleft = (size_t)ft_lstsize(*stack_a);
-		while (lenleft >= n)
+		lenleft = ft_lstsize(*stack_a);
+		while (lenleft > n)
 		{
 			push_bloc(stack_a, stack_b, n, 1);
-			merge(stack_a, stack_b, ft_min(lenleft - n, n));
+			merge(stack_a, stack_b, (int)ft_min(lenleft - n, n) - 1);
+			//printf("n = %i, lenleft = %i, merging %i\n", n , lenleft, (int)ft_min(lenleft - n, n) - 1);
 			goto_val(stack_b, 'b', ft_lstmax(stack_b, INT));
-			sorted = ft_lstsize(*stack_b);
-			push_bloc(stack_a, stack_b, sorted, -1);
-			rotate_i(stack_a, sorted);
-			lenleft -= sorted;
+			while (*stack_b)
+			{
+				pa(stack_a, stack_b);
+				if (*(int *)(*stack_a)->content >
+					*(int *)(*stack_a)->next->content)
+					sa(stack_a);
+			}
+			rotate_i(stack_a, (int)ft_min(lenleft, 2 * n), 'a');
+			lenleft -= (int)ft_min(lenleft, 2 * n);
 		}
-		rotate_i(stack_a, lenleft);
+		rotate_i(stack_a, lenleft, 'a');
 		n *= 2;
-		if (minichecker(stack_a, stack_b))
-			exit_gracefully(stack_a, NULL, NULL, EXIT_SUCCESS);
+		//print_list(stack_a, stack_b);
 	}
 	return ;
 }
+
+//if (minichecker(stack_a, stack_b))
+//	exit_gracefully(stack_a, stack_b, NULL, EXIT_SUCCESS);

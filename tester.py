@@ -80,11 +80,11 @@ if r_values[0] == max(r_values):
 			best_fit = exp
 			best_R = r_value
 			bestslope = slope
-	print("Your program time complexity is O(n) = "+str(round(bestslope))+"*n^"+str(exponent)+" with an R^2 of "+str(r_values[3]))
+	print("Your program time complexity is O(n) = "+str(round(bestslope, 2))+"*n^"+str(exponent)+" with an R^2 of "+str(r_values[3]))
 elif  r_values[1] == max(r_values):
-	print("Your program time complexity is O(n) = "+str(round(slopes[1]))+"*log(n) with an R^2 of "+str(r_values[1]))
+	print("Your program time complexity is O(n) = "+str(round(slopes[1], 2))+"*log(n) with an R^2 of "+str(r_values[1]))
 elif  r_values[2] == max(r_values):
-	print("Your program time complexity is O(n) = "+str(round(slopes[2]))+"*nlog(n) with an R^2 of "+str(r_values[2]))
+	print("Your program time complexity is O(n) = "+str(round(slopes[2], 2))+"*nlog(n) with an R^2 of "+str(r_values[2]))
 elif  r_values[3] == max(r_values):
 	best_fit = 0
 	best_R = 0
@@ -96,4 +96,4 @@ elif  r_values[3] == max(r_values):
 			best_fit = exp
 			best_R = r_value
 			bestslope = slope
-	print("Your program time complexity is O(n) = "+str(round(bestslope))+"*n^"+str(exponent)+" with an R^2 of "+str(r_values[3]))
+	print("Your program time complexity is O(n) = "+str(round(bestslope, 2))+"*n^"+str(exponent)+" with an R^2 of "+str(r_values[3]))
