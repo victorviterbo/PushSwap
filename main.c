@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/10 18:51:54 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/10 19:38:56 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,7 @@ void	insert(t_list **stack_a, t_list **stack_b)
 		pb(stack_a, stack_b);
 		return ;
 	}
-	while (!((*(int *)(*stack_b)->content) <= sta
-		&& (sta <= *(int *)ft_lstlast(*stack_b)->content)))
-		rrb(stack_b);
+	goto_val(stack_b, 'b', sta);
 	pb(stack_a, stack_b);
 	return ;
 }

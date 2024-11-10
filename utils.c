@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/10 18:50:13 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/10 19:35:07 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,14 @@ void	goto_val(t_list **stack, char ab, int value)
 
 	current = *stack;
 	i_rot = 0;
-	while (current && *(int *)current->content != value)
+	while (current->next && *(int *)current->content != value
+		&& !(*(int *)current->content > value
+			&& *(int *)current->next->content < value))
 	{
 		current = current->next;
 		i_rot++;
 	}
+	i_rot += (int)(*(int *)current->content != value);
 	if (current)
 		rotate_i(stack, i_rot, ab);
 	return ;
