@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/10 17:36:18 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/10 18:51:54 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ void	sort(t_list **stack_a, t_list **stack_b, int n)
 		{
 			push_bloc(stack_a, stack_b, n, 1);
 			merge(stack_a, stack_b, (int)ft_min(lenleft - n, n) - 1);
-			//printf("n = %i, lenleft = %i, merging %i\n", n , lenleft, (int)ft_min(lenleft - n, n) - 1);
 			goto_val(stack_b, 'b', ft_lstmax(stack_b, INT));
 			while (*stack_b)
 			{
@@ -120,10 +119,8 @@ void	sort(t_list **stack_a, t_list **stack_b, int n)
 		}
 		rotate_i(stack_a, lenleft, 'a');
 		n *= 2;
-		//print_list(stack_a, stack_b);
+		if (minichecker(stack_a, stack_b))
+			exit_gracefully(stack_a, stack_b, NULL, EXIT_SUCCESS);
 	}
 	return ;
 }
-
-//if (minichecker(stack_a, stack_b))
-//	exit_gracefully(stack_a, stack_b, NULL, EXIT_SUCCESS);
