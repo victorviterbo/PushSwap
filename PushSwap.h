@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/11 13:30:26 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 14:49:58 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,10 @@ void	add_instr(char *str, bool print);
 t_list	**simplify(t_list **out, int last_size);
 t_list	**cut(t_list **out, int start, int end);
 void	write_output(t_list **stack);
+
+void	usort(t_list **stack_a, t_list **stack_b);
+void	usort1(t_list **stack_a, t_list **stack_b, int order);
+void	usort2(t_list **stack_a, t_list **stack_b, int order);
+void	usort3(t_list **stack_a, t_list **stack_b, int order);
 
 #endif

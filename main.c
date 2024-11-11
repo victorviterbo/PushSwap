@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/11 13:59:39 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:17:10 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	main(int argc, char *argv[])
 	sort(stack_a, stack_b, 3);
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
-	goto_val(stack_a, 'a', ft_lstmin(stack_a, INT));
 	exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	return (1);
 }
@@ -43,42 +42,12 @@ void	init(t_list **stack_a, t_list **stack_b)
 {
 	size_t	i;
 	size_t	len;
-	int		int1;
-	int		int2;
-	int		int3;
 
 	len = ft_lstsize(*stack_a);
 	i = 0;
 	while (i + 2 < len)
 	{
-		int1 = *(int *)(*stack_a)->content;
-		int2 = *(int *)(*stack_a)->next->content;
-		int3 = *(int *)(*stack_a)->next->next->content;
-		if (int1 < int2 && int1 < int3)
-		{
-			ra(stack_a);
-			if (int2 > int3)
-				sa(stack_a);
-			rotate_i(stack_a, 2, 'a');
-		}
-		else if (int2 < int1 && int2 < int3)
-		{
-			sa(stack_a);
-			ra(stack_a);
-			if (int1 > int3)
-				sa(stack_a);
-			rotate_i(stack_a, 2, 'a');
-		}
-		else if (int3 < int1 && int3 < int2)
-		{
-			pb(stack_a, stack_b);
-			sa(stack_a);
-			ra(stack_a);
-			pa(stack_a, stack_b);
-			if (int1 > int2)
-				sa(stack_a);
-			rotate_i(stack_a, 2, 'a');
-		}
+		usort(stack_a, stack_b);
 		i += 3;
 	}
 	if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content && len % 3 == 2)
@@ -133,11 +102,11 @@ void	sort(t_list **stack_a, t_list **stack_b, int n)
 			push_bloc(stack_a, stack_b, n, 1);
 			merge(stack_a, stack_b, (int)ft_min(lenleft - n, n));
 			lenleft -= (int)ft_min(lenleft, 2 * n);
+			if (minichecker(stack_a, stack_b))
+				exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 		}
 		rotate_i(stack_a, lenleft, 'a');
 		n *= 2;
-		if (minichecker(stack_a, stack_b))
-			exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	}
 	return ;
 }
