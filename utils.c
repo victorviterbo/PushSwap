@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/11 13:10:48 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:56:58 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 void	goto_val(t_list **stack, char ab, int value);
 t_list	**parse_input(int argc, char *argv[]);
 void	add_to_stack(t_list **stack, char *str);
-void	exit_gracefully(t_list **stack_a, t_list **stack_b,
-			char *str, int status);
+void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status);
 int		minichecker(t_list **stack_a, t_list **stack_b);
 
 void	goto_val(t_list **stack, char ab, int value)
@@ -25,7 +24,7 @@ void	goto_val(t_list **stack, char ab, int value)
 	size_t	i_rot;
 
 	if (!stack || !*stack)
-		exit_gracefully(stack, NULL, NULL, EXIT_FAILURE);
+		exit_gracefully(NULL, NULL, EXIT_FAILURE);
 	current = *stack;
 	i_rot = 0;
 	while (current->next && *(int *)current->content != value
@@ -49,7 +48,7 @@ t_list	**parse_input(int argc, char *argv[])
 
 	i = 0;
 	if (argc < 2)
-		exit_gracefully(NULL, NULL, NULL, EXIT_FAILURE);
+		exit_gracefully(NULL, NULL, EXIT_FAILURE);
 	stack_a = ft_calloc(1, sizeof(t_list *));
 	if (!stack_a)
 		return (NULL);
@@ -78,36 +77,41 @@ void	add_to_stack(t_list **stack, char *str)
 	else
 	{
 		if (!ft_isnumber(str))
-			exit_gracefully(stack, NULL, NULL, EXIT_FAILURE);
+			exit_gracefully(NULL, NULL, EXIT_FAILURE);
 		tmp = ft_calloc(1, sizeof(int));
 		if (!tmp)
-			exit_gracefully(stack, NULL, NULL, EXIT_FAILURE);
+			exit_gracefully(NULL, NULL, EXIT_FAILURE);
 		*tmp = ft_atoi(str);
 		if (ft_lst_isin(stack, tmp, sizeof(int)))
 		{
 			free(tmp);
-			exit_gracefully(stack, NULL, NULL, EXIT_FAILURE);
+			exit_gracefully(NULL, NULL, EXIT_FAILURE);
 		}
 		new_node = ft_lstnew(tmp);
 		if (!new_node)
-			exit_gracefully(stack, NULL, NULL, EXIT_FAILURE);
+			exit_gracefully(NULL, NULL, EXIT_FAILURE);
 		ft_lstadd_back(stack, new_node);
 	}
 }
 
-void	exit_gracefully(t_list **stack_a, t_list **stack_b,
-			char *str, int status)
+void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status)
 {
-	if (stack_a)
-		ft_lstclear(stack_a, free);
-	if (stack_b)
-		ft_lstclear(stack_b, free);
-	if (str)
-		free(str);
+	static t_list	**stack_1;
+	static t_list	**stack_2;
+
+	if (status == -1)
+	{
+		stack_1 = stack_a;
+		stack_2 = stack_b;
+		return ;
+	}
 	if (status == EXIT_FAILURE)
 		write(1, "Error\n", 6);
-	else
-		add_instr("", true);
+	else if (status == EXIT_SUCCESS)
+		add_instr(NULL, true);
+	ft_lstclear(stack_1, free);
+	ft_lstclear(stack_2, free);
+	add_instr(NULL, false);
 	exit(status);
 }
 

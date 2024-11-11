@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/11 13:11:12 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:59:39 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,17 @@ int	main(int argc, char *argv[])
 
 	stack_a = parse_input(argc, argv);
 	stack_b = ft_calloc(1, sizeof(t_list *));
+	exit_gracefully(stack_a, stack_b, -1);
 	if (minichecker(stack_a, stack_b))
-		exit_gracefully(stack_a, NULL, NULL, EXIT_SUCCESS);
+		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	init(stack_a, stack_b);
 	if (minichecker(stack_a, stack_b))
-		exit_gracefully(stack_a, NULL, NULL, EXIT_SUCCESS);
+		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	sort(stack_a, stack_b, 3);
 	if (minichecker(stack_a, stack_b))
-		exit_gracefully(stack_a, NULL, NULL, EXIT_SUCCESS);
+		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	goto_val(stack_a, 'a', ft_lstmin(stack_a, INT));
-	exit_gracefully(stack_a, stack_b, NULL, EXIT_SUCCESS);
+	exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	return (1);
 }
 
@@ -136,7 +137,7 @@ void	sort(t_list **stack_a, t_list **stack_b, int n)
 		rotate_i(stack_a, lenleft, 'a');
 		n *= 2;
 		if (minichecker(stack_a, stack_b))
-			exit_gracefully(stack_a, stack_b, NULL, EXIT_SUCCESS);
+			exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	}
 	return ;
 }

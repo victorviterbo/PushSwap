@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 16:19:38 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/10 22:26:59 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:57:47 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,25 @@ void	add_instr(char *str, bool print)
 	t_list			*new_instr;
 
 	if (print)
-	{
-		output = simplify(output, ft_lstsize(*output) + 1);
 		write_output(output);
-	}
+	else if (!str)
+		ft_lstclear(output, free);
 	else if (!output && str && *str)
 	{
 		output = ft_calloc(1, sizeof(t_list *));
 		*output = ft_lstnew(ft_strdup((void *)str));
 		if (!output)
-			exit_gracefully(NULL, NULL, NULL, EXIT_FAILURE);
+			exit_gracefully(NULL, NULL, EXIT_FAILURE);
 	}
 	else if (str && *str)
 	{
 		new_instr = ft_lstnew(ft_strdup((void *)str));
 		if (!new_instr || !new_instr->content)
-			exit_gracefully(output, NULL, NULL, EXIT_FAILURE);
+			exit_gracefully(NULL, NULL, EXIT_FAILURE);
 		ft_lstadd_back(output, new_instr);
 	}
 	else
-		exit_gracefully(output, NULL, NULL, EXIT_FAILURE);
+		exit_gracefully(NULL, NULL, EXIT_FAILURE);
 	return ;
 }
 
@@ -107,6 +106,7 @@ void	write_output(t_list **out)
 	t_list	*current;
 	char	*instruction;
 
+	simplify(out, ft_lstsize(*out) + 1);
 	current = *out;
 	while (current)
 	{

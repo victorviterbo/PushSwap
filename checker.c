@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:24:19 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/10 22:28:58 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:59:09 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char *argv[])
 
 	stack_a = parse_input(argc, argv);
 	stack_b = ft_calloc(1, sizeof(t_list *));
+	exit_gracefully(stack_a, stack_b, -1);
 	while (1)
 	{
 		operation = ft_get_next_line(0);
@@ -37,6 +38,7 @@ int	main(int argc, char *argv[])
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
+	exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	return (0);
 }
 
@@ -65,6 +67,6 @@ int	do_operation(t_list **stack_a, t_list **stack_b, char *op, int len)
 	if (!ft_memcmp(op, "pb\n", len))
 		return (pb(stack_a, stack_b), 0);
 	else
-		exit_gracefully(stack_a, stack_b, op, EXIT_FAILURE);
+		exit_gracefully(NULL, NULL, EXIT_FAILURE);
 	return (1);
 }

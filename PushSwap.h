@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/11 12:00:52 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:30:26 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ void	ss(t_list **stack_a, t_list **stack_b);
 void	goto_val(t_list **stack, char ab, int value);
 t_list	**parse_input(int argc, char *argv[]);
 void	add_to_stack(t_list **stack, char *str);
-void	exit_gracefully(t_list **stack_a, t_list **stack_b,
-			char *str, int status);
+void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status);
 int		minichecker(t_list **stack_a, t_list **stack_b);
 
 void	add_instr(char *str, bool print);
