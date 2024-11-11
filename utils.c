@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/11 12:34:39 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:10:48 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	add_to_stack(t_list **stack, char *str)
 void	exit_gracefully(t_list **stack_a, t_list **stack_b,
 			char *str, int status)
 {
-	print_list(stack_a, stack_b);
 	if (stack_a)
 		ft_lstclear(stack_a, free);
 	if (stack_b)

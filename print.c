@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:18:42 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/10 21:03:10 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:09:49 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	print_list(t_list **lst1, t_list **lst2)
 
 	current1 = *lst1;
 	current2 = *lst2;
+	return ;
 	printf("---------------------------\n");
 	while ((current1 && current1->content) || (current2 && current2->content))
 	{

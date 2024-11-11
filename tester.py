@@ -4,6 +4,7 @@ import math as m
 from scipy.stats import linregress
 import json
 import subprocess
+import numpy as np
 
 os.system("rm out.tmp ok.txt")
 RERUN = True
@@ -73,7 +74,7 @@ slopes.append(slope)
 if r_values[0] == max(r_values):
 	best_fit = 0
 	best_R = 0
-	for exponent in np.arange(0.5, 1.5, 0.1):
+	for exponent in np.arange(0.5, 2, 0.1):
 		exp = round(exponent, 1)
 		x_n = [pow(i, exp) for i in x]
 		slope, intercept, r_value, p_value, std_err = linregress(x_n, y1)
@@ -81,7 +82,7 @@ if r_values[0] == max(r_values):
 			best_fit = exp
 			best_R = r_value
 			bestslope = slope
-	print("Your program time complexity is O(n) = "+str(round(bestslope, 2))+"*n^"+str(exponent)+" with an R^2 of "+str(r_values[3]))
+	print("Your program time complexity is O(n) = "+str(round(bestslope, 2))+"*n^"+str(round(exponent, 2))+" with an R^2 of "+str(round(r_values[3], 3)))
 elif  r_values[1] == max(r_values):
 	print("Your program time complexity is O(n) = "+str(round(slopes[1], 2))+"*log(n) with an R^2 of "+str(r_values[1]))
 elif  r_values[2] == max(r_values):
@@ -89,7 +90,7 @@ elif  r_values[2] == max(r_values):
 elif  r_values[3] == max(r_values):
 	best_fit = 0
 	best_R = 0
-	for exponent in np.arange(1.5, 2.5, 0.1):
+	for exponent in np.arange(2, 3, 0.1):
 		exp = round(exponent, 1)
 		x_n = [pow(i, exp) for i in x]
 		slope, intercept, r_value, p_value, std_err = linregress(x_n, y1)
@@ -97,4 +98,4 @@ elif  r_values[3] == max(r_values):
 			best_fit = exp
 			best_R = r_value
 			bestslope = slope
-	print("Your program time complexity is O(n) = "+str(round(bestslope, 2))+"*n^"+str(exponent)+" with an R^2 of "+str(r_values[3]))
+	print("Your program time complexity is O(n) = "+str(round(bestslope, 2))+"*n^"+str(round(exponent, 1))+" with an R^2 of "+str(r_values[3]))

@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/11 12:33:17 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:11:12 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,22 +80,20 @@ void	init(t_list **stack_a, t_list **stack_b)
 		}
 		i += 3;
 	}
+	if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content && len % 3 == 2)
+		sa(stack_a);
 	rotate_i(stack_a, len % 3, 'a');
 	return ;
 }
 
 void	merge(t_list **stack_a, t_list **stack_b, int size_a)
 {
-	int	i;
-
-	i = 0;
-	size_a += ft_lstsize(*stack_b);
 	while (*stack_b)
 	{
 		rrb(stack_b);
-		i += insert(stack_a, stack_b, size_a);
+		size_a -= insert(stack_a, stack_b, size_a);
 	}
-	rotate_i(stack_a, size_a - i, 'a');
+	rotate_i(stack_a, size_a, 'a');
 	return ;
 }
 
@@ -110,16 +108,16 @@ int	insert(t_list **stack_a, t_list **stack_b, int size_a)
 	{
 		pa(stack_a, stack_b);
 		ra(stack_a);
-		return (1);
+		return (0);
 	}
-	while (stb > *(int *)(*stack_a)->content && i < size_a - 1)
+	while (stb > *(int *)(*stack_a)->content && i < size_a)
 	{
 		ra(stack_a);
 		i++;
 	}
 	pa(stack_a, stack_b);
 	ra(stack_a);
-	return (i + 1);
+	return (i);
 }
 
 void	sort(t_list **stack_a, t_list **stack_b, int n)
