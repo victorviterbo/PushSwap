@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/11 15:29:45 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 16:35:14 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@
 # include <stddef.h>
 # include <limits.h>
 # include <stdlib.h>
+
+
+
+
+
+#include <stdio.h>
+void	print_list(t_list **lst1, t_list **lst2);
+
+
+
 
 int		main(int argc, char *argv[]);
 void	init(t_list **stack_a, t_list **stack_b);
@@ -56,10 +66,12 @@ void	add_instr(char *str, bool print);
 t_list	**simplify(t_list **out, int last_size);
 t_list	**cut(t_list **out, int start, int end);
 void	write_output(t_list **stack);
+int		is_simplifiable(char *str1, char *str2);
 
-void	usort(t_list **stack_a, t_list **stack_b);
-void	usort1(t_list **stack_a, t_list **stack_b, int order);
-void	usort2(t_list **stack_a, t_list **stack_b, int order);
-void	usort3(t_list **stack_a, t_list **stack_b, int order);
+void	usort(t_list **stack_a, t_list **stack_b, int size);
+void	usort_swap(t_list **stack_a, char ab);
+void	usort1(t_list **stack_a, t_list **stack_b);
+void	usort2(t_list **stack_a, t_list **stack_b);
+void	usort3(t_list **stack_a, t_list **stack_b);
 
 #endif

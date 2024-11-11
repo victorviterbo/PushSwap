@@ -8,7 +8,7 @@ import numpy as np
 
 os.system("rm out.tmp ok.txt")
 RERUN = True
-x = [pow(3, i) for i in range(2, 7, 1)] + [100, 500]
+x = [5] + [pow(3, i) for i in range(2, 7, 1)] + [100, 500]
 if (RERUN):
 	os.system("rm test.json")
 	results = dict()
@@ -35,10 +35,9 @@ if (RERUN):
 					print("Failed with input :")
 					print(a)
 					quit()
-				else:
-					print("OK !")
 			with open("out.tmp", "r") as f:
 				n = len(f.readlines())
+				print("OK ! (size "+str(size)+" : "+str(n)+" operations)")
 			results[size].append(n)
 	with open("test.json", "w") as json_file:
 		json.dump(results, json_file, indent=4)
