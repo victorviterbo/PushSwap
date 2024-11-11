@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 11:45:15 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/10 19:40:06 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:20:12 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	push(t_list **stack_a, t_list **stack_b)
 void	pa(t_list **stack_a, t_list **stack_b)
 {
 	push(stack_a, stack_b);
-	add_instr("pa\n", false);;
+	add_instr("pa\n", false);
 	return ;
 }
 

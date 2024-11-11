@@ -6,14 +6,14 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/10 20:31:27 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/10 22:30:20 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PushSwap.h"
 
 int		main(int argc, char *argv[]);
-void	init(t_list **stack_a);
+void	init(t_list **stack_a, t_list **stack_b);
 void	merge(t_list **stack_a, t_list **stack_b, int size_a);
 void	insert(t_list **stack_a, t_list **stack_b);
 void	sort(t_list **stack_a, t_list **stack_b, int n);
@@ -27,33 +27,60 @@ int	main(int argc, char *argv[])
 	stack_b = ft_calloc(1, sizeof(t_list *));
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(stack_a, NULL, NULL, EXIT_SUCCESS);
-	init(stack_a);
+	init(stack_a, stack_b);
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(stack_a, NULL, NULL, EXIT_SUCCESS);
-	sort(stack_a, stack_b, 2);
+	sort(stack_a, stack_b, 3);
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(stack_a, NULL, NULL, EXIT_SUCCESS);
 	goto_val(stack_a, 'a', ft_lstmin(stack_a, INT));
-	print_list(stack_a, stack_b);
 	exit_gracefully(stack_a, stack_b, NULL, EXIT_SUCCESS);
 	return (1);
 }
 
-void	init(t_list **stack_a)
+void	init(t_list **stack_a, t_list **stack_b)
 {
 	size_t	i;
 	size_t	len;
+	int		int1;
+	int		int2;
+	int		int3;
 
 	len = ft_lstsize(*stack_a);
-	i = len % 2;
-	while (i < len)
+	i = 0;
+	while (i + 2 < len)
 	{
-		if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content)
+		int1 = *(int *)(*stack_a)->content;
+		int2 = *(int *)(*stack_a)->next->content;
+		int3 = *(int *)(*stack_a)->next->next->content;
+		if (int1 < int2 && int1 < int3)
+		{
+			ra(stack_a);
+			if (int2 > int3)
+				sa(stack_a);
+			rotate_i(stack_a, 2, 'a');
+		}
+		else if (int2 < int1 && int2 < int3)
+		{
 			sa(stack_a);
-		rotate_i(stack_a, 2, 'a');
-		i += 2;
+			ra(stack_a);
+			if (int1 > int3)
+				sa(stack_a);
+			rotate_i(stack_a, 2, 'a');
+		}
+		else if (int3 < int1 && int3 < int2)
+		{
+			pb(stack_a, stack_b);
+			sa(stack_a);
+			ra(stack_a);
+			pa(stack_a, stack_b);
+			if (int1 > int2)
+				sa(stack_a);
+			rotate_i(stack_a, 2, 'a');
+		}
+		i += 3;
 	}
-	rotate_i(stack_a, len % 2, 'a');
+	rotate_i(stack_a, len % 3, 'a');
 	return ;
 }
 
@@ -97,7 +124,7 @@ void	sort(t_list **stack_a, t_list **stack_b, int n)
 {
 	int	lenleft;
 
-	while (n <= ft_lstsize(*stack_a))
+	while (n < ft_lstsize(*stack_a))
 	{
 		lenleft = ft_lstsize(*stack_a);
 		while (lenleft > n)

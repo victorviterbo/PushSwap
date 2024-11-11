@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/10 17:33:21 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:58:01 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_list(t_list **lst1, t_list **lst2);
 
 
 int		main(int argc, char *argv[]);
-void	init(t_list **stack_a);
+void	init(t_list **stack_a, t_list **stack_b);
 void	merge(t_list **stack_a, t_list **stack_b, int size_a);
 void	insert(t_list **stack_a, t_list **stack_b);
 void	sort(t_list **stack_a, t_list **stack_b, int n);

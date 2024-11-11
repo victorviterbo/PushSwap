@@ -22,6 +22,7 @@ if (RERUN):
 					tmp = random.randint(0, 2*size)
 				a += str(tmp) + " "
 			a = a[0:len(a)-1]
+			os.system('echo "'+str(a)+'" > arg.txt')
 			os.system('ARG="'+str(a)+'"; ./push_swap $ARG > out.tmp; cat out.tmp | ./checker_Mac $ARG > ok.txt')
 			with open("ok.txt", "r") as f:
 				ok = f.readlines()
