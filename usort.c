@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:35:39 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/11 15:17:39 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:30:09 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,12 @@ void	usort(t_list **stack_a, t_list **stack_b)
 	int1 = ft_parse_as((*stack_a)->content, INT);
 	int2 = ft_parse_as((*stack_a)->next->content, INT);
 	int3 = ft_parse_as((*stack_a)->next->next->content, INT);
-	print_list(stack_a, stack_b);
 	if (int1 < int2 && int1 < int3)
 		usort1(stack_a, stack_b, (int2 > int3));
 	else if (int2 < int1 && int2 < int3)
 		usort2(stack_a, stack_b, (int1 > int3));
 	else if (int3 < int1 && int3 < int2)
 		usort3(stack_a, stack_b, (int1 > int2));
-	print_list(stack_a, stack_b);
 	return ;
 }
 

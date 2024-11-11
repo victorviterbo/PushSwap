@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/11 15:17:10 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:29:32 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	init(t_list **stack_a, t_list **stack_b)
 		usort(stack_a, stack_b);
 		i += 3;
 	}
-	if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content && len % 3 == 2)
+	if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content
+		&& len % 3 == 2)
 		sa(stack_a);
 	rotate_i(stack_a, len % 3, 'a');
 	return ;

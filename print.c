@@ -6,12 +6,11 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:18:42 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/11 15:16:35 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:30:46 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PushSwap.h"
-
 
 #include <libc.h>
 

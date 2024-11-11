@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/11 14:49:58 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:29:45 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,6 @@
 # include <stddef.h>
 # include <limits.h>
 # include <stdlib.h>
-
-
-
-
-
-#include <stdio.h>
-void	print_list(t_list **lst1, t_list **lst2);
-
-
-
-
-
 
 int		main(int argc, char *argv[]);
 void	init(t_list **stack_a, t_list **stack_b);
