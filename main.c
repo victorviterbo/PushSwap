@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/10 22:30:20 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:33:17 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		main(int argc, char *argv[]);
 void	init(t_list **stack_a, t_list **stack_b);
 void	merge(t_list **stack_a, t_list **stack_b, int size_a);
-void	insert(t_list **stack_a, t_list **stack_b);
+int		insert(t_list **stack_a, t_list **stack_b, int size_a);
 void	sort(t_list **stack_a, t_list **stack_b, int n);
 
 int	main(int argc, char *argv[])
@@ -89,35 +89,37 @@ void	merge(t_list **stack_a, t_list **stack_b, int size_a)
 	int	i;
 
 	i = 0;
-	while (i < size_a)
+	size_a += ft_lstsize(*stack_b);
+	while (*stack_b)
 	{
-		insert(stack_a, stack_b);
-		i++;
+		rrb(stack_b);
+		i += insert(stack_a, stack_b, size_a);
 	}
-	goto_val(stack_b, 'b', ft_lstmax(stack_b, INT));
+	rotate_i(stack_a, size_a - i, 'a');
 	return ;
 }
 
-void	insert(t_list **stack_a, t_list **stack_b)
+int	insert(t_list **stack_a, t_list **stack_b, int size_a)
 {
-	int		sta;
+	int		stb;
+	int		i;
 
-	sta = *(int *)(*stack_a)->content;
-	if (sta <= ft_lstmin(stack_b, INT))
+	i = 0;
+	stb = *(int *)(*stack_b)->content;
+	if (stb < *(int *)(*stack_a)->content)
 	{
-		pb(stack_a, stack_b);
-		rb(stack_b);
-		return ;
+		pa(stack_a, stack_b);
+		ra(stack_a);
+		return (1);
 	}
-	else if (sta >= ft_lstmax(stack_b, INT))
+	while (stb > *(int *)(*stack_a)->content && i < size_a - 1)
 	{
-		goto_val(stack_b, 'b', ft_lstmax(stack_b, INT));
-		pb(stack_a, stack_b);
-		return ;
+		ra(stack_a);
+		i++;
 	}
-	goto_val(stack_b, 'b', sta);
-	pb(stack_a, stack_b);
-	return ;
+	pa(stack_a, stack_b);
+	ra(stack_a);
+	return (i + 1);
 }
 
 void	sort(t_list **stack_a, t_list **stack_b, int n)
@@ -130,16 +132,7 @@ void	sort(t_list **stack_a, t_list **stack_b, int n)
 		while (lenleft > n)
 		{
 			push_bloc(stack_a, stack_b, n, 1);
-			merge(stack_a, stack_b, (int)ft_min(lenleft - n, n) - 1);
-			goto_val(stack_b, 'b', ft_lstmax(stack_b, INT));
-			while (*stack_b)
-			{
-				pa(stack_a, stack_b);
-				if (*(int *)(*stack_a)->content >
-					*(int *)(*stack_a)->next->content)
-					sa(stack_a);
-			}
-			rotate_i(stack_a, (int)ft_min(lenleft, 2 * n), 'a');
+			merge(stack_a, stack_b, (int)ft_min(lenleft - n, n));
 			lenleft -= (int)ft_min(lenleft, 2 * n);
 		}
 		rotate_i(stack_a, lenleft, 'a');

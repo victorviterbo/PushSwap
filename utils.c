@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/10 22:27:22 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:34:39 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ t_list	**parse_input(int argc, char *argv[]);
 void	add_to_stack(t_list **stack, char *str);
 void	exit_gracefully(t_list **stack_a, t_list **stack_b,
 			char *str, int status);
+int		minichecker(t_list **stack_a, t_list **stack_b);
 
 void	goto_val(t_list **stack, char ab, int value)
 {
 	t_list	*current;
 	size_t	i_rot;
 
+	if (!stack || !*stack)
+		exit_gracefully(stack, NULL, NULL, EXIT_FAILURE);
 	current = *stack;
 	i_rot = 0;
 	while (current->next && *(int *)current->content != value
@@ -95,6 +98,7 @@ void	add_to_stack(t_list **stack, char *str)
 void	exit_gracefully(t_list **stack_a, t_list **stack_b,
 			char *str, int status)
 {
+	print_list(stack_a, stack_b);
 	if (stack_a)
 		ft_lstclear(stack_a, free);
 	if (stack_b)
