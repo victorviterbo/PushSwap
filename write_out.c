@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 16:19:38 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/11 17:15:12 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:02:38 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	add_instr(char *str, bool print);
 t_list	**simplify(t_list **out, int last_size);
-t_list	**cut(t_list **out, int start, int end);
 void	write_output(t_list **stack);
 int		is_simplifiable(char *str1, char *str2);
 
@@ -46,6 +45,23 @@ void	add_instr(char *str, bool print)
 	return ;
 }
 
+void	write_output(t_list **out)
+{
+	t_list	*current;
+	char	*instruction;
+
+	simplify(out, ft_lstsize(*out) + 1);
+	current = *out;
+	while (current)
+	{
+		instruction = (char *)current->content;
+		write(1, instruction, ft_strlen(instruction));
+		current = current->next;
+	}
+	ft_lstclear(out, free);
+	return ;
+}
+
 t_list	**simplify(t_list **out, int last_size)
 {
 	t_list	*current;
@@ -65,56 +81,14 @@ t_list	**simplify(t_list **out, int last_size)
 		str2 = (char *)current->next->content;
 		j = is_simplifiable(str1, str2);
 		if (j >= 0)
-			return (simplify(cut(out, i, i + j), last_size));
+		{
+			ft_lstcut(out, free, i, i + j);
+			return (simplify(out, last_size));
+		}
 		i++;
 		current = current->next;
 	}
 	return (out);
-}
-
-t_list	**cut(t_list **out, int start, int end)
-{
-	t_list	*current;
-	t_list	*last;
-	t_list	*next;
-	int		i;
-
-	i = 0;
-	current = *out;
-	while (current)
-	{
-		next = current->next;
-		if (i < start)
-			last = current;
-		else if (start <= i && i < end)
-			ft_lstdelone(current, free);
-		else if (i == end && start)
-			last->next = current;
-		else if (i == end)
-			*out = current;
-		current = next;
-		i++;
-	}
-	if (i <= end)
-		last->next = NULL;
-	return (out);
-}
-
-void	write_output(t_list **out)
-{
-	t_list	*current;
-	char	*instruction;
-
-	simplify(out, ft_lstsize(*out) + 1);
-	current = *out;
-	while (current)
-	{
-		instruction = (char *)current->content;
-		write(1, instruction, ft_strlen(instruction));
-		current = current->next;
-	}
-	ft_lstclear(out, free);
-	return ;
 }
 
 int	is_simplifiable(char *str1, char *str2)
@@ -132,3 +106,4 @@ int	is_simplifiable(char *str1, char *str2)
 		return (2);
 	return (-1);
 }
+
