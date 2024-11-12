@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:24:19 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/11 13:59:09 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:00:38 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char *argv[])
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	exit_gracefully(NULL, NULL, EXIT_SUCCESS);
+	exit_gracefully(NULL, NULL, 3);
 	return (0);
 }
 

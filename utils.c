@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/12 14:03:06 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:00:56 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	goto_val(t_list **stack, char ab, int value);
 t_list	**parse_input(int argc, char *argv[]);
-void	add_to_stack(t_list **stack, char *str);
 void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status);
+void	add_to_stack(t_list **stack, char *str);
 int		minichecker(t_list **stack_a, t_list **stack_b);
 
 void	goto_val(t_list **stack, char ab, int value)
@@ -59,12 +59,37 @@ t_list	**parse_input(int argc, char *argv[])
 		arguments = ft_strarray_mapi(argv, ft_strdup);
 		i = 1;
 	}
+	if (!*arguments)
+		exit_gracefully(stack_a, NULL, EXIT_FAILURE);
 	while (arguments[i])
 	{
 		add_to_stack(stack_a, arguments[i]);
 		i++;
 	}
 	return (stack_a);
+}
+
+void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status)
+{
+	static t_list	**stack_1 = NULL;
+	static t_list	**stack_2 = NULL;
+
+	if (stack_a)
+		stack_1 = stack_a;
+	if (stack_b)
+		stack_2 = stack_b;
+	if (status == EXIT_FAILURE)
+		write(2, "Error\n", 6);
+	else if (status == EXIT_SUCCESS)
+		add_instr(NULL, true);
+	else if (status == -1)
+		return ;
+	if (stack_1)
+		ft_lstclear(stack_1, free);
+	if (stack_2)
+		ft_lstclear(stack_2, free);
+	add_instr(NULL, false);
+	exit(status);
 }
 
 void	add_to_stack(t_list **stack, char *str)
@@ -94,33 +119,12 @@ void	add_to_stack(t_list **stack, char *str)
 	}
 }
 
-void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status)
-{
-	static t_list	**stack_1;
-	static t_list	**stack_2;
-
-	if (status == -1)
-	{
-		stack_1 = stack_a;
-		stack_2 = stack_b;
-		return ;
-	}
-	if (status == EXIT_FAILURE)
-		write(1, "Error\n", 6);
-	else if (status == EXIT_SUCCESS)
-		add_instr(NULL, true);
-	ft_lstclear(stack_1, free);
-	ft_lstclear(stack_2, free);
-	add_instr(NULL, false);
-	exit(status);
-}
-
 int	minichecker(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*current;
 	int		last;
 
-	if ((*stack_b))
+	if (stack_b && (*stack_b))
 		return (0);
 	last = *(int *)(*stack_a)->content;
 	current = (*stack_a)->next;
