@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/11 16:35:14 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/12 20:25:50 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,25 @@ void	ss(t_list **stack_a, t_list **stack_b);
 
 void	goto_val(t_list **stack, char ab, int value);
 t_list	**parse_input(int argc, char *argv[]);
-void	add_to_stack(t_list **stack, char *str);
 void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status);
-int		minichecker(t_list **stack_a, t_list **stack_b);
+void	add_to_stack(t_list **stack, char *str);
+int		get_n(t_list **stack, int n);
 
 void	add_instr(char *str, bool print);
 t_list	**simplify(t_list **out, int last_size);
-t_list	**cut(t_list **out, int start, int end);
 void	write_output(t_list **stack);
 int		is_simplifiable(char *str1, char *str2);
+int		minichecker(t_list **stack_a, t_list **stack_b);
 
 void	usort(t_list **stack_a, t_list **stack_b, int size);
 void	usort_swap(t_list **stack_a, char ab);
 void	usort1(t_list **stack_a, t_list **stack_b);
 void	usort2(t_list **stack_a, t_list **stack_b);
 void	usort3(t_list **stack_a, t_list **stack_b);
+
+void	minisort(t_list **stack_a, t_list **stack_b);
+void	msort3(t_list **stack_a);
+void	msort4(t_list **stack_a, t_list **stack_b);
+void	msort5(t_list **stack_a, t_list **stack_b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/12 16:00:56 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/12 20:39:17 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	goto_val(t_list **stack, char ab, int value);
 t_list	**parse_input(int argc, char *argv[]);
 void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status);
 void	add_to_stack(t_list **stack, char *str);
-int		minichecker(t_list **stack_a, t_list **stack_b);
+int		get_n(t_list **stack, int n);
 
 void	goto_val(t_list **stack, char ab, int value)
 {
@@ -84,6 +84,7 @@ void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status)
 		add_instr(NULL, true);
 	else if (status == -1)
 		return ;
+	print_list(stack_a, stack_b);
 	if (stack_1)
 		ft_lstclear(stack_1, free);
 	if (stack_2)
@@ -119,21 +120,11 @@ void	add_to_stack(t_list **stack, char *str)
 	}
 }
 
-int	minichecker(t_list **stack_a, t_list **stack_b)
+int		get_n(t_list **stack, int n)
 {
-	t_list	*current;
-	int		last;
-
-	if (stack_b && (*stack_b))
-		return (0);
-	last = *(int *)(*stack_a)->content;
-	current = (*stack_a)->next;
-	while (current)
-	{
-		if (*(int *)current->content < last)
-			return (0);
-		last = *(int *)current->content;
-		current = current->next;
-	}
-	return (1);
+	if (ft_lst_getn(stack, n))
+		return (*(int *)((ft_lst_getn(stack, n))->content));
+	else
+		exit_gracefully(NULL, NULL, EXIT_FAILURE);
+	return (0);
 }
