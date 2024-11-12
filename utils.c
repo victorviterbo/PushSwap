@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/12 20:39:17 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/12 22:20:02 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	add_to_stack(t_list **stack, char *str)
 	}
 }
 
-int		get_n(t_list **stack, int n)
+int	get_n(t_list **stack, int n)
 {
 	if (ft_lst_getn(stack, n))
 		return (*(int *)((ft_lst_getn(stack, n))->content));
