@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/12 22:50:14 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/13 08:58:40 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,16 @@ int	main(int argc, char *argv[])
 	stack_a = parse_input(argc, argv);
 	stack_b = ft_calloc(1, sizeof(t_list *));
 	exit_gracefully(stack_a, stack_b, -1);
-	if (ft_lstsize(*stack_a) <= 5)
-		minisort(stack_a, stack_b);
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
+	if (ft_lstsize(*stack_a) <= 5)
+		minisort(stack_a, stack_b);
+	print_list(stack_a, stack_b);
+	if (minichecker(stack_a, stack_b))
+		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
+	radix_sort(stack_a, stack_b);
+	printf("radix sort failed\n");
+	print_list(stack_a, stack_b);
 	init(stack_a, stack_b);
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(NULL, NULL, EXIT_SUCCESS);

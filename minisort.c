@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:34:01 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/12 23:08:52 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/13 08:56:15 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	msort5(t_list **stack_a, t_list **stack_b);
 
 void	minisort(t_list **stack_a, t_list **stack_b)
 {
+	print_list(stack_a, stack_b);
 	if (ft_lstsize(*stack_a) == 2)
 		usort_swap(stack_a, 'a');
 	else if (ft_lstsize(*stack_a) == 3)

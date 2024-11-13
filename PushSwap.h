@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/12 20:25:50 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/13 08:43:04 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,8 @@ void	minisort(t_list **stack_a, t_list **stack_b);
 void	msort3(t_list **stack_a);
 void	msort4(t_list **stack_a, t_list **stack_b);
 void	msort5(t_list **stack_a, t_list **stack_b);
+
+void	radix_sort(t_list **stack_a, t_list **stack_b);
+void	rsort(t_list **stack_a, t_list **stack_b, int pivot);
 
 #endif
