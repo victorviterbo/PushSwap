@@ -8,7 +8,7 @@ import numpy as np
 
 os.system("rm out.tmp ok.txt")
 RERUN = True
-x = [5] + [pow(3, i) for i in range(2, 7, 1)] + [100, 500]
+x = [5] + [100, 500] + [pow(3, i) for i in range(2, 7, 1)] 
 if (RERUN):
 	os.system("rm test.json")
 	results = dict()

@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/13 13:15:19 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/13 16:27:17 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,14 @@ int	main(int argc, char *argv[])
 	exit_gracefully(stack_a, stack_b, -1);
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
+	printf("OK? 1\n");
 	if (ft_lstsize(*stack_a) <= 5)
 		minisort(stack_a, stack_b);
+	printf("OK? 2\n");
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	radix_sort(stack_a, stack_b);
+	printf("OK? 3\n");
 	init(stack_a, stack_b);
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
