@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/12 22:20:02 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/13 13:25:38 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status)
 		add_instr(NULL, true);
 	else if (status == -1)
 		return ;
-	print_list(stack_a, stack_b);
 	if (stack_1)
 		ft_lstclear(stack_1, free);
 	if (stack_2)
