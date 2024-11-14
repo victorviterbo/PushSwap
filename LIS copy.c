@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/14 22:23:58 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/14 23:48:26 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,18 @@ void	do_move(t_list **stack_a, t_list **stack_b)
 
 int	compute_cost(t_list **stack_a, t_list **stack_b, int pos)
 {
-	int		cost;
-	int		i;
-	int		rcase;
-	bool	rev;
+	int	rev_pos;
+	int	rev_i;
+	int	i;
 
 	i = 0;
-	while (get_n(stack_a, i + 1) < get_n(stack_b, pos))
+	while (get_n(stack_a, i + 1) < get_n(stack_b, pos)
+		&& i + 1 < ft_lstsize(*stack_a))
 		i++;
-
-	rcase = get_rcase(stack_a, stack_b, i, pos);
+	rev_pos = pos - (int)(ft_lstsize(*stack_b) / 2) + 1;
+	rev_i = ft_abs((i - (int)(ft_lstsize(*stack_a) / 2) + 1 - rev_pos)
+			% ft_lstsize(*stack_a));
+	i = (i - pos) % ft_lstsize(*stack_a);
 	if (rcase == 0)
 		return (ft_min(ft_min(i, pos), pos + ft_max(pos - i, i - pos)));
 	else if (rcase == 1)
@@ -97,15 +99,20 @@ int	get_rcase(t_list **stack_a, t_list **stack_b, int i, int pos)
 {
 	int	rev_pos;
 	int	rev_i;
-	int	*rot;
+	int	rot;
 
 	rev_pos = pos - (int)(ft_lstsize(*stack_b) / 2) + 1;
-	rev_i = i - (int)(ft_lstsize(*stack_a) / 2) + 1;
-	rot = ft_calloc(4, sizeof(int));
-	*rot = ft_max(i, pos);
-	*(rot + 1) = ft_max(i, ft_lstsize(*stack_b) - pos);
-	*(rot + 2) = ft_max(ft_listsize(*stack_a) - i, pos);
-	*(rot + 3) = ft_max(ft_listsize(*stack_a) - i, ft_lstsize(*stack_b) - pos);
+	rev_i = ft_abs((i - (int)(ft_lstsize(*stack_a) / 2) + 1 - rev_pos)
+			% ft_lstsize(*stack_a));
+	i = (i - pos) % ft_lstsize(*stack_a);
+}
+
+
+	
+	if (rev_i < 0)
+		pos = ft_min(-rev_pos, pos);
+	if ()
+	rot = rev_pos +  - (int)(ft_lstsize(*stack_a) / 2) + 1);
 	if (2 * i < ft_lstsize(*stack_a) && 2 * pos < ft_lstsize(*stack_b))
 		return (ft_max(ft_listsize(*stack_a) - i, pos));
 	else if (2 * i <= ft_lstsize(*stack_a) && 2 * pos >= ft_lstsize(*stack_b))
