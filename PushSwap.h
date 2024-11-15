@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/15 00:14:26 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:30:16 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ void	print_list(t_list **lst1, t_list **lst2);
 
 
 int		main(int argc, char *argv[]);
+int		get_lis(t_list **stack_a, int *len);
+void	do_move(t_list **stack_a, t_list **stack_b);
+int		compute_cost(t_list **stack_a, t_list **stack_b, int pos);
+int		get_rcase(t_list **stack_a, t_list **stack_b, int i, int pos);
+void	smart_rotate(t_list **stack_a, t_list **stack_b, int best_i);
+void	smart_push(t_list **stack_a, t_list **stack_b);
+
 void	init(t_list **stack_a, t_list **stack_b);
 void	merge(t_list **stack_a, t_list **stack_b, int size_a);
 int		insert(t_list **stack_a, t_list **stack_b, int size_a);
@@ -43,13 +50,13 @@ void	revrotate(t_list **stack);
 void	rra(t_list **stack_a);
 void	rrb(t_list **stack_b);
 void	rrr(t_list **stack_a, t_list **stack_b);
-void	revrotate_i(t_list **stack_1, t_list **stack_2, int n, char ab);
+void	revrotate_i(t_list **stack_1, int n, char ab);
 
 void	rotate(t_list **stack);
 void	ra(t_list **stack_a);
 void	rb(t_list **stack_b);
 void	rr(t_list **stack_a, t_list **stack_b);
-void	rotate_i(t_list **stack_1, t_list **stack_2, int n, char ab);
+void	rotate_i(t_list **stack_1, int n, char ab);
 
 void	swap(t_list **stack);
 void	sa(t_list **stack_a);

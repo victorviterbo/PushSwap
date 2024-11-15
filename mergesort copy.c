@@ -6,16 +6,41 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/15 11:28:48 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:44:32 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PushSwap.h"
 
+int		main(int argc, char *argv[]);
 void	init(t_list **stack_a, t_list **stack_b);
 void	merge(t_list **stack_a, t_list **stack_b, int size_a);
 int		insert(t_list **stack_a, t_list **stack_b, int size_a);
 void	sort(t_list **stack_a, t_list **stack_b, int n);
+
+int	main(int argc, char *argv[])
+{
+	t_list	**stack_a;
+	t_list	**stack_b;
+
+	stack_a = parse_input(argc, argv);
+	stack_b = ft_calloc(1, sizeof(t_list *));
+	exit_gracefully(stack_a, stack_b, -1);
+	if (minichecker(stack_a, stack_b))
+		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
+	if (ft_lstsize(*stack_a) <= 5)
+		minisort(stack_a, stack_b);
+	if (minichecker(stack_a, stack_b))
+		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
+	init(stack_a, stack_b);
+	if (minichecker(stack_a, stack_b))
+		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
+	sort(stack_a, stack_b, 5);
+	if (minichecker(stack_a, stack_b))
+		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
+	exit_gracefully(NULL, NULL, EXIT_FAILURE);
+	return (1);
+}
 
 void	init(t_list **stack_a, t_list **stack_b)
 {
