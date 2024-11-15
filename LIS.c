@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/15 11:39:23 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/15 14:20:43 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,11 @@ int	main(int argc, char *argv[])
 		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	if (ft_lstsize(*stack_a) <= 5)
 		minisort(stack_a, stack_b);
-	print_list(stack_a, stack_b);
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
-	printf("HELLO\n");
 	smart_push(stack_a, stack_b);
-	printf("OK ?\n");
-	print_list(stack_a, stack_b);
 	do_move(stack_a, stack_b);
-	print_list(stack_a, stack_b);
+	goto_val(stack_a, 'a', ft_lstmin(stack_a, INT));
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	exit_gracefully(NULL, NULL, EXIT_FAILURE);
@@ -49,20 +45,21 @@ int	main(int argc, char *argv[])
 
 int	get_lis(t_list **stack_a, int *len)
 {
-	int		i;
-	int		last;
-	int		best_i;
+	int	i;
+	int	last;
+	int	best_i;
 
 	i = 1;
 	*len = 1;
 	last = 1;
-	while (i < ft_lstsize(*stack_a))
+	while (i < 2 * ft_lstsize(*stack_a))
 	{
-		last = (get_n(stack_a, i) > get_n(stack_a, i - 1)) * last + 1;
+		last = (get_n(stack_a, i % ft_lstsize(*stack_a))
+				< get_n(stack_a, (i + 1) % ft_lstsize(*stack_a))) * last + 1;
 		if (last > *len)
 		{
 			*len = last;
-			best_i = i - *len + 1;
+			best_i = i % ft_lstsize(*stack_a) - *len + 1;
 		}
 		i++;
 	}
@@ -74,10 +71,10 @@ void	do_move(t_list **stack_a, t_list **stack_b)
 	int		i;
 	int		best_i;
 
-	i = 0;
-	best_i = 0;
-	while (ft_lstsize(*stack_b))
+	while (*stack_b)
 	{
+		i = 0;
+		best_i = 0;
 		while (i < ft_lstsize(*stack_b))
 		{
 			if (ft_abs(compute_cost(stack_a, stack_b, i))
@@ -85,10 +82,10 @@ void	do_move(t_list **stack_a, t_list **stack_b)
 				best_i = i;
 			i++;
 		}
-		i = 0;
 		smart_rotate(stack_a, stack_b, best_i);
 		pa(stack_a, stack_b);
 	}
+	return ;
 }
 
 int	compute_cost(t_list **stack_a, t_list **stack_b, int pos)
@@ -100,8 +97,8 @@ int	compute_cost(t_list **stack_a, t_list **stack_b, int pos)
 	int	min;
 
 	min = 0;
-	while (get_n(stack_a, min + 1) < get_n(stack_b, pos)
-		&& min + 1 < ft_lstsize(*stack_a))
+	while (min < ft_lstsize(*stack_a)
+		&& get_n(stack_a, min) < get_n(stack_b, pos))
 		min++;
 	forward = ft_max(min, pos);
 	backward = ft_max(ft_lstsize(*stack_a) - min, ft_lstsize(*stack_b) - pos);
@@ -128,66 +125,38 @@ void	smart_rotate(t_list **stack_a, t_list **stack_b, int best_i)
 	n = compute_cost(stack_a, stack_b, best_i);
 	rev = n < 0;
 	n = ft_abs(n);
-	while (!rev && get_n(stack_a, i + 1) < get_n(stack_b, best_i) && best_i)
+	if (get_n(stack_b, best_i) > ft_lstmax(stack_a, INT))
+		return (goto_val(stack_a, 'a', ft_lstmin(stack_a, INT)));
+	else if (get_n(stack_b, best_i) < ft_lstmin(stack_a, INT))
+		return (goto_val(stack_a, 'a', ft_lstmin(stack_a, INT)));
+	while (!rev && best_i && !(get_n(stack_a, 0) < get_n(stack_b, best_i) && get_n(stack_a, ft_lstsize(*stack_a) - 1) < get_n(stack_b, best_i)))
 	{
 		rr(stack_a, stack_b);
 		best_i--;
 		i++;
 	}
-	while (rev && get_n(stack_a, i) > get_n(stack_b, best_i) && best_i)
+	while (rev && best_i && !(get_n(stack_a, 0) > get_n(stack_b, best_i) && get_n(stack_a, ft_lstsize(*stack_a) - 1) < get_n(stack_b, best_i)))
 	{
 		rrr(stack_a, stack_b);
 		best_i = (best_i + 1) % ft_lstsize(*stack_b);
 		i++;
 	}
-	rotate_i(stack_a, best_i, 'b');
+	rotate_i(stack_b, best_i, 'b');
 	rotate_i(stack_a, n - best_i, 'a');
 	return ;
 }
 
 void	smart_push(t_list **stack_a, t_list **stack_b)
 {
-	int	i;
 	int	lis_start;
-	int	lis_len;
-	int	*lis_rev;
+	int	*lis_len;
 
-	lis_rev = ft_calloc(1, sizeof(int));
-	lis_start = get_lis(stack_a, lis_rev);
-	lis_len = *lis_rev - lis_start;
-	*lis_rev = ft_lstsize(*stack_a) - *lis_rev + lis_start;
-	i = 0;
-	if (*lis_rev < lis_start)
-	{
-		while (i < *lis_rev)
-		{
-			rra(stack_a);
-			i++;
-		}
-		printf("rev : i = %i\n", i);
-		i = 0;
-		while (i < lis_len)
-		{
-			pb(stack_a, stack_b);
-			rra(stack_a);
-			i++;
-		}
-	}
-	else
-	{
-		while (i < lis_start)
-		{
-			ra(stack_a);
-			i++;
-		}
-		printf("for : i = %i\n", i);
-		i = 0;
-		printf("for : lislen = %i\n", lis_len);
-		while (i <= lis_len)
-		{
-			pb(stack_a, stack_b);
-			i++;
-		}
-	}
+	lis_len = ft_calloc(1, sizeof(int));
+	lis_start = get_lis(stack_a, lis_len);
+	if (*lis_len == ft_lstsize(*stack_a))
+		return (rotate_i(stack_a, lis_start, 'a'));
+	push_bloc(stack_a, stack_b, lis_start + 1, 1);
+	rotate_i(stack_a, *lis_len, 'a');
+	push_bloc(stack_a, stack_b, ft_lstsize(*stack_a) - *lis_len, 1);
 	return ;
 }
