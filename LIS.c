@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/17 13:48:46 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/17 16:45:25 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,106 @@ int	main(int argc, char *argv[])
 int	get_lis(t_list **stack_a, int *len)
 {
 	int	i;
-	int	last;
-	int	best_i;
+	int	j;
+	int	n;
+	int	**arr;
+	int	*darr;
+	int	*to_keep;
 
-	i = 1;
-	*len = 1;
-	last = 1;
-	best_i = 0;
-	while (i < 2 * ft_lstsize(*stack_a))
+	i = 0;
+	j = 0;
+	(void)*len;
+	n = ft_lstsize(*stack_a);
+	arr = ft_calloc(2 * n, (sizeof(int *)));
+	while (i < 2 * n)
 	{
-		last = (get_n(stack_a, (i - 1) % ft_lstsize(*stack_a))
-				< get_n(stack_a, i % ft_lstsize(*stack_a))) * last + 1;
-		if (last > *len)
+		arr[i] = ft_calloc(2 * n, (sizeof(int)));
+		i++;
+	}
+	i = 0;
+	while (i < 2 * n)
+	{
+		j = 0;
+		while (j < 2 * n)
 		{
-			*len = last;
-			best_i = i - (*len - 1);
+			arr[i][j] = (get_n(stack_a, i % n) <= get_n(stack_a, j % n));
+			j++;
 		}
 		i++;
 	}
-	best_i = (best_i + ft_lstsize(*stack_a)) % ft_lstsize(*stack_a);
-	return (best_i);
+	darr = ft_calloc(2 * n, sizeof(int));
+	i = 0;
+	while (i < 2 * n)
+	{
+		darr[i] = 1;
+		i++;
+	}
+	i = 0;
+	while (i < n)
+	{
+		j = 0;
+		printf("%i : ", get_n(stack_a, i));
+		while (j < n - 1)
+		{
+			printf("%i, ", arr[i][j]);
+			j++;
+		}
+		printf("%i\n", arr[i][j]);
+		i++;
+	}
+	i = 0;
+	while (i < 2 * n)
+	{
+		j = i + 1;
+		while (j < i + n)
+		{
+			if (arr[i][j])
+				darr[j] = ft_max(darr[j], darr[i] + 1);
+			j++;
+		}		
+		i++;
+	}
+	i = 0;
+	while (i < 2 * n)
+	{
+		printf("%i\n", darr[i]);
+		i++;
+	}
+	to_keep = ft_calloc(n, sizeof(int));
+	i = 2 * n - 1;
+	j = 0;
+	while (i + 1)
+	{
+		if (darr[i] >= darr[j])
+			j = i;
+		i--;
+	}
+	to_keep[j % n] = 1;
+	i = j;
+	int last = darr[j];
+	j--;
+	printf("-------------------------------\n");
+	while (ft_abs(i - j) - 1 < n)
+	{
+		printf("%i : %i, accepted ? %i, %i, %i -> %i\n", j, get_n(stack_a, j % n), arr[j][i], darr[j], last - 1, arr[j][i] && darr[j] == last - 1);
+		if (arr[j][i] && darr[j] == last - 1)
+		{
+			//printf("%i : %i kept\n", j, get_n(stack_a, j % n));
+			to_keep[j % n] = 1;
+			last--;
+		}
+		if (j == 0)
+			j += 2 * n;
+		j--;
+	}
+	i = 0;
+	printf("-------------------------------\n");
+	while (i < n)
+	{
+		printf("%i : %i : %i\n", get_n(stack_a, i), i, to_keep[i]);
+		i++;
+	}
+	return (j);
 }
 
 void	do_move(t_list **stack_a, t_list **stack_b)
