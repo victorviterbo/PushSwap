@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/17 12:30:41 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/17 13:41:19 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,29 @@ int		get_n(t_list **stack, int n);
 
 int	goto_val(t_list **stack, char ab, int value, bool dummy)
 {
-	t_list	*current;
-	size_t	i_rot;
+	int	i_rot;
+	int	size;
 
 	if (!stack || !*stack)
 		exit_gracefully(NULL, NULL, EXIT_FAILURE);
-	current = *stack;
-	if (get_n(stack, 0) == value || (get_n(stack, 0) > value
-			&& get_n(stack, ft_lstsize(*stack) - 1) < value))
-		return ;
-	i_rot = 1;
-	while (current->next && get_n(stack, i_rot) != value && !(get_n(stack, i_rot) > value
-			&& get_n(stack, i_rot - 1) < value))
+	size = ft_lstsize(*stack);
+	i_rot = 0;
+	if (value > ft_lstmax(stack, INT) || value < ft_lstmin(stack, INT))
+		value = ft_lstmin(stack, INT);
+	if (ft_lst_isin(stack, &value, sizeof(int)))
 	{
-		current = current->next;
-		i_rot++;
+		while (get_n(stack, i_rot) != value)
+			i_rot++;
+	}
+	else
+	{
+		if (get_n(stack, 0) == value || (get_n(stack, 0) > value
+				&& get_n(stack, size - 1) < value))
+			return (0);
+		i_rot = 1;
+		while (i_rot < size && (get_n(stack, i_rot - 1) > value
+			|| get_n(stack, i_rot) < value))
+			i_rot++;
 	}
 	if (dummy == false)
 		rotate_i(stack, i_rot, ab);
@@ -85,7 +93,6 @@ void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status)
 		add_instr(NULL, true);
 	else if (status == -1)
 		return ;
-	//print_list(stack_1, stack_2);
 	if (stack_1)
 		ft_lstclear(stack_1, free);
 	if (stack_2)
