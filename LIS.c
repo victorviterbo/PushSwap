@@ -6,14 +6,14 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/17 16:45:25 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/17 17:42:49 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PushSwap.h"
 
 int		main(int argc, char *argv[]);
-int		get_lis(t_list **stack_a, int *len);
+void	get_lis(t_list **stack_a, int *to_keep);
 void	do_move(t_list **stack_a, t_list **stack_b);
 int		compute_cost(t_list **stack_a, t_list **stack_b, int pos);
 int		get_rcase(t_list **stack_a, t_list **stack_b, int i, int pos);
@@ -42,18 +42,44 @@ int	main(int argc, char *argv[])
 	return (0);
 }
 
-int	get_lis(t_list **stack_a, int *len)
+void	smart_push(t_list **stack_a, t_list **stack_b)
+{
+	int	i;
+	int	*to_keep;
+
+	i = 0;
+	to_keep = ft_calloc(ft_lstsize(*stack_a), sizeof(int));
+	get_lis(stack_a, to_keep);
+	i = 0;
+	while (i < ft_lstsize(*stack_a) + 1)
+	{
+		printf("%i\n", to_keep[i]);
+		if (to_keep[i] == 1)
+			ra(stack_a);
+		else
+		{
+			pb(stack_a, stack_b);
+			printf("pushing %i\n", get_n(stack_a, 0));
+		}
+		i++;
+	}
+	goto_val(stack_a, 'a', ft_lstmin(stack_a, INT), false);
+	printf("final state :\n");
+	print_list(stack_a, stack_b);
+	return ;
+}
+
+void	get_lis(t_list **stack_a, int *to_keep)
 {
 	int	i;
 	int	j;
 	int	n;
 	int	**arr;
 	int	*darr;
-	int	*to_keep;
+	int last;
 
 	i = 0;
 	j = 0;
-	(void)*len;
 	n = ft_lstsize(*stack_a);
 	arr = ft_calloc(2 * n, (sizeof(int *)));
 	while (i < 2 * n)
@@ -80,19 +106,6 @@ int	get_lis(t_list **stack_a, int *len)
 		i++;
 	}
 	i = 0;
-	while (i < n)
-	{
-		j = 0;
-		printf("%i : ", get_n(stack_a, i));
-		while (j < n - 1)
-		{
-			printf("%i, ", arr[i][j]);
-			j++;
-		}
-		printf("%i\n", arr[i][j]);
-		i++;
-	}
-	i = 0;
 	while (i < 2 * n)
 	{
 		j = i + 1;
@@ -110,26 +123,22 @@ int	get_lis(t_list **stack_a, int *len)
 		printf("%i\n", darr[i]);
 		i++;
 	}
-	to_keep = ft_calloc(n, sizeof(int));
 	i = 2 * n - 1;
 	j = 0;
 	while (i + 1)
 	{
-		if (darr[i] >= darr[j])
+		if (darr[i] > darr[j])
 			j = i;
 		i--;
 	}
 	to_keep[j % n] = 1;
 	i = j;
-	int last = darr[j];
+	last = darr[j];
 	j--;
-	printf("-------------------------------\n");
-	while (ft_abs(i - j) - 1 < n)
+	while (ft_abs(i - j) < n)
 	{
-		printf("%i : %i, accepted ? %i, %i, %i -> %i\n", j, get_n(stack_a, j % n), arr[j][i], darr[j], last - 1, arr[j][i] && darr[j] == last - 1);
 		if (arr[j][i] && darr[j] == last - 1)
 		{
-			//printf("%i : %i kept\n", j, get_n(stack_a, j % n));
 			to_keep[j % n] = 1;
 			last--;
 		}
@@ -138,13 +147,14 @@ int	get_lis(t_list **stack_a, int *len)
 		j--;
 	}
 	i = 0;
-	printf("-------------------------------\n");
+	printf("--------------\n");
 	while (i < n)
 	{
-		printf("%i : %i : %i\n", get_n(stack_a, i), i, to_keep[i]);
+		printf("%i\n", to_keep[i]);
 		i++;
 	}
-	return (j);
+	printf("--------------\n");
+	return ;
 }
 
 void	do_move(t_list **stack_a, t_list **stack_b)
@@ -208,13 +218,10 @@ void	smart_rotate(t_list **stack_a, t_list **stack_b, int best_i)
 	bool	rev;
 
 	i = 0;
-	//printf("recompute cost\n");
 	n = compute_cost(stack_a, stack_b, best_i);
-	//printf("recomputed cost\n");
 	rev = n < 0;
 	n = ft_abs(n);
 	b_value = get_n(stack_b, best_i);
-	//printf("n = %i, best_i = %i, rev = %i\n", n, best_i, rev);
 	while (!rev && best_i && !(get_n(stack_a, 0) > b_value
 			&& get_n(stack_a, ft_lstsize(*stack_a) - 1) < b_value))
 	{
@@ -229,15 +236,13 @@ void	smart_rotate(t_list **stack_a, t_list **stack_b, int best_i)
 		best_i = (best_i + 1) % ft_lstsize(*stack_b);
 		i++;
 	}
-	//printf("Doing final rotations\n");
-	//print_list(stack_a, stack_b);
 	rotate_i(stack_b, best_i, 'b');
-	//print_list(stack_a, stack_b);
 	goto_val(stack_a, 'a', b_value, false);
-	//print_list(stack_a, stack_b);
 	return ;
 }
 
+
+/*
 void	smart_push(t_list **stack_a, t_list **stack_b)
 {
 	int	lis_start;
@@ -268,3 +273,4 @@ void	smart_push(t_list **stack_a, t_list **stack_b)
 	//printf("4\n");
 	return ;
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/17 12:31:01 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/17 17:18:43 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_list(t_list **lst1, t_list **lst2);
 
 
 int		main(int argc, char *argv[]);
-int		get_lis(t_list **stack_a, int *len);
+void	get_lis(t_list **stack_a, int *to_keep);
 void	do_move(t_list **stack_a, t_list **stack_b);
 int		compute_cost(t_list **stack_a, t_list **stack_b, int pos);
 int		get_rcase(t_list **stack_a, t_list **stack_b, int i, int pos);
