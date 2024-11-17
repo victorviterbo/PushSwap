@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/17 13:41:19 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/17 20:57:33 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,32 @@ int		get_n(t_list **stack, int n);
 
 int	goto_val(t_list **stack, char ab, int value, bool dummy)
 {
-	int	i_rot;
-	int	size;
+	int		i_rot;
+	t_list	*c;
 
 	if (!stack || !*stack)
 		exit_gracefully(NULL, NULL, EXIT_FAILURE);
-	size = ft_lstsize(*stack);
 	i_rot = 0;
+	c = *stack;
 	if (value > ft_lstmax(stack, INT) || value < ft_lstmin(stack, INT))
 		value = ft_lstmin(stack, INT);
-	if (ft_lst_isin(stack, &value, sizeof(int)))
+	if (ft_lst_isin_int(stack, value))
 	{
-		while (get_n(stack, i_rot) != value)
+		while (c->i != value)
+		{
 			i_rot++;
+			c = c->next;
+		}
 	}
 	else
 	{
-		if (get_n(stack, 0) == value || (get_n(stack, 0) > value
-				&& get_n(stack, size - 1) < value))
+		if (c->i == value || (c->i > value && ft_lstlast(*stack)->i < value))
 			return (0);
-		i_rot = 1;
-		while (i_rot < size && (get_n(stack, i_rot - 1) > value
-			|| get_n(stack, i_rot) < value))
+		while (c->next && (c->i > value || c->next->i < value))
+		{
 			i_rot++;
+			c = c->next;
+		}
 	}
 	if (dummy == false)
 		rotate_i(stack, i_rot, ab);
@@ -103,7 +106,6 @@ void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status)
 
 void	add_to_stack(t_list **stack, char *str)
 {
-	int		*tmp;
 	t_list	*new_node;
 
 	if (ft_strchr(str, ' '))
@@ -112,16 +114,9 @@ void	add_to_stack(t_list **stack, char *str)
 	{
 		if (!ft_isnumber(str))
 			exit_gracefully(NULL, NULL, EXIT_FAILURE);
-		tmp = ft_calloc(1, sizeof(int));
-		if (!tmp)
+		if (ft_lst_isin_int(stack, ft_atoi(str)))
 			exit_gracefully(NULL, NULL, EXIT_FAILURE);
-		*tmp = ft_atoi(str);
-		if (ft_lst_isin(stack, tmp, sizeof(int)))
-		{
-			free(tmp);
-			exit_gracefully(NULL, NULL, EXIT_FAILURE);
-		}
-		new_node = ft_lstnew(tmp);
+		new_node = ft_lstnew_int(ft_atoi(str));
 		if (!new_node)
 			exit_gracefully(NULL, NULL, EXIT_FAILURE);
 		ft_lstadd_back(stack, new_node);

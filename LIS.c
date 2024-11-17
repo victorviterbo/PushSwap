@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/17 19:23:10 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/17 19:52:14 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,33 +83,18 @@ void	get_lis(t_list **stack_a, int *to_keep)
 		i++;
 	}
 	i = 0;
+	darr = ft_calloc(2 * n, sizeof(int));
 	while (i < 2 * n)
 	{
+		darr[i] = 1;
 		j = 0;
 		while (j < 2 * n)
 		{
 			arr[i][j] = (get_n(stack_a, i % n) <= get_n(stack_a, j % n));
-			j++;
-		}
-		i++;
-	}
-	darr = ft_calloc(2 * n, sizeof(int));
-	i = 0;
-	while (i < 2 * n)
-	{
-		darr[i] = 1;
-		i++;
-	}
-	i = 0;
-	while (i < 2 * n)
-	{
-		j = i + 1;
-		while (j < i + n)
-		{
 			if (arr[i][j])
 				darr[j] = ft_max(darr[j], darr[i] + 1);
 			j++;
-		}		
+		}
 		i++;
 	}
 	i = 0;
@@ -124,7 +109,7 @@ void	get_lis(t_list **stack_a, int *to_keep)
 	to_keep[j % n] = 1;
 	i = j;
 	last = darr[j];
-	j--;
+	j = (n + j - 1) % n;
 	while (ft_abs(i - j) < n)
 	{
 		if (arr[j][i] && darr[j] == last - 1)

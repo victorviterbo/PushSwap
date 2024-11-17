@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 16:19:38 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/15 17:31:46 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/17 20:52:19 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	add_instr(char *str, bool print)
 		output = ft_calloc(1, sizeof(t_list *));
 		if (!output)
 			exit_gracefully(NULL, NULL, EXIT_FAILURE);
-		*output = ft_lstnew(ft_strdup((void *)str));
+		*output = ft_lstnew_void(ft_strdup((void *)str));
 	}
 	else if (str && *str)
 	{
-		new_instr = ft_lstnew(ft_strdup((void *)str));
+		new_instr = ft_lstnew_void(ft_strdup((void *)str));
 		if (!new_instr || !new_instr->content)
 			exit_gracefully(NULL, NULL, EXIT_FAILURE);
 		ft_lstadd_back(output, new_instr);
