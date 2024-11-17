@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/17 17:42:49 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/17 17:57:58 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ int	main(int argc, char *argv[])
 	if (ft_lstsize(*stack_a) <= 5)
 		minisort(stack_a, stack_b);
 	smart_push(stack_a, stack_b);
-	printf("LIS OK\n");
+	//print_list(stack_a, stack_b);
+	//exit_gracefully(NULL, NULL, EXIT_SUCCESS);
+	//printf("LIS OK\n");
 	do_move(stack_a, stack_b);
 	goto_val(stack_a, 'a', ft_lstmin(stack_a, INT), false);
 	if (minichecker(stack_a, stack_b))
@@ -46,26 +48,27 @@ void	smart_push(t_list **stack_a, t_list **stack_b)
 {
 	int	i;
 	int	*to_keep;
+	int	size_a;
 
 	i = 0;
 	to_keep = ft_calloc(ft_lstsize(*stack_a), sizeof(int));
 	get_lis(stack_a, to_keep);
 	i = 0;
-	while (i < ft_lstsize(*stack_a) + 1)
+	size_a = ft_lstsize(*stack_a);
+	while (i < size_a)
 	{
-		printf("%i\n", to_keep[i]);
+		//printf("%i : %i\n", i, to_keep[i]);
 		if (to_keep[i] == 1)
 			ra(stack_a);
 		else
 		{
 			pb(stack_a, stack_b);
-			printf("pushing %i\n", get_n(stack_a, 0));
+			//printf("pushing %i\n", get_n(stack_a, 0));
 		}
 		i++;
 	}
-	goto_val(stack_a, 'a', ft_lstmin(stack_a, INT), false);
-	printf("final state :\n");
-	print_list(stack_a, stack_b);
+	//printf("final state :\n");
+	//print_list(stack_a, stack_b);
 	return ;
 }
 
@@ -120,7 +123,7 @@ void	get_lis(t_list **stack_a, int *to_keep)
 	i = 0;
 	while (i < 2 * n)
 	{
-		printf("%i\n", darr[i]);
+		//printf("%i\n", darr[i]);
 		i++;
 	}
 	i = 2 * n - 1;
@@ -147,13 +150,13 @@ void	get_lis(t_list **stack_a, int *to_keep)
 		j--;
 	}
 	i = 0;
-	printf("--------------\n");
+	//printf("--------------\n");
 	while (i < n)
 	{
-		printf("%i\n", to_keep[i]);
+		//printf("%i\n", to_keep[i]);
 		i++;
 	}
-	printf("--------------\n");
+	//printf("--------------\n");
 	return ;
 }
 
@@ -179,8 +182,8 @@ void	do_move(t_list **stack_a, t_list **stack_b)
 		}
 		smart_rotate(stack_a, stack_b, best_i);
 		pa(stack_a, stack_b);
-		if (ft_lstsize(*stack_b) % 10 == 0)
-			printf("%i\n", ft_lstsize(*stack_b));
+		//if (ft_lstsize(*stack_b) % 10 == 0)
+		//printf("%i\n", ft_lstsize(*stack_b));
 	}
 	return ;
 }
@@ -249,28 +252,28 @@ void	smart_push(t_list **stack_a, t_list **stack_b)
 	int	*lis_len;
 
 	lis_len = ft_calloc(1, sizeof(int));
-	//printf("-1\n");
+	////printf("-1\n");
 	lis_start = get_lis(stack_a, lis_len);
-	//printf("0\n");
-	printf("lis_start = %i, lis_len = %i, size = %i\n", lis_start, *lis_len, ft_lstsize(*stack_a));
+	////printf("0\n");
+	//printf("lis_start = %i, lis_len = %i, size = %i\n", lis_start, *lis_len, ft_lstsize(*stack_a));
 	if (*lis_len == ft_lstsize(*stack_a))
 		return (rotate_i(stack_a, lis_start, 'a'));
 	else if (lis_start + *lis_len >= ft_lstsize(*stack_a))
 	{
-		//printf("doing the thing\n");
+		////printf("doing the thing\n");
 		rotate_i(stack_a, (lis_start + *lis_len) % ft_lstsize(*stack_a), 'a');
 		push_bloc(stack_a, stack_b, ft_lstsize(*stack_a) - *lis_len, 1);
 		return ;
 	}
-	//printf("1\n");
+	////printf("1\n");
 	push_bloc(stack_a, stack_b, lis_start, 1);
-	//printf("2\n");
+	////printf("2\n");
 	rotate_i(stack_a, *lis_len, 'a');
-	//printf("3\n");
-	//printf("%i\n", ft_lstsize(*stack_a) - *lis_len);
-	//printf("%i vs %i?\n", ft_lstsize(*stack_a), *lis_len);
+	////printf("3\n");
+	////printf("%i\n", ft_lstsize(*stack_a) - *lis_len);
+	////printf("%i vs %i?\n", ft_lstsize(*stack_a), *lis_len);
 	push_bloc(stack_a, stack_b, ft_lstsize(*stack_a) - *lis_len, 1);
-	//printf("4\n");
+	////printf("4\n");
 	return ;
 }
 */
