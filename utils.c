@@ -6,19 +6,19 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/13 13:25:38 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/17 12:30:41 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PushSwap.h"
 
-void	goto_val(t_list **stack, char ab, int value);
+int		goto_val(t_list **stack, char ab, int value, bool dummy);
 t_list	**parse_input(int argc, char *argv[]);
 void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status);
 void	add_to_stack(t_list **stack, char *str);
 int		get_n(t_list **stack, int n);
 
-void	goto_val(t_list **stack, char ab, int value)
+int	goto_val(t_list **stack, char ab, int value, bool dummy)
 {
 	t_list	*current;
 	size_t	i_rot;
@@ -26,18 +26,19 @@ void	goto_val(t_list **stack, char ab, int value)
 	if (!stack || !*stack)
 		exit_gracefully(NULL, NULL, EXIT_FAILURE);
 	current = *stack;
-	i_rot = 0;
-	while (current->next && *(int *)current->content != value
-		&& !(*(int *)current->content > value
-			&& *(int *)current->next->content < value))
+	if (get_n(stack, 0) == value || (get_n(stack, 0) > value
+			&& get_n(stack, ft_lstsize(*stack) - 1) < value))
+		return ;
+	i_rot = 1;
+	while (current->next && get_n(stack, i_rot) != value && !(get_n(stack, i_rot) > value
+			&& get_n(stack, i_rot - 1) < value))
 	{
 		current = current->next;
 		i_rot++;
 	}
-	i_rot += (int)(*(int *)current->content != value);
-	if (current)
+	if (dummy == false)
 		rotate_i(stack, i_rot, ab);
-	return ;
+	return (i_rot);
 }
 
 t_list	**parse_input(int argc, char *argv[])
@@ -84,6 +85,7 @@ void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status)
 		add_instr(NULL, true);
 	else if (status == -1)
 		return ;
+	//print_list(stack_1, stack_2);
 	if (stack_1)
 		ft_lstclear(stack_1, free);
 	if (stack_2)

@@ -6,7 +6,7 @@
 #    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2024/11/15 11:30:29 by vviterbo         ###   ########.fr        #
+#    Updated: 2024/11/17 12:20:45 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,10 @@ CC = cc
 all: $(NAME)
 
 clean :
-	@$(MAKE) -C libft/ clean
 	@rm -f $(OBJS)
 	@rm -f $(OBJS_BONUS)
 
 fclean : clean
-	@$(MAKE) -C libft/ fclean
 	@rm -f $(NAME)
 	@rm -f $(NAME_BONUS)
 
