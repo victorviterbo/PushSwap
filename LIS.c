@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 12:12:47 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:19:34 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		main(int argc, char *argv[]);
 void	get_lis(t_list **stack_a, int *to_keep);
 void	do_move(t_list **stack_a, t_list **stack_b);
 int		compute_cost(t_list **stack_a, t_list **stack_b, int pos);
-int		get_rcase(t_list **stack_a, t_list **stack_b, int i, int pos);
 void	smart_rotate(t_list **stack_a, t_list **stack_b, int best_i);
 void	smart_push(t_list **stack_a, t_list **stack_b);
 
@@ -34,6 +33,7 @@ int	main(int argc, char *argv[])
 	if (ft_lstsize(*stack_a) <= 5)
 		minisort(stack_a, stack_b);
 	smart_push(stack_a, stack_b);
+	print("LIS OK\n");
 	//print_list(stack_a, stack_b);
 	do_move(stack_a, stack_b);
 	//print_list(stack_a, stack_b);
@@ -199,14 +199,11 @@ int	compute_cost(t_list **stack_a, t_list **stack_b, int pos)
 void	smart_rotate(t_list **stack_a, t_list **stack_b, int best_i)
 {
 	int		i;
-	int		n;
 	int		b_value;
 	bool	rev;
 
 	i = 0;
-	n = compute_cost(stack_a, stack_b, best_i);
-	rev = n < 0;
-	n = ft_abs(n);
+	rev = compute_cost(stack_a, stack_b, best_i) < 0;
 	b_value = get_n(stack_b, best_i);
 	if (rev == false)
 	{
