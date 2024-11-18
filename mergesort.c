@@ -6,11 +6,11 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/17 22:31:38 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:29:17 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PushSwap.h"
+#include "pushswap.h"
 
 void	init(t_list **stack_a, t_list **stack_b);
 void	merge(t_list **stack_a, t_list **stack_b, int size_a);

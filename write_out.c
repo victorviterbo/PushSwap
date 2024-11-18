@@ -6,11 +6,11 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 16:19:38 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 10:00:26 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:29:17 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PushSwap.h"
+#include "pushswap.h"
 
 void	add_instr(char *str, bool print);
 t_list	**simplify(t_list **out, int last_size);

@@ -6,11 +6,11 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 09:59:39 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:29:17 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PushSwap.h"
+#include "pushswap.h"
 
 int		goto_val(t_list **stack, char ab, int value, bool dummy);
 t_list	**parse_input(int argc, char *argv[]);

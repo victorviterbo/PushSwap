@@ -6,11 +6,11 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:12:23 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/17 22:45:11 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:29:17 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PushSwap.h"
+#include "pushswap.h"
 
 void	radix_sort(t_list **stack_a, t_list **stack_b);
 void	rsort(t_list **stack_a, t_list **stack_b, int pivot);

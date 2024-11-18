@@ -6,11 +6,11 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 12:21:32 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:35:46 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PushSwap.h"
+#include "pushswap.h"
 
 int		main(int argc, char *argv[]);
 void	get_lis(t_list **stack_a, int *to_keep);
@@ -18,7 +18,7 @@ void	do_move(t_list **stack_a, t_list **stack_b);
 int		compute_cost(t_list **stack_a, t_list **stack_b, int pos);
 void	smart_rotate(t_list **stack_a, t_list **stack_b, int best_i);
 void	smart_push(t_list **stack_a, t_list **stack_b);
-
+int		*lst2arr(t_list **stack);
 
 int	main(int argc, char *argv[])
 {
@@ -34,11 +34,11 @@ int	main(int argc, char *argv[])
 		minisort(stack_a, stack_b);
 	smart_push(stack_a, stack_b);
 	printf("LIS OK\n");
-	//print_list(stack_a, stack_b);
+	print_list(stack_a, stack_b);
 	do_move(stack_a, stack_b);
-	//print_list(stack_a, stack_b);
+	print_list(stack_a, stack_b);
 	goto_val(stack_a, 'a', ft_lstmini(stack_a), false);
-	//print_list(stack_a, stack_b);
+	print_list(stack_a, stack_b);
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	exit_gracefully(NULL, NULL, EXIT_SUCCESS);
@@ -72,26 +72,24 @@ void	get_lis(t_list **stack_a, int *to_keep)
 	int	i;
 	int	j;
 	int	n;
+	int	*arra;
 	int	**arr;
 	int	*darr;
 	int last;
 
-	i = 0;
-	j = 0;
+	i = -1;
 	n = ft_lstsize(*stack_a);
+	arra = lst2arr(stack_a);
 	arr = ft_calloc(2 * n, (sizeof(int *)));
-	while (i < 2 * n)
-	{
+	while (i++ < 2 * n)
 		arr[i] = ft_calloc(2 * n, (sizeof(int)));
-		i++;
-	}
 	i = 0;
 	while (i < 2 * n)
 	{
 		j = 0;
 		while (j < 2 * n)
 		{
-			arr[i][j] = (get_n(stack_a, i % n) <= get_n(stack_a, j % n));
+			arr[i][j] = (arra[i % n] <= arra[j % n]);
 			j++;
 		}
 		i++;
@@ -221,4 +219,23 @@ void	smart_rotate(t_list **stack_a, t_list **stack_b, int best_i)
 	rotate_i(stack_b, NULL, best_i, 'b');
 	goto_val(stack_a, 'a', b_value, false);
 	return ;
+}
+
+
+int	*lst2arr(t_list **stack)
+{
+	int		i;
+	int		*arr;
+	t_list	*current;
+
+	i = 0;
+	arr = ft_calloc(ft_lstsize(*stack), sizeof(int));
+	current = *stack;
+	while (current)
+	{
+		*(arr + i) = current->i;
+		i++;
+		current = current->next;
+	}
+	return (arr);
 }
