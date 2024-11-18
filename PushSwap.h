@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 22:52:45 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 23:24:19 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	merge(t_list **stack_a, t_list **stack_b, int size_a);
 int		insert(t_list **stack_a, t_list **stack_b, int size_a);
 void	sort(t_list **stack_a, t_list **stack_b, int n);
 
-void	push(t_list **stack_a, t_list **stack_b);
+void	push(t_list **stack_1, t_list **stack_2);
 void	pa(t_list **stack_a, t_list **stack_b);
 void	pb(t_list **stack_a, t_list **stack_b);
 void	push_bloc(t_list **stack_a, t_list **stack_b, size_t size, int dir);

@@ -6,34 +6,34 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 11:45:15 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 17:51:57 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 23:24:08 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	push(t_list **stack_a, t_list **stack_b);
+void	push(t_list **stack_1, t_list **stack_2);
 void	pa(t_list **stack_a, t_list **stack_b);
 void	pb(t_list **stack_a, t_list **stack_b);
 void	push_bloc(t_list **stack_a, t_list **stack_b, size_t size, int dir);
 
-void	push(t_list **stack_a, t_list **stack_b)
+void	push(t_list **stack_1, t_list **stack_2)
 {
 	t_list	*next_node_a;
 	t_list	*next_node_b;
 
-	if (!stack_a || !stack_b)
+	if (!stack_1 || !stack_2)
 		exit_gracefully(NULL, NULL, EXIT_FAILURE);
-	else if (!*stack_b || ft_lstsize(*stack_b) < 1)
+	else if (!*stack_2 || ft_lstsize(*stack_2) < 1)
 		return ;
-	if (!*stack_a)
+	if (!*stack_1)
 		next_node_a = NULL;
 	else
-		next_node_a = *stack_a;
-	*stack_a = *stack_b;
-	next_node_b = (*stack_b)->next;
-	(*stack_a)->next = next_node_a;
-	*stack_b = next_node_b;
+		next_node_a = *stack_1;
+	*stack_1 = *stack_2;
+	next_node_b = (*stack_2)->next;
+	(*stack_1)->next = next_node_a;
+	*stack_2 = next_node_b;
 	return ;
 }
 

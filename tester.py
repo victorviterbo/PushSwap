@@ -26,13 +26,13 @@ if (RERUN):
 			a = " ".join([str(i) for i in tmp])
 			os.system('echo "'+str(a)+'" > arg.txt')
 			t = time.time() #leaks --atExit --
-			os.system('ARG="'+str(a)+'";./push_swap $ARG > out.tmp; cat out.tmp | ./checker $ARG > ok2.txt')
+			os.system('ARG="'+str(a)+'";./push_swap $ARG > out.tmp; cat out.tmp | ./checker_Mac $ARG > ok1.txt')
 			t = time.time() - t
-			os.system('ARG="'+str(a)+'"; cat out.tmp | ./checker_Mac $ARG > ok1.txt')
-			with open("ok2.txt", "r") as f:
-				ok2 = f.read()
-				ok1 = open("ok1.txt", "r").read()
-				if not ok2:
+			os.system('ARG="'+str(a)+'"; cat out.tmp | ./checker_Mac $ARG > ok2.txt')
+			with open("ok1.txt", "r") as f:
+				ok1 = f.read()
+				ok2 = open("ok2.txt", "r").read()
+				if not ok1 or not ok2:
 					print("ERROR ! checker produced no output")
 				if (ok1 != "OK\n" or ok1 != ok2):
 					ok1 = ok1[:-1]
@@ -44,9 +44,9 @@ if (RERUN):
 			with open("out.tmp", "r") as f:
 				n = len(f.readlines())
 				if ((n > 5500 and size == 500) or (n > 700 and size == 100) or t > 2):
-					print(f"{yellow}OK ! (size {size} :{n} operations), time = {t}s{reset}")
+					print(f"{yellow}OK ! (size {size} :{n} operations), time = {round(t, 4)}s{reset}")
 				else:
-					print(f"{green}OK ! (size {size} :{n} operations), time = {t}s{reset}")
+					print(f"{green}OK ! (size {size} :{n} operations), time = {round(t, 4)}s{reset}")
 			results[size].append(n)
 	with open("test.json", "w") as json_file:
 		json.dump(results, json_file, indent=4)

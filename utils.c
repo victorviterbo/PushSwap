@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 17:37:16 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 23:42:34 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,7 @@ t_list	**parse_input(int argc, char *argv[])
 	if (argc == 2)
 		arguments = ft_split(argv[1], ' ');
 	else
-	{
-		arguments = ft_strarray_mapi(argv, ft_strdup);
-		i = 1;
-	}
+		arguments = ft_strarray_mapi(argv + 1, ft_strdup);
 	if (!*arguments)
 	{
 		free(arguments);
@@ -85,8 +82,6 @@ t_list	**parse_input(int argc, char *argv[])
 	}
 	return (ft_free_array((void **)arguments, ft_arrlen(arguments)), stack_a);
 }
-
-//arguments = ft_strarray_mapi(argv + 1, ft_strdup);
 
 void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status)
 {

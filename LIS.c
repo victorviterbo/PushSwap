@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 22:52:31 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 23:36:27 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	find_max(int *arr, int n)
 			j = i;
 		i--;
 	}
-	return (i);
+	return (j);
 }
 
 int	*propagate_backward(int *darr, int *arra, int best, int n)
