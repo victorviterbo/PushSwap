@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 15:43:49 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 22:52:45 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,15 @@ void	print_list(t_list **lst1, t_list **lst2);
 
 
 int		main(int argc, char *argv[]);
-void	get_lis(t_list **stack_a, int *to_keep);
 void	do_move(t_list **stack_a, t_list **stack_b);
 int		compute_cost(t_list **stack_a, t_list **stack_b, int pos);
-int		get_rcase(t_list **stack_a, t_list **stack_b, int i, int pos);
-void	smart_rotate(t_list **stack_a, t_list **stack_b, int best_i);
 void	smart_push(t_list **stack_a, t_list **stack_b);
+
+int		*get_lis(t_list **stack_a);
+int		*lst2arr(t_list **stack);
+void	set_endpoint(int *darr, int *arra, int n);
+int		find_max(int *arr, int n);
+int		*propagate_backward(int *darr, int *arra, int best, int n);
 
 void	init(t_list **stack_a, t_list **stack_b);
 void	merge(t_list **stack_a, t_list **stack_b, int size_a);
