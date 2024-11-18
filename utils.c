@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 12:29:17 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:37:16 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,19 @@ t_list	**parse_input(int argc, char *argv[])
 		i = 1;
 	}
 	if (!*arguments)
+	{
+		free(arguments);
 		exit_gracefully(stack_a, NULL, EXIT_FAILURE);
+	}
 	while (arguments[i])
 	{
 		add_to_stack(stack_a, arguments[i]);
 		i++;
 	}
-	return (stack_a);
+	return (ft_free_array((void **)arguments, ft_arrlen(arguments)), stack_a);
 }
+
+//arguments = ft_strarray_mapi(argv + 1, ft_strdup);
 
 void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status)
 {
@@ -99,9 +104,15 @@ void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status)
 	else if (status == -1)
 		return ;
 	if (stack_1)
+	{
 		ft_lstclear(stack_1, ft_dummy);
+		free(stack_1);
+	}
 	if (stack_2)
+	{
 		ft_lstclear(stack_2, ft_dummy);
+		free(stack_2);
+	}
 	add_instr(NULL, false);
 	exit(status);
 }
@@ -109,9 +120,20 @@ void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status)
 void	add_to_stack(t_list **stack, char *str)
 {
 	t_list	*new_node;
+	char	**splitted;
+	int		i;
 
 	if (ft_strchr(str, ' '))
-		add_to_stack(stack, str);
+	{
+		i = 0;
+		splitted = ft_split(str, ' ');
+		while (splitted && *(splitted + i))
+		{
+			add_to_stack(stack, *(splitted + i));
+			free(*(splitted + i));
+			i++;
+		}
+	}
 	else
 	{
 		if (!ft_isnumber(str))

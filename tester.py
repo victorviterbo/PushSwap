@@ -25,8 +25,8 @@ if (RERUN):
 			random.shuffle(tmp)
 			a = " ".join([str(i) for i in tmp])
 			os.system('echo "'+str(a)+'" > arg.txt')
-			t = time.time()
-			os.system('ARG="'+str(a)+'"; ./push_swap $ARG > out.tmp; cat out.tmp | ./checker $ARG > ok.txt')
+			t = time.time() #leaks --atExit --
+			os.system('ARG="'+str(a)+'";./push_swap $ARG > out.tmp; cat out.tmp | ./checker $ARG > ok.txt')
 			t = time.time() - t
 			with open("ok.txt", "r") as f:
 				ok = f.readlines()

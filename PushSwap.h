@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 12:30:14 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 15:43:49 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status);
 void	add_to_stack(t_list **stack, char *str);
 int		get_n(t_list **stack, int n);
 
-void	add_instr(char *str, bool print);
+void	add_instr(const char *str, bool print);
 t_list	**simplify(t_list **out, int last_size);
 void	write_output(t_list **stack);
 int		is_simplifiable(char *str1, char *str2);

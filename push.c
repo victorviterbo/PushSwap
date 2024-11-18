@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 11:45:15 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 12:29:17 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:51:57 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ void	push(t_list **stack_a, t_list **stack_b)
 	t_list	*next_node_a;
 	t_list	*next_node_b;
 
-	if (!stack_a || !stack_b || !*stack_b || ft_lstsize(*stack_b) < 1)
+	if (!stack_a || !stack_b)
 		exit_gracefully(NULL, NULL, EXIT_FAILURE);
+	else if (!*stack_b || ft_lstsize(*stack_b) < 1)
+		return ;
 	if (!*stack_a)
 		next_node_a = NULL;
 	else

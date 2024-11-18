@@ -6,26 +6,26 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 16:19:38 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 12:29:17 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:34:49 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	add_instr(char *str, bool print);
+void	add_instr(const char *str, bool print);
 t_list	**simplify(t_list **out, int last_size);
 void	write_output(t_list **stack);
 int		is_simplifiable(char *str1, char *str2);
 int		minichecker(t_list **stack_a, t_list **stack_b);
 
-void	add_instr(char *str, bool print)
+void	add_instr(const char *str, bool print)
 {
 	static t_list	**output = NULL;
 	t_list			*new_instr;
 
-	if (print && output)
+	if (print && output && !str)
 		write_output(output);
-	else if (!str)
+	else if (!(str))
 		ft_lstclear(output, free);
 	else if (!output && str && *str)
 	{

@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 13:22:12 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:20:16 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	smart_push(t_list **stack_a, t_list **stack_b)
 			pb(stack_a, stack_b);
 		i++;
 	}
+	free(to_keep);
 	return ;
 }
 
@@ -77,7 +78,7 @@ void	get_lis(t_list **stack_a, int *to_keep)
 	n = ft_lstsize(*stack_a);
 	arra = lst2arr(stack_a);
 	arr = ft_calloc(2 * n, (sizeof(int *)));
-	while (i++ < 2 * n)
+	while (i++ < 2 * n - 1)
 		arr[i] = ft_calloc(2 * n, (sizeof(int)));
 	i = 0;
 	while (i < 2 * n)
@@ -98,7 +99,7 @@ void	get_lis(t_list **stack_a, int *to_keep)
 		i++;
 	}
 	i = 0;
-	while (i < 2 * n)
+	while (i < n)
 	{
 		j = i + 1;
 		while (j < i + n)
@@ -135,6 +136,9 @@ void	get_lis(t_list **stack_a, int *to_keep)
 		j--;
 	}
 	i = 0;
+	ft_free_array((void **)arr, 2 * n);
+	free(arra);
+	free(darr);
 	return ;
 }
 

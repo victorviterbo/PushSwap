@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:58:46 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 12:29:17 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:57:51 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	revrotate(t_list **stack)
 	t_list	*tmp;
 	t_list	*current;
 
-	if (!stack || !*stack)
+	if (!stack)
 		exit_gracefully(NULL, NULL, EXIT_FAILURE);
+	if (!*stack)
+		return ;
 	if (ft_lstsize(*stack) < 2)
 		return ;
 	tmp = ft_lstlast(*stack);
