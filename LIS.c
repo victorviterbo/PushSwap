@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 12:35:46 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:22:12 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,8 @@ int	main(int argc, char *argv[])
 	if (ft_lstsize(*stack_a) <= 5)
 		minisort(stack_a, stack_b);
 	smart_push(stack_a, stack_b);
-	printf("LIS OK\n");
-	print_list(stack_a, stack_b);
 	do_move(stack_a, stack_b);
-	print_list(stack_a, stack_b);
 	goto_val(stack_a, 'a', ft_lstmini(stack_a), false);
-	print_list(stack_a, stack_b);
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	exit_gracefully(NULL, NULL, EXIT_SUCCESS);

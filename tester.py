@@ -5,9 +5,14 @@ from scipy.stats import linregress
 import json
 import subprocess
 import numpy as np
+import time
 
 os.system("rm out.tmp ok.txt")
 RERUN = True
+red = "\033[31m"
+yellow = "\033[33m"
+green = "\033[32m"
+reset = "\033[0m"
 x = [5, 7] + [100, 500]# + [pow(3, i) for i in range(2, 7, 1)] 
 if (RERUN):
 	os.system("rm test.json")
@@ -16,15 +21,13 @@ if (RERUN):
 		results[size] = []
 		print("Running for size "+str(size))
 		for j in range(10):
-			a = ""
-			for i in range(size):
-				tmp = random.randint(-2*size, 2*size)
-				while (str(tmp) in a):
-					tmp = random.randint(0, 2*size)
-				a += str(tmp) + " "
-			a = a[0:len(a)-1]
+			tmp = list(range(size))
+			random.shuffle(tmp)
+			a = " ".join([str(i) for i in tmp])
 			os.system('echo "'+str(a)+'" > arg.txt')
-			os.system('ARG="'+str(a)+'"; ./push_swap $ARG > out.tmp; cat out.tmp | ./checker_Mac $ARG > ok.txt')
+			t = time.time()
+			os.system('ARG="'+str(a)+'"; ./push_swap $ARG > out.tmp; cat out.tmp | ./checker $ARG > ok.txt')
+			t = time.time() - t
 			with open("ok.txt", "r") as f:
 				ok = f.readlines()
 				if not ok:
@@ -32,12 +35,15 @@ if (RERUN):
 				ok = ok[-1]
 				if (ok != "OK\n"):
 					print(ok)
-					print("Failed with input :")
+					print(f"{red}Failed with input :{reset}")
 					print(a)
 					quit()
 			with open("out.tmp", "r") as f:
 				n = len(f.readlines())
-				print("OK ! (size "+str(size)+" : "+str(n)+" operations)")
+				if ((n > 5500 and size == 500) or (n > 700 and size == 100) or t > 2):
+					print(f"{yellow}OK ! (size {size} :{n} operations), time = {t}s{reset}")
+				else:
+					print(f"{green}OK ! (size {size} :{n} operations), time = {t}s{reset}")
 			results[size].append(n)
 	with open("test.json", "w") as json_file:
 		json.dump(results, json_file, indent=4)
