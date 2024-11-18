@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:12:23 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/14 13:45:28 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/17 22:45:11 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	radix_sort(t_list **stack_a, t_list **stack_b)
 	int	pivot;
 
 	pivot = (int)(8 * sizeof(int)) - 1;
-	while (((((int)ft_lstmax(stack_a, INT)) >> pivot) & 1) == 0)
+	while ((((ft_lstmaxi(stack_a)) >> pivot) & 1) == 0)
 		pivot--;
 	rsort(stack_a, stack_b, pivot);
 	return ;

@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:35:39 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/12 15:53:07 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:54:10 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	usort(t_list **stack_a, t_list **stack_b, int size)
 	if (size == 2)
 	{
 		usort_swap(stack_a, 'a');
-		rotate_i(stack_a, 2, 'a');
+		rotate_i(stack_a, NULL, 2, 'a');
 		return ;
 	}
 	int1 = ft_parse_as((*stack_a)->content, INT);
@@ -49,16 +49,11 @@ void	usort(t_list **stack_a, t_list **stack_b, int size)
 
 void	usort_swap(t_list **stack, char ab)
 {
-	int	int1;
-	int	int2;
-
 	if (!stack || !*stack || ft_lstsize(*stack) < 2)
 		return ;
-	int1 = ft_parse_as((*stack)->content, INT);
-	int2 = ft_parse_as((*stack)->next->content, INT);
-	if (int1 > int2 && ab == 'a')
+	if ((*stack)->i > (*stack)->next->i && ab == 'a')
 		sa(stack);
-	else if (int1 < int2 && ab == 'b')
+	else if ((*stack)->i < (*stack)->next->i && ab == 'b')
 		sb(stack);
 	return ;
 }

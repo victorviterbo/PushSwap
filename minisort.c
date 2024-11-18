@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:34:01 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/17 13:46:19 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:55:28 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ void	msort3(t_list **stack_a)
 
 void	msort4(t_list **stack_a, t_list **stack_b)
 {
-	if (get_n(stack_a, 1) == ft_lstmin(stack_a, INT))
+	if (get_n(stack_a, 1) == ft_lstmini(stack_a))
 		sa(stack_a);
-	else if (get_n(stack_a, 2) == ft_lstmin(stack_a, INT))
+	else if (get_n(stack_a, 2) == ft_lstmini(stack_a))
 	{
 		ra(stack_a);
 		sa(stack_a);
 	}
-	else if (get_n(stack_a, 3) == ft_lstmin(stack_a, INT))
+	else if (get_n(stack_a, 3) == ft_lstmini(stack_a))
 		rra(stack_a);
 	pb(stack_a, stack_b);
 	msort3(stack_a);
@@ -79,19 +79,19 @@ void	msort4(t_list **stack_a, t_list **stack_b)
 
 void	msort5(t_list **stack_a, t_list **stack_b)
 {
-	if (get_n(stack_a, 1) == ft_lstmin(stack_a, INT))
+	if (get_n(stack_a, 1) == ft_lstmini(stack_a))
 		sa(stack_a);
-	else if (get_n(stack_a, 2) == ft_lstmin(stack_a, INT))
+	else if (get_n(stack_a, 2) == ft_lstmini(stack_a))
 	{
 		ra(stack_a);
 		sa(stack_a);
 	}
-	else if (get_n(stack_a, 3) == ft_lstmin(stack_a, INT))
+	else if (get_n(stack_a, 3) == ft_lstmini(stack_a))
 	{
 		rra(stack_a);
 		rra(stack_a);
 	}
-	else if (get_n(stack_a, 4) == ft_lstmin(stack_a, INT))
+	else if (get_n(stack_a, 4) == ft_lstmini(stack_a))
 		rra(stack_a);
 	pb(stack_a, stack_b);
 	msort4(stack_a, stack_b);

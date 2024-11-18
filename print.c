@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:18:42 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/11 17:46:44 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/17 23:01:41 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,21 @@ void	print_list(t_list **lst1, t_list **lst2)
 	current1 = *lst1;
 	current2 = *lst2;
 	printf("---------------------------\n");
-	while ((current1 && current1->content) || (current2 && current2->content))
+	while ((current1 && current1->i) || (current2 && current2->i))
 	{
-		if ((current1 && current1->content) && !(current2 && current2->content))
+		if ((current1 && current1->i) && !(current2 && current2->i))
 		{
-			printf("%i\t\n", *((int *)current1->content));
+			printf("%i\t\n", current1->i);
 			current1 = current1->next;
 		}
-		else if (!(current1 && current1->content) && (current2 && current2->content))
+		else if (!(current1 && current1->i) && (current2 && current2->i))
 		{
-			printf("\t%i\n", *((int *)current2->content));
+			printf("\t%i\n", current2->i);
 			current2 = current2->next;
 		}
 		else
 		{
-			printf("%i\t%i\n", *((int *)current1->content), *((int *)current2->content));
+			printf("%i\t%i\n", current1->i, current2->i);
 			current1 = current1->next;
 			current2 = current2->next;
 		}

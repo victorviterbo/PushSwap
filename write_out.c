@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 16:19:38 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/17 20:52:19 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:00:26 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,13 +115,13 @@ int	minichecker(t_list **stack_a, t_list **stack_b)
 
 	if (stack_b && (*stack_b))
 		return (0);
-	last = *(int *)(*stack_a)->content;
+	last = (*stack_a)->i;
 	current = (*stack_a)->next;
 	while (current)
 	{
-		if (*(int *)current->content < last)
+		if (current->i < last)
 			return (0);
-		last = *(int *)current->content;
+		last = current->i;
 		current = current->next;
 	}
 	return (1);

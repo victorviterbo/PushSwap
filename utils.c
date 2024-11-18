@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/17 20:57:33 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 09:59:39 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_list	**parse_input(int argc, char *argv[]);
 void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status);
 void	add_to_stack(t_list **stack, char *str);
 int		get_n(t_list **stack, int n);
+void	ft_dummy(void *ptr);
 
 int	goto_val(t_list **stack, char ab, int value, bool dummy)
 {
@@ -27,8 +28,8 @@ int	goto_val(t_list **stack, char ab, int value, bool dummy)
 		exit_gracefully(NULL, NULL, EXIT_FAILURE);
 	i_rot = 0;
 	c = *stack;
-	if (value > ft_lstmax(stack, INT) || value < ft_lstmin(stack, INT))
-		value = ft_lstmin(stack, INT);
+	if (value > ft_lstmaxi(stack) || value < ft_lstmini(stack))
+		value = ft_lstmini(stack);
 	if (ft_lst_isin_int(stack, value))
 	{
 		while (c->i != value)
@@ -39,7 +40,8 @@ int	goto_val(t_list **stack, char ab, int value, bool dummy)
 	}
 	else
 	{
-		if (c->i == value || (c->i > value && ft_lstlast(*stack)->i < value))
+		i_rot = 1;
+		if (c->i > value && ft_lstlast(*stack)->i < value)
 			return (0);
 		while (c->next && (c->i > value || c->next->i < value))
 		{
@@ -48,7 +50,7 @@ int	goto_val(t_list **stack, char ab, int value, bool dummy)
 		}
 	}
 	if (dummy == false)
-		rotate_i(stack, i_rot, ab);
+		rotate_i(stack, NULL, i_rot, ab);
 	return (i_rot);
 }
 
@@ -97,9 +99,9 @@ void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status)
 	else if (status == -1)
 		return ;
 	if (stack_1)
-		ft_lstclear(stack_1, free);
+		ft_lstclear(stack_1, ft_dummy);
 	if (stack_2)
-		ft_lstclear(stack_2, free);
+		ft_lstclear(stack_2, ft_dummy);
 	add_instr(NULL, false);
 	exit(status);
 }
@@ -126,8 +128,13 @@ void	add_to_stack(t_list **stack, char *str)
 int	get_n(t_list **stack, int n)
 {
 	if (ft_lst_getn(stack, n))
-		return (*(int *)((ft_lst_getn(stack, n))->content));
+		return (((ft_lst_getn(stack, n))->i));
 	else
 		exit_gracefully(NULL, NULL, EXIT_FAILURE);
 	return (0);
+}
+
+void	ft_dummy(void *ptr)
+{
+	(void)ptr;
 }

@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/17 19:52:14 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:01:08 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,27 @@ int	main(int argc, char *argv[])
 	stack_a = parse_input(argc, argv);
 	stack_b = ft_calloc(1, sizeof(t_list *));
 	exit_gracefully(stack_a, stack_b, -1);
+	/*print_list(stack_a, stack_b);
+	printf("going to val = 2\n");
+	goto_val(stack_a, 'a', 2, false);
+	print_list(stack_a, stack_b);
+	printf("going to val = 4\n");
+	goto_val(stack_a, 'a', 4, false);
+	print_list(stack_a, stack_b);
+	printf("going to val = 100\n");
+	goto_val(stack_a, 'a', 100, false);
+	print_list(stack_a, stack_b);
+	exit(0);*/
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	if (ft_lstsize(*stack_a) <= 5)
 		minisort(stack_a, stack_b);
 	smart_push(stack_a, stack_b);
 	do_move(stack_a, stack_b);
-	goto_val(stack_a, 'a', ft_lstmin(stack_a, INT), false);
+	goto_val(stack_a, 'a', ft_lstmini(stack_a), false);
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
-	exit_gracefully(NULL, NULL, EXIT_FAILURE);
+	exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	return (0);
 }
 
@@ -83,21 +94,35 @@ void	get_lis(t_list **stack_a, int *to_keep)
 		i++;
 	}
 	i = 0;
-	darr = ft_calloc(2 * n, sizeof(int));
 	while (i < 2 * n)
 	{
-		darr[i] = 1;
 		j = 0;
 		while (j < 2 * n)
 		{
 			arr[i][j] = (get_n(stack_a, i % n) <= get_n(stack_a, j % n));
+			j++;
+		}
+		i++;
+	}
+	darr = ft_calloc(2 * n, sizeof(int));
+	i = 0;
+	while (i < 2 * n)
+	{
+		darr[i] = 1;
+		i++;
+	}
+	i = 0;
+	while (i < 2 * n)
+	{
+		j = i + 1;
+		while (j < i + n)
+		{
 			if (arr[i][j])
 				darr[j] = ft_max(darr[j], darr[i] + 1);
 			j++;
 		}
 		i++;
 	}
-	i = 0;
 	i = 2 * n - 1;
 	j = 0;
 	while (i + 1)
@@ -189,21 +214,20 @@ void	smart_rotate(t_list **stack_a, t_list **stack_b, int best_i)
 	rev = n < 0;
 	n = ft_abs(n);
 	b_value = get_n(stack_b, best_i);
-	while (!rev && best_i && !(get_n(stack_a, 0) > b_value
-			&& get_n(stack_a, ft_lstsize(*stack_a) - 1) < b_value))
+	if (rev == false)
 	{
-		rr(stack_a, stack_b);
-		best_i--;
-		i++;
+		i = ft_min(best_i, goto_val(stack_a, 'a', b_value, true));
+		rotate_i(stack_a, stack_b, i, 'r');
+		best_i -= i;
 	}
-	while (rev && best_i && !(get_n(stack_a, 0) > b_value
-			&& get_n(stack_a, ft_lstsize(*stack_a) - 1) < b_value))
+	else
 	{
-		rrr(stack_a, stack_b);
+		i = ft_min(ft_lstsize(*stack_b) - best_i,
+				ft_lstsize(*stack_a) - goto_val(stack_a, 'a', b_value, true));
+		revrotate_i(stack_a, stack_b, ft_min(i, best_i), 'r');
 		best_i = (best_i + 1) % ft_lstsize(*stack_b);
-		i++;
 	}
-	rotate_i(stack_b, best_i, 'b');
+	rotate_i(stack_b, NULL, best_i, 'b');
 	goto_val(stack_a, 'a', b_value, false);
 	return ;
 }

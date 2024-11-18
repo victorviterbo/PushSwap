@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:58:46 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/15 17:31:02 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/17 22:19:58 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	revrotate(t_list **stack);
 void	rra(t_list **stack_a);
 void	rrb(t_list **stack_b);
 void	rrr(t_list **stack_a, t_list **stack_b);
-void	revrotate_i(t_list **stack_1, int n, char ab);
+void	revrotate_i(t_list **stack_1, t_list **stack_2, int n, char ab);
 
 void	revrotate(t_list **stack)
 {
@@ -59,21 +59,23 @@ void	rrr(t_list **stack_a, t_list **stack_b)
 	return ;
 }
 
-void	revrotate_i(t_list **stack_1, int n, char ab)
+void	revrotate_i(t_list **stack_1, t_list **stack_2, int n, char ab)
 {
 	int	i;
 
 	i = 0;
 	if (!stack_1 || !*stack_1)
 		return ;
-	if (ft_lstsize(*stack_1) < (int)n * 2)
-		return (rotate_i(stack_1, ft_lstsize(*stack_1) - n, ab));
+	if (ft_lstsize(*stack_1) < (int)n * 2 && ab != 'r')
+		return (rotate_i(stack_1, stack_2, ft_lstsize(*stack_1) - n, ab));
 	while (i < n)
 	{
 		if (ab == 'a')
 			rra(stack_1);
 		else if (ab == 'b')
 			rrb(stack_1);
+		else if (ab == 'r')
+			rrr(stack_1, stack_2);
 		i++;
 	}
 	return ;

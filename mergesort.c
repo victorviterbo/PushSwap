@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/15 11:28:48 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/17 22:31:38 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	merge(t_list **stack_a, t_list **stack_b, int size_a)
 			rrb(stack_b);
 		size_a -= insert(stack_a, stack_b, size_a);
 	}
-	rotate_i(stack_a, size_a, 'a');
+	rotate_i(stack_a, NULL, size_a, 'a');
 	return ;
 }
 
@@ -52,14 +52,14 @@ int	insert(t_list **stack_a, t_list **stack_b, int size_a)
 	int		i;
 
 	i = 0;
-	stb = *(int *)(*stack_b)->content;
-	if (stb < *(int *)(*stack_a)->content)
+	stb = (*stack_b)->i;
+	if (stb < (*stack_a)->i)
 	{
 		pa(stack_a, stack_b);
 		ra(stack_a);
 		return (0);
 	}
-	while (stb > *(int *)(*stack_a)->content && i < size_a)
+	while (stb > (*stack_a)->i && i < size_a)
 	{
 		ra(stack_a);
 		i++;
@@ -84,7 +84,7 @@ void	sort(t_list **stack_a, t_list **stack_b, int n)
 			if (minichecker(stack_a, stack_b))
 				exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 		}
-		rotate_i(stack_a, lenleft, 'a');
+		rotate_i(stack_a, NULL, lenleft, 'a');
 		n *= 2;
 	}
 	return ;
