@@ -26,15 +26,18 @@ if (RERUN):
 			a = " ".join([str(i) for i in tmp])
 			os.system('echo "'+str(a)+'" > arg.txt')
 			t = time.time() #leaks --atExit --
-			os.system('ARG="'+str(a)+'";./push_swap $ARG > out.tmp; cat out.tmp | ./checker $ARG > ok.txt')
+			os.system('ARG="'+str(a)+'";./push_swap $ARG > out.tmp; cat out.tmp | ./checker $ARG > ok2.txt')
 			t = time.time() - t
-			with open("ok.txt", "r") as f:
-				ok = f.readlines()
-				if not ok:
+			os.system('ARG="'+str(a)+'"; cat out.tmp | ./checker_Mac $ARG > ok1.txt')
+			with open("ok2.txt", "r") as f:
+				ok2 = f.read()
+				ok1 = open("ok1.txt", "r").read()
+				if not ok2:
 					print("ERROR ! checker produced no output")
-				ok = ok[-1]
-				if (ok != "OK\n"):
-					print(ok)
+				if (ok1 != "OK\n" or ok1 != ok2):
+					ok1 = ok1[:-1]
+					ok2 = ok2[:-1]
+					print(f"{red}{ok2} with official checker, {ok1} with homemade{reset}")
 					print(f"{red}Failed with input :{reset}")
 					print(a)
 					quit()
