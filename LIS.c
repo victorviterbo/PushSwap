@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 10:01:08 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:12:47 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,16 @@ int	main(int argc, char *argv[])
 	stack_a = parse_input(argc, argv);
 	stack_b = ft_calloc(1, sizeof(t_list *));
 	exit_gracefully(stack_a, stack_b, -1);
-	/*print_list(stack_a, stack_b);
-	printf("going to val = 2\n");
-	goto_val(stack_a, 'a', 2, false);
-	print_list(stack_a, stack_b);
-	printf("going to val = 4\n");
-	goto_val(stack_a, 'a', 4, false);
-	print_list(stack_a, stack_b);
-	printf("going to val = 100\n");
-	goto_val(stack_a, 'a', 100, false);
-	print_list(stack_a, stack_b);
-	exit(0);*/
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	if (ft_lstsize(*stack_a) <= 5)
 		minisort(stack_a, stack_b);
 	smart_push(stack_a, stack_b);
+	//print_list(stack_a, stack_b);
 	do_move(stack_a, stack_b);
+	//print_list(stack_a, stack_b);
 	goto_val(stack_a, 'a', ft_lstmini(stack_a), false);
+	//print_list(stack_a, stack_b);
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	exit_gracefully(NULL, NULL, EXIT_SUCCESS);
@@ -134,7 +126,9 @@ void	get_lis(t_list **stack_a, int *to_keep)
 	to_keep[j % n] = 1;
 	i = j;
 	last = darr[j];
-	j = (n + j - 1) % n;
+	j--;
+	if (j == 0)
+		j += n;
 	while (ft_abs(i - j) < n)
 	{
 		if (arr[j][i] && darr[j] == last - 1)
@@ -224,8 +218,8 @@ void	smart_rotate(t_list **stack_a, t_list **stack_b, int best_i)
 	{
 		i = ft_min(ft_lstsize(*stack_b) - best_i,
 				ft_lstsize(*stack_a) - goto_val(stack_a, 'a', b_value, true));
-		revrotate_i(stack_a, stack_b, ft_min(i, best_i), 'r');
-		best_i = (best_i + 1) % ft_lstsize(*stack_b);
+		revrotate_i(stack_a, stack_b, i, 'r');
+		best_i = (best_i + i) % ft_lstsize(*stack_b);
 	}
 	rotate_i(stack_b, NULL, best_i, 'b');
 	goto_val(stack_a, 'a', b_value, false);
