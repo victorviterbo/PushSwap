@@ -13,14 +13,14 @@ red = "\033[31m"
 yellow = "\033[33m"
 green = "\033[32m"
 reset = "\033[0m"
-x = [5, 7] + [100, 500]# + [pow(3, i) for i in range(2, 7, 1)] 
+x = [3, 4, 5, 7] + [100, 500]# + [pow(3, i) for i in range(2, 7, 1)] 
 if (RERUN):
 	os.system("rm test.json")
 	results = dict()
 	for size in x:
 		results[size] = []
 		print("Running for size "+str(size))
-		for j in range(10):
+		for j in range(5):
 			tmp = list(range(size))
 			random.shuffle(tmp)
 			a = " ".join([str(i) for i in tmp])
@@ -28,7 +28,7 @@ if (RERUN):
 			t = time.time() #leaks --atExit --
 			os.system('ARG="'+str(a)+'";./push_swap $ARG > out.tmp; cat out.tmp | ./checker_Mac $ARG > ok1.txt')
 			t = time.time() - t
-			os.system('ARG="'+str(a)+'"; cat out.tmp | ./checker_Mac $ARG > ok2.txt')
+			os.system('ARG="'+str(a)+'"; cat out.tmp | ./checker $ARG > ok2.txt')
 			with open("ok1.txt", "r") as f:
 				ok1 = f.read()
 				ok2 = open("ok2.txt", "r").read()
@@ -92,9 +92,9 @@ if r_values[0] == max(r_values):
 			bestslope = slope
 	print("Your program time complexity is O(n) = "+str(round(bestslope, 2))+"*n^"+str(round(exponent, 2))+" with an R^2 of "+str(round(r_values[3], 3)))
 elif  r_values[1] == max(r_values):
-	print("Your program time complexity is O(n) = "+str(round(slopes[1], 2))+"*log(n) with an R^2 of "+str(r_values[1]))
+	print("Your program time complexity is O(n) = "+str(round(slopes[1], 2))+"*log(n) with an R^2 of "+str(round(r_values[1], 3)))
 elif  r_values[2] == max(r_values):
-	print("Your program time complexity is O(n) = "+str(round(slopes[2], 2))+"*nlog(n) with an R^2 of "+str(r_values[2]))
+	print("Your program time complexity is O(n) = "+str(round(slopes[2], 2))+"*nlog(n) with an R^2 of "+str(round(r_values[2], 3)))
 elif  r_values[3] == max(r_values):
 	best_fit = 0
 	best_R = 0
@@ -107,3 +107,5 @@ elif  r_values[3] == max(r_values):
 			best_R = r_value
 			bestslope = slope
 	print("Your program time complexity is O(n) = "+str(round(bestslope, 2))+"*n^"+str(round(exponent, 1))+" with an R^2 of "+str(r_values[3]))
+
+os.system("rm ok1.txt ok2.txt arg.txt out.tmp")

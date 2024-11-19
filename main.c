@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/19 00:26:09 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:17:31 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ int	compute_cost(t_list **stack_a, t_list **stack_b, int pos)
 	min %= ft_lstsize(*stack_a);
 	forward = ft_max(min, pos);
 	backward = ft_max(ft_lstsize(*stack_a) - min, ft_lstsize(*stack_b) - pos);
-	zigzag_forward = 2 * pos + (ft_lstsize(*stack_a) - min);
-	zigzag_backward = 2 * (ft_lstsize(*stack_b) - pos) + min;
+	zigzag_forward = pos + (ft_lstsize(*stack_a) - min);
+	zigzag_backward = (ft_lstsize(*stack_b) - pos) + min;
 	min = ft_min(ft_min(forward, backward),
 			ft_min(zigzag_forward, zigzag_backward));
 	if (min == forward || min == zigzag_forward)
@@ -100,13 +100,15 @@ void	smart_rotate(t_list **stack_a, t_list **stack_b, int best_i)
 	i = 0;
 	rev = compute_cost(stack_a, stack_b, best_i) < 0;
 	b_value = get_n(stack_b, best_i);
-	if (rev == false)
+	if (rev == false && 2 * goto_val(stack_a, 'a', b_value, true)
+		<= ft_lstsize(*stack_a))
 	{
 		i = ft_min(best_i, goto_val(stack_a, 'a', b_value, true));
 		rotate_i(stack_a, stack_b, i, 'r');
 		best_i -= i;
 	}
-	else
+	else if (rev == true && 2 * goto_val(stack_a, 'a', b_value, true)
+		>= ft_lstsize(*stack_a))
 	{
 		i = ft_min(ft_lstsize(*stack_b) - best_i,
 				ft_lstsize(*stack_a) - goto_val(stack_a, 'a', b_value, true));
