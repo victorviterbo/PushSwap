@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 23:36:27 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/19 00:24:17 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	set_endpoint(int *darr, int *arra, int n)
 		j = i + 1;
 		while (j < i + n)
 		{
-			if (arra[i % n] <= arra[j % n]) //#TODO add i != j ?
+			if (arra[i % n] <= arra[j % n])
 				darr[j] = ft_max(darr[j], darr[i] + 1);
 			j++;
 		}

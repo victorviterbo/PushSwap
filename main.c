@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 23:37:01 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/19 00:26:09 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void	smart_rotate(t_list **stack_a, t_list **stack_b, int best_i)
 	goto_val(stack_a, 'a', b_value, false);
 	return ;
 }
-
 
 void	smart_push(t_list **stack_a, t_list **stack_b)
 {

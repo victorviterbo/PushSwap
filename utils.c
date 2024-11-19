@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 23:42:34 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:35:48 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,15 @@ int	goto_val(t_list **stack, char ab, int value, bool dummy)
 	c = *stack;
 	if (value > ft_lstmaxi(stack) || value < ft_lstmini(stack))
 		value = ft_lstmini(stack);
-	if (ft_lst_isin_int(stack, value))
+	i_rot = 1;
+	if (c->i > value && ft_lstlast(*stack)->i < value)
+		return (0);
+	while (c->next && (c->i > value || c->next->i < value) && c->i != value)
 	{
-		while (c->i != value)
-		{
-			i_rot++;
-			c = c->next;
-		}
+		i_rot++;
+		c = c->next;
 	}
-	else
-	{
-		i_rot = 1;
-		if (c->i > value && ft_lstlast(*stack)->i < value)
-			return (0);
-		while (c->next && (c->i > value || c->next->i < value))
-		{
-			i_rot++;
-			c = c->next;
-		}
-	}
+	i_rot = i_rot - (c->i == value);
 	if (dummy == false)
 		rotate_i(stack, NULL, i_rot, ab);
 	return (i_rot);
@@ -116,17 +106,15 @@ void	add_to_stack(t_list **stack, char *str)
 {
 	t_list	*new_node;
 	char	**splitted;
-	int		i;
 
 	if (ft_strchr(str, ' '))
 	{
-		i = 0;
 		splitted = ft_split(str, ' ');
-		while (splitted && *(splitted + i))
+		while (splitted && *(splitted))
 		{
-			add_to_stack(stack, *(splitted + i));
-			free(*(splitted + i));
-			i++;
+			add_to_stack(stack, *(splitted));
+			free(*(splitted));
+			splitted++;
 		}
 	}
 	else

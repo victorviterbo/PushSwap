@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:19:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 18:30:04 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/19 00:25:37 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	swap(t_list **stack)
 
 	if (!stack)
 		exit_gracefully(NULL, NULL, EXIT_FAILURE);
-	if(!*stack || ft_lstsize(*stack) < 2)
+	if (!*stack || ft_lstsize(*stack) < 2)
 		return ;
 	tmp = (((*stack)->next)->content);
 	(((*stack)->next)->content) = ((*stack)->content);
