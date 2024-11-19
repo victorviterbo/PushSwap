@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/19 11:35:48 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:57:43 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_list	**parse_input(int argc, char *argv[]);
 void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status);
 void	add_to_stack(t_list **stack, char *str);
 int		get_n(t_list **stack, int n);
-void	ft_dummy(void *ptr);
 
 int	goto_val(t_list **stack, char ab, int value, bool dummy)
 {
@@ -137,9 +136,4 @@ int	get_n(t_list **stack, int n)
 	else
 		exit_gracefully(NULL, NULL, EXIT_FAILURE);
 	return (0);
-}
-
-void	ft_dummy(void *ptr)
-{
-	(void)ptr;
 }

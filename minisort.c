@@ -6,13 +6,14 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:34:01 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 12:29:17 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:04:39 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
 void	minisort(t_list **stack_a, t_list **stack_b);
+void	usort_swap(t_list **stack_a, char ab);
 void	msort3(t_list **stack_a);
 void	msort4(t_list **stack_a, t_list **stack_b);
 void	msort5(t_list **stack_a, t_list **stack_b);
@@ -30,6 +31,17 @@ void	minisort(t_list **stack_a, t_list **stack_b)
 	if (minichecker(stack_a, stack_b))
 		exit_gracefully(NULL, NULL, EXIT_SUCCESS);
 	exit_gracefully(NULL, NULL, EXIT_FAILURE);
+	return ;
+}
+
+void	usort_swap(t_list **stack, char ab)
+{
+	if (!stack || !*stack || ft_lstsize(*stack) < 2)
+		return ;
+	if ((*stack)->i > (*stack)->next->i && ab == 'a')
+		sa(stack);
+	else if ((*stack)->i < (*stack)->next->i && ab == 'b')
+		sb(stack);
 	return ;
 }
 

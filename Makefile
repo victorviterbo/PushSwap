@@ -6,7 +6,7 @@
 #    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2024/11/18 22:53:22 by vviterbo         ###   ########.fr        #
+#    Updated: 2024/11/19 12:10:39 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,9 @@ NAME = push_swap
 
 NAME_BONUS = checker
 
-SRCS =	push.c swap.c rotate.c revrotate.c utils.c write_out.c print.c \
-		minisort.c usort.c mergesort.c LIS.c
-
-SRCS_BONUS = checker.c
+SRCS =	LIS.c minisort.c utils.c write_out.c push.c swap.c rotate.c revrotate.c 
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
-
-OBJS_BONUS = checker.o
 
 LIB = libft/
 
@@ -46,6 +41,6 @@ $(NAME):
 	@$(CC) $(CFLAGS) $(SRCS) main.c -o $(NAME) -L $(LIB) -lft
 
 bonus : re
-	@$(CC) $(CFLAGS) $(SRCS) $(SRCS_BONUS) -o $(NAME_BONUS) -L $(LIB) -lft -I .
+	@$(CC) $(CFLAGS) $(SRCS) checker.c -o $(NAME_BONUS) -L $(LIB) -lft -I .
 
 .PHONY: all clean fclean re bonus

@@ -6,14 +6,13 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:35:39 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 12:29:17 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:00:56 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
 void	usort(t_list **stack_a, t_list **stack_b, int size);
-void	usort_swap(t_list **stack_a, char ab);
 void	usort1(t_list **stack_a, t_list **stack_b);
 void	usort2(t_list **stack_a, t_list **stack_b);
 void	usort3(t_list **stack_a, t_list **stack_b);
@@ -44,17 +43,6 @@ void	usort(t_list **stack_a, t_list **stack_b, int size)
 		usort2(stack_a, stack_b);
 	else if (int3 < int1 && int3 < int2)
 		usort3(stack_a, stack_b);
-	return ;
-}
-
-void	usort_swap(t_list **stack, char ab)
-{
-	if (!stack || !*stack || ft_lstsize(*stack) < 2)
-		return ;
-	if ((*stack)->i > (*stack)->next->i && ab == 'a')
-		sa(stack);
-	else if ((*stack)->i < (*stack)->next->i && ab == 'b')
-		sb(stack);
 	return ;
 }
 
