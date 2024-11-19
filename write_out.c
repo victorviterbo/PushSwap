@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 16:19:38 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/19 11:44:53 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:17:07 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	write_output(t_list **out)
 	t_list	*current;
 	char	*instruction;
 
-	simplify(out, ft_lstsize(*out) + 1);
+	//simplify(out, ft_lstsize(*out) + 1);
 	current = *out;
 	while (current)
 	{

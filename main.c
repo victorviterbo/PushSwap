@@ -6,11 +6,17 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/19 13:17:31 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:22:57 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+
+
+#include <stdio.h>
+
+
 
 int		main(int argc, char *argv[]);
 void	do_move(t_list **stack_a, t_list **stack_b);
@@ -31,6 +37,7 @@ int	main(int argc, char *argv[])
 	if (ft_lstsize(*stack_a) <= 5)
 		minisort(stack_a, stack_b);
 	smart_push(stack_a, stack_b);
+	exit(0);
 	do_move(stack_a, stack_b);
 	goto_val(stack_a, 'a', ft_lstmini(stack_a), false);
 	if (minichecker(stack_a, stack_b))
