@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/19 13:35:43 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:10:36 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,18 @@
 
 //main.c
 int		main(int argc, char *argv[]);
-void	do_move(t_list **stack_a, t_list **stack_b);
-int		compute_cost(t_list **stack_a, t_list **stack_b, int pos);
-void	smart_rotate(t_list **stack_a, t_list **stack_b, int best_i);
-void	smart_push(t_list **stack_a, t_list **stack_b);
+void	reinsert(t_list **stack_a, t_list **stack_b);
+int		compute_cost(t_list **stack_a, t_list **stack_b, int b_value, int pos);
+void	rotate_ab(t_list **stack_a, t_list **stack_b,
+		int b_valure, int best_i);
+void	push_on_b(t_list **stack_a, t_list **stack_b);
 //LIS.c
+int		*get_lis_v1(t_list **stack_a);
 int		*get_lis(t_list **stack_a);
 int		*lst2arr(t_list **stack);
-void	set_endpoint(int *darr, int *arra, int n);
+void	set_endpoint(int *lis_lens, int *arra, int n);
 int		find_max(int *arr, int n);
-int		*propagate_backward(int *darr, int *arra, int best, int n);
+int		*propagate_backward(int *lis_lens, int *arra, int best, int n);
 //utils.c
 int		goto_val(t_list **stack, char ab, int value, bool dummy);
 t_list	**parse_input(int argc, char *argv[]);

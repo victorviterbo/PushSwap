@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/19 11:57:43 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:19:02 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ t_list	**parse_input(int argc, char *argv[])
 	if (argc == 2)
 		arguments = ft_split(argv[1], ' ');
 	else
-		arguments = ft_strarray_mapi(argv + 1, ft_strdup);
+	{
+		arguments = ft_strarray_mapi(argv, ft_strdup);
+		i = 1;
+	}
 	if (!*arguments)
 	{
 		free(arguments);
