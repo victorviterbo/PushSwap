@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/20 17:10:36 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:29:29 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ int		main(int argc, char *argv[]);
 void	reinsert(t_list **stack_a, t_list **stack_b);
 int		compute_cost(t_list **stack_a, t_list **stack_b, int b_value, int pos);
 void	rotate_ab(t_list **stack_a, t_list **stack_b,
-		int b_valure, int best_i);
+			int b_value, int best_i);
 void	push_on_b(t_list **stack_a, t_list **stack_b);
 //LIS.c
-int		*get_lis_v1(t_list **stack_a);
 int		*get_lis(t_list **stack_a);
 int		*lst2arr(t_list **stack);
 void	set_endpoint(int *lis_lens, int *arra, int n);
@@ -40,9 +39,7 @@ void	add_to_stack(t_list **stack, char *str);
 int		get_n(t_list **stack, int n);
 //write_out.c
 void	add_instr(const char *str, bool print);
-t_list	**simplify(t_list **out, int last_size);
 void	write_output(t_list **stack);
-int		is_simplifiable(char *str1, char *str2);
 int		minichecker(t_list **stack_a, t_list **stack_b);
 //minisort.c
 void	minisort(t_list **stack_a, t_list **stack_b);

@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/20 17:19:02 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:34:07 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_list	**parse_input(int argc, char *argv[])
 	t_list	**stack_a;
 	char	**arguments;
 
-	i = 0;
+	i = -1;
 	if (argc < 2)
 		exit_gracefully(NULL, NULL, EXIT_FAILURE);
 	stack_a = ft_calloc(1, sizeof(t_list *));
@@ -60,18 +60,15 @@ t_list	**parse_input(int argc, char *argv[])
 	else
 	{
 		arguments = ft_strarray_mapi(argv, ft_strdup);
-		i = 1;
+		i = 0;
 	}
 	if (!*arguments)
 	{
 		free(arguments);
 		exit_gracefully(stack_a, NULL, EXIT_FAILURE);
 	}
-	while (arguments[i])
-	{
+	while (arguments[++i])
 		add_to_stack(stack_a, arguments[i]);
-		i++;
-	}
 	return (ft_free_array((void **)arguments, ft_arrlen(arguments)), stack_a);
 }
 
