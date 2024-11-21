@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/21 10:52:17 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:51:58 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_list	**parse_input(int argc, char *argv[])
 
 	i = -1;
 	if (argc < 2)
-		exit_gracefully(NULL, NULL, EXIT_FAILURE);
+		exit_gracefully(NULL, NULL, EXIT_SILENTLY);
 	stack_a = ft_calloc(1, sizeof(t_list *));
 	if (!stack_a)
 		return (NULL);
@@ -85,7 +85,7 @@ void	exit_gracefully(t_list **stack_a, t_list **stack_b, int status)
 		write(2, "Error\n", 6);
 	else if (status == EXIT_SUCCESS)
 		add_instr(NULL, true);
-	else if (status == -1)
+	else if (status == INIT_PTR)
 		return ;
 	if (stack_1)
 	{

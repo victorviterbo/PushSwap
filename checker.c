@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:24:19 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 17:58:37 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:48:35 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char *argv[])
 
 	stack_a = parse_input(argc, argv);
 	stack_b = ft_calloc(1, sizeof(t_list *));
-	exit_gracefully(stack_a, stack_b, -1);
+	exit_gracefully(stack_a, stack_b, INIT_PTR);
 	while (1)
 	{
 		operation = ft_get_next_line(0);
@@ -38,7 +38,7 @@ int	main(int argc, char *argv[])
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	exit_gracefully(NULL, NULL, 3);
+	exit_gracefully(NULL, NULL, EXIT_SILENTLY);
 	return (0);
 }
 

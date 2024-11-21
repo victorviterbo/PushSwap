@@ -6,12 +6,15 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/20 17:29:29 by vviterbo         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:46:29 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSHSWAP_H
 # define PUSHSWAP_H
+
+# define EXIT_SILENTLY 2
+# define INIT_PTR 3
 
 # include "libft/libft.h"
 # include <stddef.h>
