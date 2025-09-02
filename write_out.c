@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   write_out.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 16:19:38 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/20 17:24:24 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/09/02 11:38:43 by victorviter      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "PushSwap.h"
 
 void	add_instr(const char *str, bool print);
 void	write_output(t_list **stack);

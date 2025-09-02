@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:19:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/20 07:13:47 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/09/02 11:38:42 by victorviter      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "PushSwap.h"
 
 void	swap(t_list **stack);
 void	sa(t_list **stack_a);

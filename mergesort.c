@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mergesort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:24:02 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/18 12:29:17 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/09/02 11:38:41 by victorviter      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "PushSwap.h"
 
 void	init(t_list **stack_a, t_list **stack_b);
 void	merge(t_list **stack_a, t_list **stack_b, int size_a);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   usort.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:35:39 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/19 12:00:56 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/09/02 11:38:42 by victorviter      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "PushSwap.h"
 
 void	usort(t_list **stack_a, t_list **stack_b, int size);
 void	usort1(t_list **stack_a, t_list **stack_b);

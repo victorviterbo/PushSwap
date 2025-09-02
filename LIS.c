@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   LIS.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/20 17:16:52 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/09/02 11:38:41 by victorviter      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "PushSwap.h"
 
 int		*get_lis(t_list **stack_a);
 int		*lst2arr(t_list **stack);

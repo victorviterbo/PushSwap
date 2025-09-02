@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
+#    By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2024/11/21 21:44:42 by vviterbo         ###   ########.fr        #
+#    Updated: 2025/09/02 11:40:59 by victorviter      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+NAME = PushSwap
 
 NAME_BONUS = checker
 
@@ -37,7 +37,7 @@ fclean : clean
 re : fclean all
 
 $(NAME): 
-	@$(MAKE) -C libft/ xtra
+	@$(MAKE) -C libft/ all
 	@$(CC) $(CFLAGS) $(SRCS) main.c -o $(NAME) -L $(LIB) -lft
 
 bonus : re

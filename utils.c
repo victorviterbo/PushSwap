@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:50:47 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/21 21:51:58 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/09/02 11:40:40 by victorviter      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "PushSwap.h"
 
 int		goto_val(t_list **stack, char ab, int value, bool dummy);
 t_list	**parse_input(int argc, char *argv[]);
@@ -118,7 +118,7 @@ void	add_to_stack(t_list **stack, char *str)
 	}
 	else
 	{
-		if (!ft_isnumber(str))
+		if (!ft_isint(str))
 			exit_gracefully(NULL, NULL, EXIT_FAILURE);
 		if (ft_lst_isin_int(stack, ft_atoi(str)))
 			exit_gracefully(NULL, NULL, EXIT_FAILURE);

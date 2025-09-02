@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minisort.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:34:01 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/19 12:04:39 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/09/02 11:38:42 by victorviter      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "PushSwap.h"
 
 void	minisort(t_list **stack_a, t_list **stack_b);
 void	usort_swap(t_list **stack_a, char ab);
