@@ -17,4 +17,4 @@ Sort a stack of integers using only:
 ## 🚀 Usage
 ./push_swap 4 67 3 87 10
 # With the Checker program
-ARG="4 67 3 87 10"; ./push_swap $ARG | ./checker $ARG
+ARG="4 67 3 87 10"; ./push_swap_\<os\> $ARG | ./checker_\<os\> $ARG
