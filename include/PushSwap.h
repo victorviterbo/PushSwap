@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PushSwap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2024/11/21 21:46:29 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/11/13 16:04:35 by victorviter      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define EXIT_SILENTLY 2
 # define INIT_PTR 3
 
-# include "libft/libft.h"
+# include "../lib/libft/libft.h"
 # include <stddef.h>
 # include <limits.h>
 # include <stdlib.h>
