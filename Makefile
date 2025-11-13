@@ -6,7 +6,7 @@
 #    By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2025/11/13 16:38:11 by victorviter      ###   ########.fr        #
+#    Updated: 2025/11/13 17:01:01 by victorviter      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,9 +81,9 @@ $(ODIR)%.o	:	$(SDIR)%.c
 				(printf "$(COLOR_R)[KO] Compilation failed.$(C_RESET)\n" && false)
 
 $(LIBFT)	:	
-				printf "$(COLOR_B)Building libft...$(C_RESET)\n"
-				make -sC $(LDIR)libft
-				printf "$(COLOR_G)[OK] libft is ready!$(C_RESET)\n" || \
+				@printf "$(COLOR_B)Building libft...$(C_RESET)\n"
+				@make -sC $(LDIR)libft
+				@printf "$(COLOR_G)[OK] libft is ready!$(C_RESET)\n" || \
 				(printf "$(COLOR_R)[KO] Failed to build libft.$(C_RESET)\n" && false)
 
 clean		:
