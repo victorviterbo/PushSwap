@@ -18,7 +18,7 @@ Sort a stack of integers using only:
 - step 0: All `N` passed numbers are on stack A
 - step 1: We find the longest possible increasing sequence (LIS), keeping in mind that the possible operations turns the stack into a ring.
 	- `O(1.5 N)`
-- step 2: We push the elements of this sequence on the stack B. Lets say this sequence is of size l (necessarily l >= 2). 
+- step 2: We push the elements of this sequence on the stack B. Lets say this sequence is of size l (necessarily `l >= 2`). 
 	- `O(N)`
 - step 3: Then for i ranging from 0 to N - l, we perform the following
 	- For each element of the stack B, we compute the cost associated with it's insertion into A in it's correct place.
@@ -35,9 +35,9 @@ This may seem expenssive, but to average performance is much better, this comes 
 
 ## 🚀 Usage
 `bash
-ARG="4 67 3 87 10"; ./push_swap_\<os\> $ARG
+ARG="4 67 3 87 10"; ./push_swap_<os> $ARG
 `
 # 🕵️ With the Checker program
 `bash
-ARG="4 67 3 87 10"; ./push_swap_\<os\> $ARG | ./checker_\<os\> $ARG
+ARG="4 67 3 87 10"; ./push_swap_<os> $ARG | ./checker_<os> $ARG
 `
