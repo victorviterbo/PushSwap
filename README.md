@@ -30,7 +30,7 @@ Sort a stack of integers using only:
     - We then proceed to insert the element of B with the lowest total associated cost
 - step 4: All elements are in their correct place on the stack A. We simply have to rotate it until the smallest element is on top.
 
-The worst case scenario for our algorithm is hence `O(n) = 1.5 N + N + (N - l) * (1 + N / 2)`. Since `l >= 2` we have `O(n) = 3 N + N ** 2 / 4`.
+The worst case scenario for our algorithm is hence `O(n) = 1.5 N + N + (N - l) * (1 + N / 2)`. Since `l >= 2` we have `O(n) = 2.5 N + N ** 2 / 2`.
 This may seem expenssive, but to average performance is much better, this comes from the fact that we perform always the cheapest move at each of the `N - l` iterations (step 3). If the cost associated with each insertion follows a normal distribution, the lowest of `N - l - i` samples of this distribution should be quite low. This is especially true when i is low, so the opportunities for a "cheap" reinsertion are numerous.
 
 ## 🚀 Usage
