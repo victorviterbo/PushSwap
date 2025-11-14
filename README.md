@@ -1,4 +1,4 @@
-# PushSwap
+# 🫸 PushSwap 🔄
 
 A highly efficient sorting algorithm project. The goal is to sort a stack of integers using two stacks (`a` and `b`) and a limited set of operations, with the fewest number of moves.
 
@@ -12,9 +12,13 @@ Sort a stack of integers using only:
 - **Swap**: `sa`, `sb`, `ss` - swap first two elements (`ss == sa + sb`)
 - **Push**: `pa`, `pb` - push from one stack to another
 - **Rotate**: `ra`, `rb`, `rr` - shift all elements up (`rr == ra + rb`)
-- **Reverse Rotate**: `rra`, `rrb`, `rrr` - shift all elements down (rrr = rra + rrb)
+- **Reverse Rotate**: `rra`, `rrb`, `rrr` - shift all elements down (```rrr = rra + rrb```)
 
 ## 🚀 Usage
-./push_swap 4 67 3 87 10
-# With the Checker program
+```bash
+ARG="4 67 3 87 10"; ./push_swap_\<os\> $ARG
+```
+# 🕵️ With the Checker program
+```bash
 ARG="4 67 3 87 10"; ./push_swap_\<os\> $ARG | ./checker_\<os\> $ARG
+```
