@@ -9,9 +9,9 @@ Sort a stack of integers using only:
 - Minimize the number of operations
 
 ## 🔧 Available Operations
-- **Swap**: `sa`, `sb`, `ss` - swap first two elements (ss == sa + sb)
+- **Swap**: `sa`, `sb`, `ss` - swap first two elements (`ss == sa + sb`)
 - **Push**: `pa`, `pb` - push from one stack to another
-- **Rotate**: `ra`, `rb`, `rr` - shift all elements up (rr == ra + rb)
+- **Rotate**: `ra`, `rb`, `rr` - shift all elements up (`rr == ra + rb`)
 - **Reverse Rotate**: `rra`, `rrb`, `rrr` - shift all elements down (rrr = rra + rrb)
 
 ## 🚀 Usage
