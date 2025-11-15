@@ -6,7 +6,7 @@
 /*   By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/09/02 11:38:41 by victorviter      ###   ########.fr       */
+/*   Updated: 2025/11/15 12:23:04 by victorviter      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,16 +125,16 @@ void	rotate_ab(t_list **stack_a, t_list **stack_b,
 
 void	push_on_b(t_list **stack_a, t_list **stack_b)
 {
-	int	i;
-	int	*to_keep;
-	int	size_a;
+	int		i;
+	bool	*to_keep;
+	int		size_a;
 
 	i = 0;
 	size_a = ft_lstsize(*stack_a);
 	to_keep = get_lis(stack_a);
 	while (i < size_a)
 	{
-		if (to_keep[i] == 1)
+		if (to_keep[i] == true)
 			ra(stack_a);
 		else
 			pb(stack_a, stack_b);

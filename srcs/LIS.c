@@ -6,25 +6,25 @@
 /*   By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:12 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/09/02 11:38:41 by victorviter      ###   ########.fr       */
+/*   Updated: 2025/11/15 12:44:11 by victorviter      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PushSwap.h"
 
-int		*get_lis(t_list **stack_a);
+bool	*get_lis(t_list **stack_a);
 int		*lst2arr(t_list **stack);
 void	set_endpoint(int *lis_lens, int *arra, int n);
 int		find_max(int *arr, int n);
-int		*propagate_backward(int *lis_lens, int *arra, int best, int n);
+bool	*propagate_backward(int *lis_lens, int *arra, int best, int n);
 
-int	*get_lis(t_list **stack_a)
+bool	*get_lis(t_list **stack_a)
 {
-	int	n;
-	int	best;
-	int	*arra;
-	int	*lis_lens;
-	int	*to_keep;
+	int		n;
+	int		best;
+	int		*arra;
+	int		*lis_lens;
+	bool	*to_keep;
 
 	n = ft_lstsize(*stack_a);
 	arra = lst2arr(stack_a);
@@ -97,13 +97,13 @@ int	find_max(int *arr, int n)
 	return (j);
 }
 
-int	*propagate_backward(int *lis_lens, int *arra, int best, int n)
+bool	*propagate_backward(int *lis_lens, int *arra, int best, int n)
 {
-	int	i;
-	int	last;
-	int	*to_keep;
+	int		i;
+	int		last;
+	bool	*to_keep;
 
-	to_keep = ft_calloc(n, sizeof(int));
+	to_keep = ft_calloc(n, sizeof(bool));
 	to_keep[best % n] = 1;
 	i = best;
 	last = lis_lens[best];
@@ -114,7 +114,7 @@ int	*propagate_backward(int *lis_lens, int *arra, int best, int n)
 	{
 		if (arra[best % n] <= arra[i % n] && lis_lens[best] == last - 1)
 		{
-			to_keep[best % n] = 1;
+			to_keep[best % n] = true;
 			last--;
 		}
 		if (best == 0)

@@ -6,7 +6,7 @@
 /*   By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:25:50 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/11/13 16:04:35 by victorviter      ###   ########.fr       */
+/*   Updated: 2025/11/15 12:23:22 by victorviter      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	rotate_ab(t_list **stack_a, t_list **stack_b,
 			int b_value, int best_i);
 void	push_on_b(t_list **stack_a, t_list **stack_b);
 //LIS.c
-int		*get_lis(t_list **stack_a);
+bool	*get_lis(t_list **stack_a);
 int		*lst2arr(t_list **stack);
 void	set_endpoint(int *lis_lens, int *arra, int n);
 int		find_max(int *arr, int n);
-int		*propagate_backward(int *lis_lens, int *arra, int best, int n);
+bool	*propagate_backward(int *lis_lens, int *arra, int best, int n);
 //utils.c
 int		goto_val(t_list **stack, char ab, int value, bool dummy);
 t_list	**parse_input(int argc, char *argv[]);
