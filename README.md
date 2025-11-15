@@ -22,8 +22,10 @@ This algorithm is derived from the Turkish Sorting Algorithm detailed here https
 - step 1: We find the longest possible increasing sequence (LIS), keeping in mind that the possible operations make the stack have ring-like properties.
 	- This requires at most `O(1.5 N)` operations
 	- The LIS is found by recursion: We start with the assumption that every element is the possible last element of a chain of size 1.
- 	- We back propagate to find for each element the longest chain that can be made that ends with that element
-  	- We use a table of `[2N, N]` to take into account the ring-like properties of the stack
+ 	- We back propagate to find for each element the longest chain that can be made that ends with that element. Let's call this number the element's `L-value`
+  	- We use a table of `[2N]` to take into account the ring-like properties of the stack during back-propagation
+  	- We construct the LIS, starting from the element with the highest `L-value` then taking the first element with a `L-value` that is 1 smaller than the previous one while going up the table, hence creating a LIS of size `max(L-values)`.
+  	- This part relies on array rather thank linked list like in the rest of the program to speed up calculations.
 - step 2: We push the elements of this sequence on the stack B. Lets say this sequence is of size l (necessarily `l >= 2`). 
 	- `O(N)`
 - step 3: Then for i ranging from 0 to N - l, we perform the following
